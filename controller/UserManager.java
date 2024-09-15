@@ -2,7 +2,9 @@ package controller;
 
 import java.util.ArrayList;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 
 import interfaces.entities.IUserManager;
@@ -39,6 +41,7 @@ public class UserManager implements IUserManager {
         }
     }
 
+    // Check if user already exist
     public boolean userExists(String email) {
         for (User u : userList) {
             // Return "true" if user exist.
@@ -50,6 +53,7 @@ public class UserManager implements IUserManager {
         return false;
     }
 
+    // Check if credentials are valid
     public boolean validCredentials(String email, String password) {
         for (User u : userList) {
             // Return "true" if valid credentials.
@@ -61,4 +65,59 @@ public class UserManager implements IUserManager {
         return false;
     }
 
+    // Add user. Method overloading cause of two types of User (this one if for Admin)
+    public void addUser(String name, String email, String password, String role) {
+        Admin a = new Admin(name, email, password, role);
+        userList.add(a);
+        dumpUserArrayListToFile();
+    }
+
+    // Add user. Method overloading cause of two types of User (this one if for Customer)
+    public void addUser(String name, String email, String password, String role, String gender, String contactNo, String address) {
+        Customer c = new Customer(name, email, password, role, gender, contactNo, address);
+        userList.add(c);
+        dumpUserArrayListToFile();
+    }
+
+    // Delete user
+    public void deleteUser(String email) {
+        for (User u : userList) {
+            if (u.getEmail().equals(email)) {
+                userList.remove(u);
+                break;
+            }
+        }
+        dumpUserArrayListToFile();
+    }
+
+
+    // Re-write the entire array list
+    // Currently, everytime there's a change in userList, the contents are dumped to the txt file, prefer to do this only before app shutdown
+    // For reduced IO operation, however, isn't a big deal for such a small project at the moment. Low priority.
+    // TODO: Reduce IO Operations
+    private void dumpUserArrayListToFile() {
+
+        try {
+            // Do not pass "true" to FileWriter as it'll overwrite the entire file. Passing "true" would just append to the file.
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/database/userData.txt"));
+            for (User u : userList) {
+                if (u instanceof Admin) {
+                    // Type cast back to original object to run object specific methods
+                    Admin a = (Admin) u;
+                    String t = a.getName() + "," + a.getEmail() + "," + a.getPassword() + "," + a.getRole();
+                    writer.write(t);
+                    writer.newLine();
+                } else if (u instanceof User) {
+                    // Type cast back to original object to run object specific methods
+                    Customer c = (Customer) u;
+                    String t = c.getName() + "," + c.getEmail() + "," + c.getPassword() + "," + c.getRole() + "," + c.getGender() + "," + c.getContactNo() + "," + c.getAddress();
+                    writer.write(t);
+                    writer.newLine();
+                }
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
