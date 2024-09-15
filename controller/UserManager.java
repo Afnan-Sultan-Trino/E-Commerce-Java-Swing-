@@ -24,12 +24,12 @@ public class UserManager implements IUserManager {
             BufferedReader reader = new BufferedReader(new FileReader("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/database/userData.txt"));
             String l;
             while ((l = reader.readLine()) != null) {
-                String[] parts = l.split(",");
+                String[] parts = l.split(","); // Use StringBuffer / StringBuilder
                 if (parts[3].equals("Admin")) {
                     Admin a = new Admin(parts[0], parts[1], parts[2], parts[3]);
                     userList.add(a);
                 } else if (parts[3].equals("Customer")) {
-                    Customer c = new Customer(parts[0], parts[1], parts[2], parts[3]);
+                    Customer c = new Customer(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]);
                     userList.add(c);
                 }
             }
