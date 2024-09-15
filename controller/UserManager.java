@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -14,7 +15,7 @@ import core.entities.Customer;
 
 public class UserManager implements IUserManager {
     private ArrayList<User> userList;
-    // private String userDataPath = "/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/database/userData.txt";
+    private String userDataPath = "/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/database/userData.txt";
 
     public UserManager() {
         userList = new ArrayList<User>();
@@ -22,8 +23,19 @@ public class UserManager implements IUserManager {
     }
 
     private void loadUserToMemory() {
+
+        // Try to create a file if it doesn't exist
+        File file = new File(userDataPath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/database/userData.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader(userDataPath));
             String l;
             while ((l = reader.readLine()) != null) {
                 String[] parts = l.split(","); // Use StringBuffer / StringBuilder
@@ -99,7 +111,7 @@ public class UserManager implements IUserManager {
 
         try {
             // Do not pass "true" to FileWriter as it'll overwrite the entire file. Passing "true" would just append to the file.
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/database/userData.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(userDataPath));
             for (User u : userList) {
                 if (u instanceof Admin) {
                     // Type cast back to original object to run object specific methods
