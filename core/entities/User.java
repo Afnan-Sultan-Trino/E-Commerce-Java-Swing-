@@ -16,7 +16,7 @@ public abstract class User implements IUser{
     }
 
     public void setName(String name) {
-        this.name = name.toUpperCase();
+        this.name = name;
     }
 
     public void setEmail(String email) {
