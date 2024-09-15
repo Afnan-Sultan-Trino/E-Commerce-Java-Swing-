@@ -1,0 +1,15 @@
+Priority Feature:
+1. Connect production login page to app
+2. Connect temp register page to app
+3. Add "Customer" specific attributes
+    1. Gender
+    2. Contact Number
+    3. Address
+
+4. Customer Dashboard
+5. Product Class Design
+
+
+Non Critical:
+1. Email Validation
+2. Password Strength Validation
