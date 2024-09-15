@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import controller.UserManager;
+import gui.temp.SignUpPage;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -203,6 +204,8 @@ public class LoginPage implements ActionListener {
             loginUser(emailField.getText(), new String(passwordField.getPassword()));
         } else if (e.getSource() == registerButton) {
             // Logic to Register
+            new SignUpPage();
+            frame.dispose();
         }
     }
 
@@ -211,7 +214,7 @@ public class LoginPage implements ActionListener {
 			JOptionPane.showMessageDialog(frame, "Username or password cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
 			UserManager userManager = new UserManager();
-			if (userManager.validCredentials(email, pass)) {
+			if (userManager.validCredentials(email.toLowerCase(), pass)) {
 				JOptionPane.showMessageDialog(frame, "Successfully logged in.", "Success", JOptionPane.INFORMATION_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error", JOptionPane.ERROR_MESSAGE);
