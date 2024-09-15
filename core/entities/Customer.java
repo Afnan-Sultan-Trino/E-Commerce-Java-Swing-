@@ -1,6 +1,8 @@
 package core.entities;
 
-public class Customer extends User {
+import interfaces.entities.ICustomer;
+
+public class Customer extends User implements ICustomer {
 
     private String gender;
     private String contactNo;
@@ -13,9 +15,17 @@ public class Customer extends User {
         this.address = address;
     }
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public void setContactNo(String contactNo) {
+        // TODO:  Do Number Validation
         this.contactNo = contactNo;
-        // Do Number Validation
     }
 
     public String getGender() {
