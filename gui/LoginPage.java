@@ -23,6 +23,7 @@ public class LoginPage implements ActionListener {
 
     public LoginPage() {
 
+        // Doesn't render properly on macOS, had to get cross-platform look and feel.
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception e) {
@@ -39,7 +40,7 @@ public class LoginPage implements ActionListener {
         frame.setIconImage(loadIcon("C:/Users/sarke/Downloads/pngwing.com.png")); 
 		
 		
-		ImageIcon originalIcon = new ImageIcon("C:/Users/sarke/Downloads/e-commerce-flat-concept/22119.jpg"); // Update the path to your image file
+		ImageIcon originalIcon = new ImageIcon("../assets/images/loginFrameBackground.jpeg"); // Update the path to your image file
 		Image originalImage = originalIcon.getImage(); 
 		Image scaledImage = originalImage.getScaledInstance(625, 800, Image.SCALE_SMOOTH); // Set your desired width and height
 		ImageIcon scaledIcon = new ImageIcon(scaledImage); // Create and add JLabel for the image
