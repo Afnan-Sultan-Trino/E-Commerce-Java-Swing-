@@ -15,7 +15,6 @@ import core.entities.Customer;
 
 public class UserManager implements IUserManager {
     private ArrayList<User> userList;
-    private String userDataPath = "/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/database/userData.txt";
 
     public UserManager() {
         userList = new ArrayList<User>();
@@ -25,7 +24,7 @@ public class UserManager implements IUserManager {
     private void loadUserToMemory() {
 
         // Try to create a file if it doesn't exist
-        File file = new File(userDataPath);
+        File file = new File("../database/userData.txt");
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -35,7 +34,7 @@ public class UserManager implements IUserManager {
         }
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(userDataPath));
+            BufferedReader reader = new BufferedReader(new FileReader("../database/userData.txt"));
             String l;
             while ((l = reader.readLine()) != null) {
                 String[] parts = l.split(","); // Use StringBuffer / StringBuilder
@@ -111,7 +110,7 @@ public class UserManager implements IUserManager {
 
         try {
             // Do not pass "true" to FileWriter as it'll overwrite the entire file. Passing "true" would just append to the file.
-            BufferedWriter writer = new BufferedWriter(new FileWriter(userDataPath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("../database/userData.txt"));
             for (User u : userList) {
                 if (u instanceof Admin) {
                     // Type cast back to original object to run object specific methods
