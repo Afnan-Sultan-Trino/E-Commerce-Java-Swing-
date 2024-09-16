@@ -33,6 +33,7 @@ public class UserManager implements IUserManager {
             }
         }
 
+        // Read from file
         try {
             BufferedReader reader = new BufferedReader(new FileReader("../database/userData.txt"));
             String l;
@@ -76,14 +77,14 @@ public class UserManager implements IUserManager {
         return false;
     }
 
-    // Add user. Method overloading cause of two types of User (this one if for Admin)
+    // Add user. Method overloading cause of two types of User (this one is for Admin)
     public void addUser(String name, String email, String password, String role) {
         Admin a = new Admin(name, email, password, role);
         userList.add(a);
         dumpUserArrayListToFile();
     }
 
-    // Add user. Method overloading cause of two types of User (this one if for Customer)
+    // Add user. Method overloading cause of two types of User (this one is for Customer)
     public void addUser(String name, String email, String password, String role, String gender, String contactNo, String address) {
         Customer c = new Customer(name, email, password, role, gender, contactNo, address);
         userList.add(c);
