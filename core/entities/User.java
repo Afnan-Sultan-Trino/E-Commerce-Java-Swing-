@@ -21,10 +21,12 @@ public abstract class User implements IUser{
 
     public void setEmail(String email) {
         this.email = email;
+        // TODO: Valid email address validation
     }
 
     public void setPassword(String password) {
         this.password = password;
+        // TODO: Password strength validation
     }
 
     public void setRole(String role) {
