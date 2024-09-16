@@ -81,14 +81,14 @@ public class UserManager implements IUserManager {
     public void addUser(String name, String email, String password, String role) {
         Admin a = new Admin(name, email, password, role);
         userList.add(a);
-        dumpUserArrayListToFile();
+        dumpDataToFile();
     }
 
     // Add user. Method overloading cause of two types of User (this one is for Customer)
     public void addUser(String name, String email, String password, String role, String gender, String contactNo, String address) {
         Customer c = new Customer(name, email, password, role, gender, contactNo, address);
         userList.add(c);
-        dumpUserArrayListToFile();
+        dumpDataToFile();
     }
 
     // Delete user
@@ -99,7 +99,7 @@ public class UserManager implements IUserManager {
                 break;
             }
         }
-        dumpUserArrayListToFile();
+        dumpDataToFile();
     }
 
 
@@ -107,7 +107,7 @@ public class UserManager implements IUserManager {
     // Currently, everytime there's a change in userList, the contents are dumped to the txt file, prefer to do this only before app shutdown
     // For reduced IO operation, however, isn't a big deal for such a small project at the moment. Low priority.
     // TODO: Reduce IO Operations
-    private void dumpUserArrayListToFile() {
+    private void dumpDataToFile() {
 
         try {
             // Do not pass "true" to FileWriter as it'll overwrite the entire file. Passing "true" would just append to the file.
