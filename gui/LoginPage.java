@@ -3,12 +3,12 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import controller.UserManager;
-import gui.temp.SignUpPage;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+
+import controller.UserManager;
+
 
 public class LoginPage implements ActionListener {
     private JFrame frame;
@@ -23,7 +23,6 @@ public class LoginPage implements ActionListener {
 
     public LoginPage() {
 
-        // Doesn't render properly on macOS, had to get cross-platform look and feel.
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception e) {
@@ -37,7 +36,7 @@ public class LoginPage implements ActionListener {
 
 
 		
-        frame.setIconImage(loadIcon("C:/Users/sarke/Downloads/pngwing.com.png")); 
+        frame.setIconImage(loadIcon("../assets/images/authAssets/loginFrameBackground.jpeg")); 
 		
 		
 		ImageIcon originalIcon = new ImageIcon("../assets/images/authAssets/loginFrameBackground.jpeg"); // Update the path to your image file
@@ -57,7 +56,7 @@ public class LoginPage implements ActionListener {
 		frame.add(lo);
 		
 		
-        ImageIcon emailIcon=new ImageIcon("C:/Users/sarke/AppData/Local/Temp/6698c115-0ae8-4ca5-b3f1-1fd1edbc5533_vecteezy_email-icon-png_31400781_259.zip.533/vecteezy_email-icon-png_31400781.jpg");
+        ImageIcon emailIcon=new ImageIcon("../assets/images/authAssets/emailIcon.png");
 		JLabel emailIconLabel=new JLabel(emailIcon);
 		
 		
@@ -67,6 +66,16 @@ public class LoginPage implements ActionListener {
 		emailLabel.setFont(emailFont);
         emailLabel.setForeground(new Color(215,210,203));
         frame.add(emailLabel);
+
+
+        ImageIcon emIcon = new ImageIcon("../assets/images/authAssets/emailIcon.png"); // Update the path to your image file
+		Image emImage = emIcon.getImage(); 
+        Image emscaledImage = emImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Set your desired width and height
+		ImageIcon emscaledIcon = new ImageIcon(emscaledImage); // Create and add JLabel for the image
+		JLabel emimageLabel = new JLabel(emscaledIcon);
+		emimageLabel.setBounds(890, 329, 30, 30);
+		frame.add(emimageLabel);
+
 
        
 		emailField = new JTextField();
@@ -87,6 +96,17 @@ public class LoginPage implements ActionListener {
 		passwordLabel.setFont(passwordFont);
 		passwordLabel.setForeground(new Color(215,210,203));
         frame.add(passwordLabel);
+
+        ImageIcon pIcon = new ImageIcon("../assets/images/authAssets/passwordHiddenIcon.png"); // Update the path to your image file
+		Image pImage = pIcon.getImage(); 
+        Image pscaledImage = pImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Set your desired width and height
+		ImageIcon pscaledIcon = new ImageIcon(pscaledImage); // Create and add JLabel for the image
+		JLabel pimageLabel = new JLabel(pscaledIcon);
+		pimageLabel.setBounds(890, 389, 30, 30);
+		frame.add(pimageLabel);
+
+
+
 
 		
 		passwordField = new JPasswordField();
@@ -205,7 +225,7 @@ public class LoginPage implements ActionListener {
             loginUser(emailField.getText(), new String(passwordField.getPassword()));
         } else if (e.getSource() == registerButton) {
             // Logic to Register
-            new SignUpPage();
+            new Registration();
             frame.dispose();
         }
     }
