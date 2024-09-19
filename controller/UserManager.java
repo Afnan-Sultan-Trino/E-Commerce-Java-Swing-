@@ -120,10 +120,9 @@ public class UserManager implements IUserManager {
         return null;
     }
 
-
     // Re-write the entire array list
-    // Currently, everytime there's a change in userList, the contents are dumped to the txt file, prefer to do this only before app shutdown
-    // For reduced IO operation, however, isn't a big deal for such a small project at the moment. Low priority.
+    // Currently, everytime there's a change in userList, the contents are dumped to the txt file, prefer to do this only before app shutdown for reduced IO operation
+    // However, isn't a big deal for such a small project at the moment.
     // TODO: Reduce IO Operations (Low Priority)
     private void dumpDataToFile() {
 
