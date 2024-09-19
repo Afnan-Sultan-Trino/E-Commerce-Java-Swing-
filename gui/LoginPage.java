@@ -238,6 +238,13 @@ public class LoginPage implements ActionListener {
 			UserManager userManager = new UserManager();
 			if (userManager.validCredentials(email.toLowerCase(), pass)) {
 				JOptionPane.showMessageDialog(frame, "Successfully logged in.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                // Close this frame and open admin/customer dashboard
+                // Pass the user email to the constructor of the dashboard
+                if (userManager.getUserRole(email).equals("Admin")) {
+                    // Admin Dashboard
+                } else {
+                    // Customer Dashboard
+                }
 			} else {
 				JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
