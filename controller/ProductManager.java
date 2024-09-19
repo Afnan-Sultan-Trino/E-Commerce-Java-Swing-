@@ -36,19 +36,47 @@ public class ProductManager {
             String l;
             while ((l = reader.readLine()) != null) {
                 String[] parts = l.split(",");
-                if (parts.length == 5) { // TODO: This statement becomes obsolete if we add a default image path to the Product constructor
-                    Product p = new Product(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]), parts[4]);
-                    productList.add(p);
-                } else if (parts.length == 6) {
-                    Product p = new Product(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]), parts[4], parts[5]);
-                    productList.add(p);
-                }
+                Product p = new Product(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]), parts[4], parts[5], parts[6]);
+                productList.add(p);
             }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }    
+    }
+
+    public boolean productExists(int id) {
+        for (Product p : productList) {
+            if (p.getID() == id) {
+                return true;
+            }
         }
-        
+        return false;
+    }
+
+    // Add product with default image
+    public void addProduct(int id, String name, double price, int stock, String category, String desc) {
+        Product p = new Product(id, name, price, stock, category, desc);
+        productList.add(p);
+        dumpDataToFile();
+    }
+
+    // Add product with custom image
+    public void addProduct(int id, String name, double price, int stock, String category, String desc, String imagePath) {
+        Product p = new Product(id, name, price, stock, category, desc, imagePath);
+        productList.add(p);
+        dumpDataToFile();
+    }
+
+    // Delete product
+    public void deleteProduct(int id) {
+        for (Product p : productList) {
+            if (p.getID() == id) {
+                productList.remove(p);
+                dumpDataToFile();
+                break;
+            }
+        }
     }
 
     // Copying entire array list to text file
@@ -56,7 +84,7 @@ public class ProductManager {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/productData.txt"));
             for (Product p : productList) {
-                String t = p.getID() + "," + p.getName() + "," + p.getPrice() + "," + p.getStock() + "," + p.getDescription() + "," + p.getImagePath();
+                String t = p.getID() + "," + p.getName() + "," + p.getPrice() + "," + p.getStock() + "," + p.getCategory() + "," + p.getDescription() + "," + p.getImagePath();
                 writer.write(t);
                 writer.newLine();
             }
