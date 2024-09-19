@@ -360,8 +360,7 @@ public class Registration implements ActionListener {
         String contact = contactField.getText();
 
         // Check if any field is empty
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || cpassword.isEmpty() || address.isEmpty()
-                || contact.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || cpassword.isEmpty() || address.isEmpty() || contact.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Please fill all the fields", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -385,8 +384,7 @@ public class Registration implements ActionListener {
                 JOptionPane.showMessageDialog(frame, "User already exists", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 userManager.addUser(name, email, password, "Customer", gender, address, contact);
-                JOptionPane.showMessageDialog(frame, "Registration Successful. Please Login", "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Registration Successful. Please Login", "Success", JOptionPane.INFORMATION_MESSAGE);
                 frame.dispose();
                 new LoginPage();
             }
