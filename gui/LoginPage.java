@@ -211,6 +211,7 @@ public class LoginPage implements ActionListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
     }
 	
 	private Image loadIcon(String iconPath){
