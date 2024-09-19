@@ -3,11 +3,11 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import controllers.UserManager;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-
-import controller.UserManager;
 
 
 public class LoginPage implements ActionListener {
@@ -232,9 +232,16 @@ public class LoginPage implements ActionListener {
     }
 
     private void loginUser(String email, String pass) {
-		if (email.equals("") || pass.equals("")) {
+		if (email.isEmpty() || pass.isEmpty()) {
 			JOptionPane.showMessageDialog(frame, "Username or password cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
+            if(!email.contains("@") || !email.contains(".")) {
+                JOptionPane.showMessageDialog(frame, "Invalid email address.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else if (pass.length() < 8) {
+                JOptionPane.showMessageDialog(frame, "Password must be at least 8 characters long.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 			UserManager userManager = new UserManager();
 			if (userManager.validCredentials(email.toLowerCase(), pass)) {
 				JOptionPane.showMessageDialog(frame, "Successfully logged in.", "Success", JOptionPane.INFORMATION_MESSAGE);
