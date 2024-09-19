@@ -4,13 +4,15 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import controllers.UserManager;
+
 import javax.swing.JPasswordField;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import gui.LoginPage;
-import controller.UserManager;
 
 public class SignUpPage extends JFrame implements ActionListener {
 
