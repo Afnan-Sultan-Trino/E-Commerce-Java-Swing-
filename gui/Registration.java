@@ -3,11 +3,13 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.Border;
+
+import controllers.UserManager;
+
 import java.awt.event.*;
 import java.io.*;
 
 import gui.Registration;
-import controller.UserManager;
 
 public class Registration implements ActionListener {
     private JFrame frame;
@@ -365,6 +367,16 @@ public class Registration implements ActionListener {
             return;
         }
 
+        if(!email.contains("@") || !email.contains(".")) {
+            JOptionPane.showMessageDialog(frame, "Invalid email address.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (password.length() < 8) {
+            JOptionPane.showMessageDialog(frame, "Password must be at least 8 characters long.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         // Check if password and confirm password match
         if (!password.equals(cpassword)) {
             JOptionPane.showMessageDialog(frame, "Passwords do not match", "Error", JOptionPane.ERROR_MESSAGE);
@@ -378,18 +390,14 @@ public class Registration implements ActionListener {
             return;
         }
 
-        if (email.contains("@") && email.contains(".")) {
-            UserManager userManager = new UserManager();
-            if (userManager.userExists(email)) {
-                JOptionPane.showMessageDialog(frame, "User already exists", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                userManager.addUser(name, email, password, "Customer", gender, address, contact);
-                JOptionPane.showMessageDialog(frame, "Registration Successful. Please Login", "Success", JOptionPane.INFORMATION_MESSAGE);
-                frame.dispose();
-                new LoginPage();
-            }
+        UserManager userManager = new UserManager();
+        if (userManager.userExists(email)) {
+            JOptionPane.showMessageDialog(frame, "User already exists", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(frame, "Invalid email", "Error", JOptionPane.ERROR_MESSAGE);
+            userManager.addUser(name, email, password, "Customer", gender, address, contact);
+            JOptionPane.showMessageDialog(frame, "Registration Successful. Please Login", "Success", JOptionPane.INFORMATION_MESSAGE);
+            frame.dispose();
+            new LoginPage();
         }
     }
 
