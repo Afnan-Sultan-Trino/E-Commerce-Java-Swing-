@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import java.util.ArrayList;
 import java.io.File;
@@ -9,9 +9,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 import core.entities.Product;
+import interfaces.controllers.IProductManager;
 
-
-public class ProductManager {
+public class ProductManager implements IProductManager {
     private ArrayList<Product> productList;
 
     public ProductManager() {
@@ -77,6 +77,17 @@ public class ProductManager {
                 break;
             }
         }
+    }
+
+    public Product searchProduct(int id) {
+        for (Product p : productList) {
+            if (p.getID() == id) {
+                Product prod = new Product(p.getID(), p.getName(), p.getPrice(), p.getStock(), p.getCategory(), p.getDescription(), p.getImagePath());
+                return prod;
+            }
+        }
+        // Catch NullPointerException and notify user that the product does not exist.
+        return null;
     }
 
     // Copying entire array list to text file

@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import java.util.ArrayList;
 import java.io.File;
@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-import interfaces.entities.IUserManager;
+import interfaces.controllers.IUserManager;
 import core.entities.User;
 import core.entities.Admin;
 import core.entities.Customer;
@@ -107,12 +107,14 @@ public class UserManager implements IUserManager {
     public User searchUser(String email) {
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
-                if (u.getRole().equals("Customer")) {
-                    User c = new Customer(u.getName(), u.getEmail(), u.getPassword(), u.getRole(), ((Customer) u).getGender(), ((Customer) u).getContactNo(), ((Customer) u).getAddress());
-                    return c;
-                } else if (u.getRole().equals("Admin")) {
-                    User a = new Admin(u.getName(), u.getEmail(), u.getPassword(), u.getRole());
-                    return a;
+                if (u instanceof Customer) {
+                    Customer c = (Customer) u;
+                    User customer = new Customer(c.getName(), c.getEmail(), c.getPassword(), c.getRole(), c.getGender(), c.getContactNo(), c.getAddress());
+                    return customer;
+                } else if (u instanceof Admin) {
+                    Admin a = (Admin) u;
+                    User admin = new Admin(a.getName(), a.getEmail(), a.getPassword(), a.getRole());
+                    return admin;
                 }
             }
         }
