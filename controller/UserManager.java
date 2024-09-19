@@ -96,10 +96,10 @@ public class UserManager implements IUserManager {
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
                 userList.remove(u);
+                dumpDataToFile();
                 break;
             }
         }
-        dumpDataToFile();
     }
 
     // Search user (return user object)
@@ -116,7 +116,17 @@ public class UserManager implements IUserManager {
                 }
             }
         }
-        // When using this method, catch NullPointerException and notify user that the user does not exist.
+        // Catch NullPointerException and notify user that the user does not exist.
+        return null;
+    }
+
+    public String getUserRole(String email) {
+        for (User u : userList) {
+            if (u.getEmail().equals(email)) {
+                return u.getRole();
+            }
+        }
+        // Catch NullPointerException and notify user that the user does not exist.
         return null;
     }
 
