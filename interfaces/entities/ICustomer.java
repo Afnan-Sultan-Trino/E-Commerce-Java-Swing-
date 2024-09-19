@@ -7,4 +7,9 @@ public interface ICustomer {
     public String getContactNo();
     public String getGender();
     public String getAddress();
+    public void addToCart(int id, int q);
+    public void removeFromCart(int id);
+    public void updateCartProductQuantity(int id, int q);
+    public void clearCart();
+    public double getCartTotal();
 }
