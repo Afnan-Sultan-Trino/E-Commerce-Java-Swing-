@@ -102,11 +102,29 @@ public class UserManager implements IUserManager {
         dumpDataToFile();
     }
 
+    // Search user (return user object)
+    // MUST create a new object cause otherwise, if the object reference is returned, that object can be modified, compromising the user data.
+    public User searchUser(String email) {
+        for (User u : userList) {
+            if (u.getEmail().equals(email)) {
+                if (u.getRole().equals("Customer")) {
+                    User c = new Customer(u.getName(), u.getEmail(), u.getPassword(), u.getRole(), ((Customer) u).getGender(), ((Customer) u).getContactNo(), ((Customer) u).getAddress());
+                    return c;
+                } else if (u.getRole().equals("Admin")) {
+                    User a = new Admin(u.getName(), u.getEmail(), u.getPassword(), u.getRole());
+                    return a;
+                }
+            }
+        }
+        // When using this method, catch NullPointerException and notify user that the user does not exist.
+        return null;
+    }
+
 
     // Re-write the entire array list
     // Currently, everytime there's a change in userList, the contents are dumped to the txt file, prefer to do this only before app shutdown
     // For reduced IO operation, however, isn't a big deal for such a small project at the moment. Low priority.
-    // TODO: Reduce IO Operations
+    // TODO: Reduce IO Operations (Low Priority)
     private void dumpDataToFile() {
 
         try {
