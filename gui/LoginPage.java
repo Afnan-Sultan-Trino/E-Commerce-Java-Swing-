@@ -250,6 +250,7 @@ public class LoginPage implements ActionListener {
                 if (userManager.getUserRole(email).equals("Admin")) {
                     // Admin Dashboard
                 } else {
+                    frame.dispose();
                     new CustomerDashboard();
                 }
 			} else {
