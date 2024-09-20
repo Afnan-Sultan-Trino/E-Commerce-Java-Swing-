@@ -90,6 +90,15 @@ public class ProductManager implements IProductManager {
         return null;
     }
 
+    public ArrayList<Product> getAllProducts() {
+        ArrayList<Product> products = new ArrayList<Product>();
+        for (Product p : productList) {
+            Product prod = new Product(p.getID(), p.getName(), p.getPrice(), p.getStock(), p.getCategory(), p.getDescription(), p.getImagePath());
+            products.add(prod);
+        }
+        return products;
+    }
+
     // Copying entire array list to text file
     private void dumpDataToFile() {
         try {
