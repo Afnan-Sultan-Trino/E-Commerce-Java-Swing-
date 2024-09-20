@@ -78,6 +78,7 @@ public class UserManager implements IUserManager {
     }
 
     // Add user. Method overloading cause of two types of User (this one is for Admin)
+    // TODO: Validate data in front-end
     public void addUser(String name, String email, String password, String role) {
         Admin a = new Admin(name, email, password, role);
         userList.add(a);
@@ -85,6 +86,7 @@ public class UserManager implements IUserManager {
     }
 
     // Add user. Method overloading cause of two types of User (this one is for Customer)
+    // TODO: Validate data in front-end
     public void addUser(String name, String email, String password, String role, String gender, String contactNo, String address) {
         Customer c = new Customer(name, email, password, role, gender, contactNo, address);
         userList.add(c);
@@ -92,6 +94,7 @@ public class UserManager implements IUserManager {
     }
 
     // Delete user
+    // TODO: Validate email in front-end || Just check if the userExists
     public void deleteUser(String email) {
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
@@ -104,6 +107,7 @@ public class UserManager implements IUserManager {
 
     // Search user (return user object)
     // MUST create a new object cause otherwise, if the object reference is returned, that object can be modified, compromising the user data.
+    // TODO: Catch NullPointerException in front-end and notify user that the user does not exist.
     public User searchUser(String email) {
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
@@ -118,17 +122,16 @@ public class UserManager implements IUserManager {
                 }
             }
         }
-        // Catch NullPointerException and notify user that the user does not exist.
         return null;
     }
 
+    // TODO: Catch NullPointerException in front-end and notify user that the user does not exist.
     public String getUserRole(String email) {
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
                 return u.getRole();
             }
         }
-        // Catch NullPointerException and notify user that the user does not exist.
         return null;
     }
 
@@ -139,7 +142,7 @@ public class UserManager implements IUserManager {
     private void dumpDataToFile() {
 
         try {
-            // Do not pass "true" to FileWriter as it'll overwrite the entire file. Passing "true" would just append to the file.
+            // Do not pass "true" to FileWriter as I want to overwrite the entire file. Passing "true" would just append to the file.
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/userData.txt"));
             for (User u : userList) {
                 if (u instanceof Admin) {

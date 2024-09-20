@@ -3,7 +3,7 @@ package core.entities;
 import interfaces.entities.IProduct;
 
 public class Product implements IProduct {
-    private int id; // TODO: Ensure validation on front-end to avoid -ve id
+    private int id;
     private String name;
     private double price;
     private int stock;
@@ -14,36 +14,53 @@ public class Product implements IProduct {
 
     // Call this constructor if image path is not provided (will use default image)
     public Product(int id, String name, double price, int stock, String category, String desc) {
-        this.id = id;
+        setID(id); // TODO: Ensure validation on front-end to avoid -ve id
         setName(name);
         setPrice(price); // TODO: Ensure validation on front-end to avoid -ve price
         setStock(stock); // TODO: Ensure validation on front-end to avoid -ve stock
-        this.category = category;
+        setCategory(category);
         setDescription(desc);
     }
 
     // Call this constructor if image path is provided
     public Product(int id, String name, double price, int stock, String category, String desc, String imagePath){
-        this.id = id; // TODO: Ensure validation on front-end to avoid -ve id
+        setID(id); // TODO: Ensure validation on front-end to avoid -ve id
         setName(name);
         setPrice(price); // TODO: Ensure validation on front-end to avoid -ve price
         setStock(stock); // TODO: Ensure validation on front-end to avoid -ve stock
-        this.category = category;
+        setCategory(category);
         setDescription(desc);
         setImagePath(imagePath);
     }
 
+    private void setID(int id) {
+        if (id > 0) {
+            this.id = id;
+        } else {
+            throw new IllegalArgumentException("Invalid ID.");
+        }
+    }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    // TODO: Ensure validation on front-end to avoid -ve price
     public void setPrice(double price) {
-        this.price = price;
+        if (price > 0) {
+            this.price = price;
+        } else {
+            throw new IllegalArgumentException("Invalid Price.");
+        }
     }
 
+    // TODO: Ensure validation on front-end to avoid -ve stock
     public void setStock(int stock) {
-        this.stock = stock;
+        if (stock >= 0) {
+            this.stock = stock;
+        } else {
+            throw new IllegalArgumentException("Invalid Stock.");
+        }
     }
 
     public void setCategory(String category) {

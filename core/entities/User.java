@@ -19,18 +19,31 @@ public abstract class User implements IUser{
         this.name = name;
     }
 
+    // TODO: Validate email address in front-end
     public void setEmail(String email) {
-        this.email = email;
-        // TODO: Valid email address validation
+        if (email.contains("@") && email.contains(".")) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("Invalid Email Address.");
+        }
     }
 
+    // TODO: Validate password in front-end
     public void setPassword(String password) {
-        this.password = password;
-        // TODO: Password strength validation
+        if (password.length() >= 8) {
+            this.password = password;
+        } else {
+            throw new IllegalArgumentException("Password must be at least 8 characters long.");
+        }
     }
 
+    // TODO: Validate role in front-end
     public void setRole(String role) {
-        this.role = role;
+        if (role.equalsIgnoreCase("Admin") || role.equalsIgnoreCase("Customer")) {
+            this.role = role;
+        } else {
+            throw new IllegalArgumentException("Invalid Role.");
+        }
     }
 
     public String getName() {

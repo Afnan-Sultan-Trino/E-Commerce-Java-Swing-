@@ -45,6 +45,7 @@ public class ProductManager implements IProductManager {
         }    
     }
 
+    // TODO: Validate ID in front-end
     public boolean productExists(int id) {
         for (Product p : productList) {
             if (p.getID() == id) {
@@ -55,6 +56,7 @@ public class ProductManager implements IProductManager {
     }
 
     // Add product with default image
+    // TODO: Validate data in front-end
     public void addProduct(int id, String name, double price, int stock, String category, String desc) {
         Product p = new Product(id, name, price, stock, category, desc);
         productList.add(p);
@@ -62,6 +64,7 @@ public class ProductManager implements IProductManager {
     }
 
     // Add product with custom image
+    // TODO: Validate data in front-end
     public void addProduct(int id, String name, double price, int stock, String category, String desc, String imagePath) {
         Product p = new Product(id, name, price, stock, category, desc, imagePath);
         productList.add(p);
@@ -69,6 +72,7 @@ public class ProductManager implements IProductManager {
     }
 
     // Delete product
+    // TODO: Validate ID in front-end
     public void deleteProduct(int id) {
         for (Product p : productList) {
             if (p.getID() == id) {
@@ -79,6 +83,8 @@ public class ProductManager implements IProductManager {
         }
     }
 
+    // TODO: Validate ID in front-end
+    // Catch NullPointerException and notify user that the product does not exist.
     public Product searchProduct(int id) {
         for (Product p : productList) {
             if (p.getID() == id) {
@@ -86,7 +92,6 @@ public class ProductManager implements IProductManager {
                 return prod;
             }
         }
-        // Catch NullPointerException and notify user that the product does not exist.
         return null;
     }
 
