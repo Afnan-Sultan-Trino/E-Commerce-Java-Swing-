@@ -362,24 +362,33 @@ public class Registration implements ActionListener {
         String contact = contactField.getText();
 
         // Check if any field is empty
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || cpassword.isEmpty() || address.isEmpty() || contact.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || cpassword.isEmpty() || address.isEmpty()
+                || contact.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Please fill all the fields", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if(!email.contains("@") || !email.contains(".")) {
+        if (!email.contains("@") || !email.contains(".")) {
             JOptionPane.showMessageDialog(frame, "Invalid email address.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (password.length() < 8) {
-            JOptionPane.showMessageDialog(frame, "Password must be at least 8 characters long.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Password must be at least 8 characters long.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Check if password and confirm password match
         if (!password.equals(cpassword)) {
             JOptionPane.showMessageDialog(frame, "Passwords do not match", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if ((contact.length() < 10) || (!contact.startsWith("0") && !contact.startsWith("+880"))) {
+            // Using "AND" cause if "OR" is used, if starts with "+880", check for "0" becomes true so shows error.
+            // Similar case when starts with "0".
+            JOptionPane.showMessageDialog(frame, "Invalid contact number", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -395,7 +404,8 @@ public class Registration implements ActionListener {
             JOptionPane.showMessageDialog(frame, "User already exists", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             userManager.addUser(name, email, password, "Customer", gender, address, contact);
-            JOptionPane.showMessageDialog(frame, "Registration Successful. Please Login", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Registration Successful. Please Login", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
             frame.dispose();
             new LoginPage();
         }
