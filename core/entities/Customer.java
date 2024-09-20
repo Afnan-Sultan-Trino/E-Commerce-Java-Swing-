@@ -22,7 +22,10 @@ public class Customer extends User implements ICustomer {
     }
 
     public void setGender(String gender) {
-        this.gender = gender;  // TODO: Ensure validation on front-end to avoid multiple genders.
+        if (gender.equalsIgnoreCase("Male") || gender.equalsIgnoreCase("Female") || gender.equalsIgnoreCase("Other")) {
+            this.gender = gender;
+            // TODO: Ensure validation on front-end to avoid multiple genders.
+        }
     }
 
     public void setAddress(String address) {

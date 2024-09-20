@@ -27,7 +27,7 @@ public class LoginPage implements ActionListener {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception e) {
             e.printStackTrace();
-    }
+        }
 
         frame = new JFrame("E-Commerce");
         frame.setSize(980, 800);
@@ -250,7 +250,7 @@ public class LoginPage implements ActionListener {
                 if (userManager.getUserRole(email).equals("Admin")) {
                     // Admin Dashboard
                 } else {
-                    // Customer Dashboard
+                    new CustomerDashboard();
                 }
 			} else {
 				JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error", JOptionPane.ERROR_MESSAGE);
