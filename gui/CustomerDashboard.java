@@ -36,7 +36,7 @@ public class CustomerDashboard extends JFrame {
         // Left side: App logo and text ("E-Cart")
         JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         leftPanel.setBackground(Color.decode("#a2ba07"));
-        JLabel titleIcon = new JLabel(new ImageIcon("C:/Users/sarke/Downloads/shopping-cart.png"));
+        JLabel titleIcon = new JLabel(new ImageIcon("../assets/images/authAssets/shoppingCart.png"));
         JLabel titleLabel = new JLabel("E-Cart");
         titleLabel.setFont(new Font("Verdana", Font.BOLD, 24));
         titleLabel.setForeground(Color.BLACK);
@@ -44,9 +44,9 @@ public class CustomerDashboard extends JFrame {
         leftPanel.add(titleLabel);
 
         // Center: Search bar with search icon
-        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
         searchPanel.setBackground(Color.decode("#a2ba07"));
-        JLabel searchIcon = new JLabel(new ImageIcon("C:/Users/sarke/Downloads/magnifying-glass.png"));
+        JLabel searchIcon = new JLabel(new ImageIcon("../assets/images/authAssets/magnifyingGlass.png"));
         searchIcon.setBackground(Color.decode("#7a8928"));
         JTextField searchBar = new JTextField("Search for products or categories", 30);
         searchBar.setForeground(Color.GRAY);
@@ -55,11 +55,11 @@ public class CustomerDashboard extends JFrame {
         searchPanel.add(searchBar);
 
         // Right side: Profile, cart, and logout icons
-        JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 0));
+        JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 5));
         rightPanel.setBackground(Color.decode("#a2ba07"));
-        JLabel profileIcon = new JLabel(new ImageIcon("C:/Users/sarke/Downloads/user (1).png"));
-        JLabel cartIcon = new JLabel(new ImageIcon("C:/Users/sarke/Downloads/grocery-store.png"));
-        JLabel logoutIcon = new JLabel(new ImageIcon("C:/Users/sarke/Downloads/log-out.png"));
+        JLabel profileIcon = new JLabel(new ImageIcon("../assets/images/authAssets/user.png"));
+        JLabel cartIcon = new JLabel(new ImageIcon("../assets/images/authAssets/groceryStore.png"));
+        JLabel logoutIcon = new JLabel(new ImageIcon("../assets/images/authAssets/logOut.png"));
         rightPanel.add(cartIcon);
         rightPanel.add(profileIcon);
         rightPanel.add(logoutIcon);
@@ -82,11 +82,11 @@ public class CustomerDashboard extends JFrame {
         JButton productButton = createSidebarButton("Products");
         JButton helpButton = createSidebarButton("Help Center");
 
-        JCheckBox checkbox1 = new JCheckBox("BDT 3k-4k");
+        JCheckBox checkbox1 = new JCheckBox("BDT 3K-4K");
         checkbox1.setBackground(Color.decode("#041a42"));
         checkbox1.setForeground(Color.WHITE);
         checkbox1.setBounds(0, 230, 120, 50);
-        JCheckBox checkbox2 = new JCheckBox("BDT 5k-7k");
+        JCheckBox checkbox2 = new JCheckBox("BDT 5K-7K");
         checkbox2.setBackground(Color.decode("#041a42"));
         checkbox2.setForeground(Color.WHITE);
         checkbox2.setBounds(0, 260, 120, 50);
@@ -126,7 +126,7 @@ public class CustomerDashboard extends JFrame {
 
         JButton switchThemeButton = createSidebarButton("Switch Theme");
 
-        JLabel backIcon = new JLabel(new ImageIcon("C:/Users/sarke/Downloads/back.png"));
+        JLabel backIcon = new JLabel(new ImageIcon("../assets/images/authAssets/backButton.png"));
         backIcon.setBounds(28, 540, 60, 35);
         add(backIcon);
 
@@ -162,7 +162,7 @@ public class CustomerDashboard extends JFrame {
         bannerText.setBounds(750, 210, 390, 280); // Manually setting bounds
 
         // Image for bannerPanel
-        JLabel bannerImage = new JLabel(new ImageIcon("C:/Users/sarke/Downloads/WhatsApp Image 2024-09-20 at 11.17.01_b28420fc.jpg"));
+        JLabel bannerImage = new JLabel(new ImageIcon("../assets/images/authAssets/banner.jpg"));
         bannerImage.setBounds(0, 0, 735, 670); // Manually setting bounds for image
 
         // Horizontal Panel inside bannerPanel
@@ -177,7 +177,7 @@ public class CustomerDashboard extends JFrame {
         exclusiveDealsPanel.setBackground(Color.decode("#050507")); // Match background color
 
         // Add an icon to the label
-        ImageIcon dealsIcon = new ImageIcon("C:/Users/sarke/Downloads/financial-deal.png");
+        ImageIcon dealsIcon = new ImageIcon("../assets/images/authAssets/financialDeal.png");
         JLabel dealsLabel = new JLabel("<html><h2 style='color:#ff881e'>Exclusive Deals</h2></html>", dealsIcon,
                 SwingConstants.CENTER);
         Font dealsHeadingFont = new Font("Georgia", Font.BOLD, 18);
@@ -190,6 +190,7 @@ public class CustomerDashboard extends JFrame {
 
         // Add the descriptive text for "Exclusive Deals"
         JLabel dealsText = new JLabel("<html><h2 style='color:#c9c6c1'>Unlock unbeatable savings with our daily exclusive deals! Discover limited-time offers, flash sales, and discounts on top-rated products across all categories.</h2></html>", SwingConstants.CENTER);
+        dealsText.setBounds(westPanel.getWidth() + 10, dealsText.getY(), dealsText.getWidth(), dealsText.getHeight()); // Add 10 pixels of padding
         Font dealsFont = new Font("open sans", Font.PLAIN, 18);
         dealsText.setFont(dealsFont);
         dealsText.setAlignmentX(Component.CENTER_ALIGNMENT); // Align to center
@@ -201,7 +202,7 @@ public class CustomerDashboard extends JFrame {
         securePaymentPanel.setBackground(Color.decode("#050507")); // Match background color
 
         // Add an icon to the label
-        ImageIcon secureIcon = new ImageIcon("C:/Users/sarke/Downloads/credit-card.png");
+        ImageIcon secureIcon = new ImageIcon("../assets/images/authAssets/creditCard.png");
         JLabel reviewsLabel = new JLabel("<html><h2 style='color:#ff881e'>Safe and Secure Payment</h2></html>", secureIcon, SwingConstants.CENTER);
         Font reviewFont = new Font("Georgia", Font.BOLD, 18);
         reviewsLabel.setFont(reviewFont);
@@ -222,7 +223,7 @@ public class CustomerDashboard extends JFrame {
         customerSupportPanel.setBackground(Color.decode("#050507")); // Match background color
 
         // Add an icon to the label
-        ImageIcon supportIcon = new ImageIcon("C:/Users/sarke/Downloads/customer-service.png");
+        ImageIcon supportIcon = new ImageIcon("../assets/images/authAssets/customerService.png");
         JLabel customerSupportLabel = new JLabel("<html><h2 style='color:#ff881e'>24/7 Customer Support</h2></html>", supportIcon, SwingConstants.CENTER);
         Font customerSupportFont = new Font("Georgia", Font.BOLD, 18);
         customerSupportLabel.setFont(customerSupportFont);
