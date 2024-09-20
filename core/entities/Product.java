@@ -3,7 +3,7 @@ package core.entities;
 import interfaces.entities.IProduct;
 
 public class Product implements IProduct {
-    private int id;
+    private int id; // TODO: Ensure validation on front-end to avoid -ve id
     private String name;
     private double price;
     private int stock;
@@ -14,7 +14,7 @@ public class Product implements IProduct {
 
     // Call this constructor if image path is not provided (will use default image)
     public Product(int id, String name, double price, int stock, String category, String desc) {
-        this.id = id; // TODO: Ensure validation on front-end to avoid -ve id
+        this.id = id;
         setName(name);
         setPrice(price); // TODO: Ensure validation on front-end to avoid -ve price
         setStock(stock); // TODO: Ensure validation on front-end to avoid -ve stock
