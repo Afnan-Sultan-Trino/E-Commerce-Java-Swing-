@@ -1,1 +1,1 @@
-Emad,emadharun.eh@gmail.com,1234,Admin
+Emad,emadharun.eh@gmail.com,12345678,Customer,Male,Shamoly,01300027431
