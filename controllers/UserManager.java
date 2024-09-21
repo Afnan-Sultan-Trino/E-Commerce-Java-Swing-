@@ -135,6 +135,23 @@ public class UserManager implements IUserManager {
         return null;
     }
 
+    // Update user (Customer)
+    public boolean updateUser(String name, String email, String password, String role, String gender, String contactNo, String address) {
+        for (User u : userList) {
+            if (u.getEmail().equals(email)) {
+                Customer c = (Customer) u;
+                c.setName(name);
+                c.setEmail(email);
+                c.setPassword(password);
+                c.setRole(role);
+                c.setAddress(address);
+                dumpDataToFile();
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Re-write the entire array list
     // Currently, everytime there's a change in userList, the contents are dumped to the txt file, prefer to do this only before app shutdown for reduced IO operation
     // However, isn't a big deal for such a small project at the moment.
