@@ -29,7 +29,7 @@ public class CustomerDashboard extends JFrame {
 
         // Set basic JFrame properties
         setTitle("Customer Dashboard");
-        setSize(1536, 1024);
+        setSize(1420, 1024);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
@@ -166,14 +166,15 @@ public class CustomerDashboard extends JFrame {
 
         // Banner Panel (Top of centrePanel)
         JPanel bannerPanel = new JPanel(null); // Using null layout for manual positioning
-        bannerPanel.setPreferredSize(new Dimension(1250, 980));
+        bannerPanel.setPreferredSize(new Dimension(1250, 900));
         bannerPanel.setBackground(Color.decode("#0c0b10"));
 
         // Text for bannerPanel
         JLabel bannerText = new JLabel(
-                "<html><h1 style='color:#c9c6c1'>Welcome to Your E-Cart Dashboard!</h1><p>Discover the latest tech at unbeatable prices.</p><p>We bring you the best in cutting-edge technology. Browse our extensive catalog, view detailed product information, and experience a seamless shopping experience.</p></html>");
+                "<html><h1 style='color:#c9c6c1'>Welcome to Your E-Cart Dashboard, " + c.getName() + "!</h1><p>Discover the latest tech at unbeatable prices.</p><p>We bring you the best in cutting-edge technology. Browse our extensive catalog, view detailed product information, and experience a seamless shopping experience.</p></html>");
         Font bannerFont = new Font("open sans", Font.BOLD, 18);
         bannerText.setFont(bannerFont);
+        bannerText.setForeground(Color.decode("#D3D3D3"));
         bannerText.setBounds(750, 210, 390, 280); // Manually setting bounds
 
         // Image for bannerPanel
@@ -183,13 +184,13 @@ public class CustomerDashboard extends JFrame {
         // Horizontal Panel inside bannerPanel
         JPanel horizontalPanel = new JPanel();
         horizontalPanel.setLayout(new GridLayout(1, 3, 20, 0)); // 3 columns, horizontal layout with spacing
-        horizontalPanel.setBounds(0, 670, 1200, 330); // Setting position and size for horizontal panel
+        horizontalPanel.setBounds(10, 670, 1200, 250); // Setting position and size for horizontal panel
         horizontalPanel.setBackground(Color.decode("#050507")); // Background color for horizontal panel
 
         // Create a panel for "Exclusive Deals" with heading, icon, and text
         JPanel exclusiveDealsPanel = new JPanel();
         exclusiveDealsPanel.setLayout(new BoxLayout(exclusiveDealsPanel, BoxLayout.Y_AXIS));
-        exclusiveDealsPanel.setBackground(Color.decode("#050507")); // Match background color
+        exclusiveDealsPanel.setBackground(Color.decode("#0c0b10")); // Match background color
 
         // Add an icon to the label
         ImageIcon dealsIcon = new ImageIcon("../assets/images/authAssets/financialDeal.png");
@@ -207,11 +208,8 @@ public class CustomerDashboard extends JFrame {
         JLabel dealsText = new JLabel(
                 "<html><h2 style='color:#c9c6c1'>Unlock unbeatable savings with our daily exclusive deals! Discover limited-time offers, flash sales, and discounts on top-rated products across all categories.</h2></html>",
                 SwingConstants.CENTER);
-        dealsText.setBounds(westPanel.getWidth() + 10, dealsText.getY(), dealsText.getWidth(), dealsText.getHeight()); // Add
-                                                                                                                       // 10
-                                                                                                                       // pixels
-                                                                                                                       // of
-                                                                                                                       // padding
+        dealsText.setBounds(westPanel.getWidth() + 10, dealsText.getY(), dealsText.getWidth(), dealsText.getHeight()); // Add 10 pixels of padding
+                                                                                                                     
         Font dealsFont = new Font("open sans", Font.PLAIN, 18);
         dealsText.setFont(dealsFont);
         dealsText.setAlignmentX(Component.CENTER_ALIGNMENT); // Align to center
@@ -220,7 +218,7 @@ public class CustomerDashboard extends JFrame {
         // Create a panel for "Safe and Secure Payment" with heading, icon, and text
         JPanel securePaymentPanel = new JPanel();
         securePaymentPanel.setLayout(new BoxLayout(securePaymentPanel, BoxLayout.Y_AXIS));
-        securePaymentPanel.setBackground(Color.decode("#050507")); // Match background color
+        securePaymentPanel.setBackground(Color.decode("#0c0b10")); // Match background color
 
         // Add an icon to the label
         ImageIcon secureIcon = new ImageIcon("../assets/images/authAssets/creditCard.png");
@@ -244,7 +242,7 @@ public class CustomerDashboard extends JFrame {
         // Create a panel for "24/7 Customer Support" with heading, icon, and text
         JPanel customerSupportPanel = new JPanel();
         customerSupportPanel.setLayout(new BoxLayout(customerSupportPanel, BoxLayout.Y_AXIS));
-        customerSupportPanel.setBackground(Color.decode("#050507")); // Match background color
+        customerSupportPanel.setBackground(Color.decode("#0c0b10")); // Match background color
 
         // Add an icon to the label
         ImageIcon supportIcon = new ImageIcon("../assets/images/authAssets/customerService.png");
@@ -271,7 +269,6 @@ public class CustomerDashboard extends JFrame {
         horizontalPanel.add(customerSupportPanel);
 
         // Adding components to bannerPanel
-        // bannerPanel.add(bannerText); // Existing text
         bannerPanel.add(horizontalPanel); // Adding the new horizontal panel
 
         // Add text and image to bannerPanel
@@ -282,71 +279,6 @@ public class CustomerDashboard extends JFrame {
         JPanel productSpace = new JPanel();
         productSpace.setLayout(new BoxLayout(productSpace, BoxLayout.Y_AXIS)); // Vertically stack products
         productSpace.setBackground(Color.LIGHT_GRAY);
-
-        // // Sample product panels
-        // for (int i = 1; i <= 5; i++) {
-        // JPanel productPanel = new JPanel();
-        // productPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); //
-        // Add margin
-        // productPanel.setBackground(Color.WHITE);
-        // productPanel.setLayout(new BorderLayout());
-
-        // // Product Image (You can adjust the image paths as needed)
-        // JLabel productImage = new JLabel(new
-        // ImageIcon("C:/Users/sarke/Downloads/iPhone 14 Pro.jpeg"));
-        // productImage.setBounds(12, 710, 200, 200); // Center the image
-        // productPanel.add(productImage, BorderLayout.NORTH); // Add image at the top
-
-        // // Product Details (Use BoxLayout to arrange the details vertically)
-        // JPanel productDetailsPanel = new JPanel();
-        // productDetailsPanel.setLayout(new BoxLayout(productDetailsPanel,
-        // BoxLayout.Y_AXIS));
-        // productDetailsPanel.setBackground(Color.WHITE);
-
-        // // Product Name
-        // JLabel productNameLabel = new JLabel("iPhone 14 Pro " + i);
-        // productNameLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        // productNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center align
-        // text
-
-        // // Product Price
-        // JLabel productPriceLabel = new JLabel("Price: 112500TK" + (i * 100));
-        // productPriceLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        // productPriceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        // // Product ID
-        // JLabel productIDLabel = new JLabel("Product ID: 101 " + "P-ID-" + i);
-        // productIDLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        // productIDLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        // // Product Description
-        // JLabel productDescriptionLabel = new JLabel(
-        // "<html><p>Some short description about the product. It offers great features
-        // and value.</p></html>");
-        // productDescriptionLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        // productDescriptionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        // // Add all details to productDetailsPanel
-        // productDetailsPanel.add(productNameLabel);
-        // productDetailsPanel.add(productPriceLabel);
-        // productDetailsPanel.add(productIDLabel);
-        // productDetailsPanel.add(productDescriptionLabel);
-
-        // // Add productDetailsPanel to the productPanel (center)
-        // productPanel.add(productDetailsPanel, BorderLayout.CENTER);
-
-        // // Add the completed product panel to the product space
-        // productSpace.add(productPanel);
-        // productSpace.add(Box.createRigidArea(new Dimension(0, 10))); // Add space
-        // between product panels
-
-        // // JLabel productLabel = new JLabel("Product " + i, JLabel.CENTER);
-        // // productPanel.add(productLabel, BorderLayout.CENTER);
-
-        // // productSpace.add(productPanel);
-        // // productSpace.add(Box.createRigidArea(new Dimension(0, 10))); // Add space
-        // // between product panels
-        // }
 
         for (Product product : productList) {
             ProductPanel productPanel = new ProductPanel(product);

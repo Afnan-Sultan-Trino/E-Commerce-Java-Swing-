@@ -315,7 +315,7 @@ public class Registration implements ActionListener {
         frame.add(clearButton);
 
         checkBox1 = new JCheckBox("I agree to the terms and conditions.");
-        checkBox1.setBounds(340, 580, 250, 30);
+        checkBox1.setBounds(340, 580, 260, 30);
         checkBox1.setBackground(Color.decode("#041a42"));
         checkBox1.setFont(new Font("Verdana", Font.PLAIN, 12));
         checkBox1.setForeground(new Color(215, 210, 203));

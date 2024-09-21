@@ -89,7 +89,7 @@ public class ProductPanel extends JPanel {
         setBorder(panelBorder);
 
         // Increase overall height of the ProductPanel
-        setPreferredSize(new Dimension(400, 250)); // Adjusted height for larger image and more details
+        setPreferredSize(new Dimension(380, 250)); // Adjusted height for larger image and more details
     }
 
     // Getter method to retrieve the product information
