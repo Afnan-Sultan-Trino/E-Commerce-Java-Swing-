@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import controllers.UserManager;
+import core.entities.Admin;
+import core.entities.Customer;
+import core.entities.User;
 import gui.dashboards.CustomerDashboard;
 
 import java.awt.*;
@@ -247,16 +250,20 @@ public class LoginPage implements ActionListener {
 			if (userManager.validCredentials(email.toLowerCase(), pass)) {
 				JOptionPane.showMessageDialog(frame, "Successfully logged in.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 // Close this frame and open admin/customer dashboard
-                // Pass the user email to the constructor of the dashboard
-                if (userManager.getUserRole(email).equals("Admin")) {
-                    // Admin Dashboard
-                } else {
+                // Pass the user object (duplicate) to the constructor of the dashboard
+                User u = userManager.searchUser(email);
+                if (u instanceof Admin) {
+                    Admin a = (Admin) u;
                     frame.dispose();
-                    new CustomerDashboard();
+                    // new AdminDashboard(a);
+                } else {
+                    Customer c = (Customer) u;
+                    frame.dispose();
+                    new CustomerDashboard(c);
                 }
 			} else {
-				JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+                JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
 		}
 	}
 }
