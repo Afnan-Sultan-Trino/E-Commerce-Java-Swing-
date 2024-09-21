@@ -35,7 +35,7 @@ public class ProductManager implements IProductManager {
             BufferedReader reader = new BufferedReader(new FileReader("../database/productData.txt"));
             String l;
             while ((l = reader.readLine()) != null) {
-                String[] parts = l.split(",");
+                String[] parts = l.split("\\^~\\^");
                 Product p = new Product(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]), Integer.parseInt(parts[3]), parts[4], parts[5], parts[6]);
                 productList.add(p);
             }
@@ -96,12 +96,12 @@ public class ProductManager implements IProductManager {
     }
 
     public ArrayList<Product> getAllProducts() {
-        ArrayList<Product> products = new ArrayList<Product>();
+        ArrayList<Product> duplicateProductList = new ArrayList<Product>();
         for (Product p : productList) {
             Product prod = new Product(p.getID(), p.getName(), p.getPrice(), p.getStock(), p.getCategory(), p.getDescription(), p.getImagePath());
-            products.add(prod);
+            duplicateProductList.add(prod);
         }
-        return products;
+        return duplicateProductList;
     }
 
     // Copying entire array list to text file
@@ -109,7 +109,7 @@ public class ProductManager implements IProductManager {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/productData.txt"));
             for (Product p : productList) {
-                String t = p.getID() + "," + p.getName() + "," + p.getPrice() + "," + p.getStock() + "," + p.getCategory() + "," + p.getDescription() + "," + p.getImagePath();
+                String t = p.getID() + "^~^" + p.getName() + "^~^" + p.getPrice() + "^~^" + p.getStock() + "^~^" + p.getCategory() + "^~^" + p.getDescription() + "^~^" + p.getImagePath();
                 writer.write(t);
                 writer.newLine();
             }

@@ -1,3 +1,3 @@
-123,iPhone XS Max,399,7,Smartphones,The iPhone XS Max 128GB is a premium smartphone with a 6.5-inch OLED display and A12 Bionic chip for fast performance and power efficiency.,../assets/images/productAssets/iPhoneXSMax256GB.jpg
-223,Airpods Pro Gen 2, 129,3,Ear Buds,The AirPods Pro 2nd generation are high-end wireless earbuds with active noise cancellation enhanced audio quality and a customizable fit.,../assets/images/productAssets/AirpodsProGen2.jpeg
-623,Fossil Riley Rose Gold,99,5,Watches,Signature Riley style with a 45-stone topring featuring a rose gold-tone finish and a textured rose dial.,../assets/images/productAssets/FossilRileyRoseGold.jpg
+123^~^iPhone XS Max^~^399^~^7^~^Smartphones^~^The iPhone XS Max 128GB is a premium smartphone with a 6.5-inch OLED display and A12 Bionic chip for fast performance and power efficiency.^~^../assets/images/productAssets/iPhoneXSMax256GB.jpg
+223^~^Airpods Pro Gen 2^~^ 129^~^3^~^Ear Buds^~^The AirPods Pro 2nd generation are high-end wireless earbuds with active noise cancellation enhanced audio quality and a customizable fit.^~^../assets/images/productAssets/AirpodsProGen2.jpeg
+623^~^Fossil Riley Rose Gold^~^99^~^5^~^Watches^~^Signature Riley style with a 45-stone topring featuring a rose gold-tone finish and a textured rose dial.^~^../assets/images/productAssets/FossilRileyRoseGold.jpg

@@ -38,7 +38,7 @@ public class UserManager implements IUserManager {
             BufferedReader reader = new BufferedReader(new FileReader("../database/userData.txt"));
             String l;
             while ((l = reader.readLine()) != null) {
-                String[] parts = l.split(","); // Use StringBuffer / StringBuilder
+                String[] parts = l.split("\\^~\\^"); // Use StringBuffer / StringBuilder
                 if (parts[3].equals("Admin")) {
                     Admin a = new Admin(parts[0], parts[1], parts[2], parts[3]);
                     userList.add(a);
@@ -165,13 +165,13 @@ public class UserManager implements IUserManager {
                 if (u instanceof Admin) {
                     // Type cast back to original object to run object specific methods
                     Admin a = (Admin) u;
-                    String t = a.getName() + "," + a.getEmail() + "," + a.getPassword() + "," + a.getRole();
+                    String t = a.getName() + "^~^" + a.getEmail() + "^~^" + a.getPassword() + "^~^" + a.getRole();
                     writer.write(t);
                     writer.newLine();
                 } else if (u instanceof User) {
                     // Type cast back to original object to run object specific methods
                     Customer c = (Customer) u;
-                    String t = c.getName() + "," + c.getEmail() + "," + c.getPassword() + "," + c.getRole() + "," + c.getGender() + "," + c.getContactNo() + "," + c.getAddress();
+                    String t = c.getName() + "^~^" + c.getEmail() + "^~^" + c.getPassword() + "^~^" + c.getRole() + "^~^" + c.getGender() + "^~^" + c.getContactNo() + "^~^" + c.getAddress();
                     writer.write(t);
                     writer.newLine();
                 }

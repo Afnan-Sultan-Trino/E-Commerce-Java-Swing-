@@ -1,1 +1,3 @@
-Emad Harun,emadharun.eh@gmail.com,987654321,Customer,Male,01300027431,Ma-Villa Goli
+Emad^~^emadharun.eh@gmail.com^~^12345678^~^Customer^~^Male^~^01788902058^~^Dhaka, Bangladesh
+Bob^~^bob@gmail.com^~^alice&bob^~^Customer^~^Male^~^+880123987456^~^Helsinki, Finland
+Alice^~^alice@gmail.com^~^bob&alice^~^Customer^~^Female^~^01784561239^~^Florida, USA
