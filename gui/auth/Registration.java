@@ -1,15 +1,14 @@
-package gui;
+package gui.auth;
 
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.Border;
 
 import controllers.UserManager;
+import gui.auth.Registration;
 
 import java.awt.event.*;
 import java.io.*;
-
-import gui.Registration;
 
 public class Registration implements ActionListener {
     private JFrame frame;

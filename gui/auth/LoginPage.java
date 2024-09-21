@@ -1,9 +1,10 @@
-package gui;
+package gui.auth;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 
 import controllers.UserManager;
+import gui.dashboards.CustomerDashboard;
 
 import java.awt.*;
 import java.awt.event.*;

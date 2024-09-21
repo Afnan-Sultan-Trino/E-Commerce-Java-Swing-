@@ -1,4 +1,4 @@
-package gui;
+package gui.dashboards;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import core.entities.Product;
+import gui.components.ProductPanel;
 import controllers.ProductManager;
 
 public class CustomerDashboard extends JFrame {
