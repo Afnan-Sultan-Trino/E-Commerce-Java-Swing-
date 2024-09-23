@@ -40,6 +40,13 @@ public class Cart implements ICart {
         }
     }
 
+    // Use this method for validating if product quantity in cart is greater than stock
+    // TODO: Handle null returns
+    public int getProductQuantityInCart(Product p) {
+        // In case the product is not in the cart, return 0
+        return userCart.getOrDefault(p, 0);
+    }
+
     public double getTotal() {
         double total = 0;
         for (Product p : userCart.keySet()) {

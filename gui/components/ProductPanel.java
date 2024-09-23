@@ -102,7 +102,11 @@ public class ProductPanel extends JPanel implements ActionListener {
         if (e.getSource() == addToCartButton) {
             // Get the selected quantity
             int selectedQuantity = (int) quantitySpinner.getValue();
-            customer.getCart().addProductToCart(product, selectedQuantity);
+            if (customer.getCart().getProductQuantityInCart(product) <= product.getStock()) {
+                customer.getCart().addProductToCart(product, selectedQuantity);
+            } else {
+                JOptionPane.showMessageDialog(null, "Maximum quantity you can buy is: " + product.getStock(), "No More in Stock", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
