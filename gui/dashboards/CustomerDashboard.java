@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import core.entities.Product;
@@ -13,6 +14,7 @@ import core.entities.Customer;
 import controllers.ProductManager;
 import controllers.UserManager;
 import gui.components.ProductPanel;
+import gui.auth.LoginPage;
 import gui.components.CustomerEditFrame;
 
 public class CustomerDashboard extends JFrame {
@@ -78,7 +80,29 @@ public class CustomerDashboard extends JFrame {
             }
         });
         JLabel cartIcon = new JLabel(new ImageIcon("../assets/images/authAssets/groceryStore.png"));
+        cartIcon.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                // TODO: Open cart frame
+                JOptionPane.showMessageDialog(null, "Cart Frame under Construction", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                cartIcon.setCursor(new Cursor (Cursor.HAND_CURSOR));
+            }
+        });
+
         JLabel logoutIcon = new JLabel(new ImageIcon("../assets/images/authAssets/logOut.png"));
+        logoutIcon.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+                new LoginPage();
+            }
+            
+            public void mouseEntered(MouseEvent e) {
+                logoutIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+        });
+
         rightPanel.add(cartIcon);
         rightPanel.add(profileIcon);
         rightPanel.add(logoutIcon);
@@ -147,6 +171,16 @@ public class CustomerDashboard extends JFrame {
 
         JLabel backIcon = new JLabel(new ImageIcon("../assets/images/authAssets/backButton.png"));
         backIcon.setBounds(28, 540, 60, 35);
+        backIcon.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+                new LoginPage();
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                backIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+        });
         add(backIcon);
 
         // Add buttons to the westPanel
