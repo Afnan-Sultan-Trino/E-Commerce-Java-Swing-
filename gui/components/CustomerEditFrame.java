@@ -23,14 +23,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import core.entities.Customer;
-import core.entities.User;
 import controllers.UserManager;
 
 public class CustomerEditFrame extends JFrame {
-    private Customer c;
+    private Customer customer;
 
-    public CustomerEditFrame(Customer c) {
-        this.c = c;
+    public CustomerEditFrame(Customer customer) {
+        this.customer = customer;
 
         // Set frame title
         setTitle("Edit Customer Account Information");
@@ -58,20 +57,20 @@ public class CustomerEditFrame extends JFrame {
         // Create fields and labels
         JLabel nameLabel = createCenteredLabel("Name", labelFont, labelTextColor);
         JTextField nameField = createStyledTextField(20, fieldFont, fieldBgColor, fieldFgColor);
-        nameField.setText(c.getName());
+        nameField.setText(customer.getName());
 
         JLabel emailLabel = createCenteredLabel("Email", labelFont, labelTextColor);
         JTextField emailField = createStyledTextField(20, fieldFont, disabledFieldBgColor, fieldFgColor);
-        emailField.setText(c.getEmail());
+        emailField.setText(customer.getEmail());
         emailField.setEnabled(false); // Disable the email field
 
         JLabel passwordLabel = createCenteredLabel("Password", labelFont, labelTextColor);
         JPasswordField passwordField = createStyledPasswordField(20, fieldFont, fieldBgColor, fieldFgColor);
-        passwordField.setText(c.getPassword());
+        passwordField.setText(customer.getPassword());
 
         JLabel repeatPasswordLabel = createCenteredLabel("Repeat Password", labelFont, labelTextColor);
         JPasswordField repeatPasswordField = createStyledPasswordField(20, fieldFont, fieldBgColor, fieldFgColor);
-        repeatPasswordField.setText(c.getPassword());
+        repeatPasswordField.setText(customer.getPassword());
 
         JLabel genderLabel = createCenteredLabel("Gender", labelFont, labelTextColor);
         JComboBox<String> genderComboBox = new JComboBox<>(new String[] { "Male", "Female", "Other" });
@@ -83,9 +82,9 @@ public class CustomerEditFrame extends JFrame {
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         genderComboBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, genderComboBox.getPreferredSize().height));
 
-        if (c.getGender().equalsIgnoreCase("Male")) {
+        if (customer.getGender().equalsIgnoreCase("Male")) {
             genderComboBox.setSelectedIndex(0);
-        } else if (c.getGender().equalsIgnoreCase("Female")) {
+        } else if (customer.getGender().equalsIgnoreCase("Female")) {
             genderComboBox.setSelectedIndex(1);
         } else {
             genderComboBox.setSelectedIndex(2);
@@ -93,11 +92,11 @@ public class CustomerEditFrame extends JFrame {
 
         JLabel contactNoLabel = createCenteredLabel("Contact Number", labelFont, labelTextColor);
         JTextField contactNoField = createStyledTextField(20, fieldFont, fieldBgColor, fieldFgColor);
-        contactNoField.setText(c.getContactNo());
+        contactNoField.setText(customer.getContactNo());
 
         JLabel addressLabel = createCenteredLabel("Address", labelFont, labelTextColor);
         JTextField addressField = createStyledTextField(20, fieldFont, fieldBgColor, fieldFgColor);
-        addressField.setText(c.getAddress());
+        addressField.setText(customer.getAddress());
 
         // Create buttons with color and add action listeners
         JButton saveButton = createStyledButton("Save", buttonBgColor, buttonTextColor, fieldFont, buttonHoverBgColor);
@@ -251,7 +250,7 @@ public class CustomerEditFrame extends JFrame {
 
         // Proceed to update customer
         UserManager userManager = new UserManager();
-        if (userManager.updateUser(name, c.getEmail(), password, c.getRole(), gender, contactNo, address)) {
+        if (userManager.updateUser(name, customer.getEmail(), password, customer.getRole(), gender, contactNo, address)) {
             JOptionPane.showMessageDialog(this, "Details updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } else {

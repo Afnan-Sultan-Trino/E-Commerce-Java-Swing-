@@ -22,14 +22,12 @@ public class CustomerDashboard extends JFrame {
     // private JPanel content;
     // private boolean isDarkTheme = true; // Flag to track the current theme
     private ArrayList<Product> productList;
-    private ArrayList<ProductPanel> productPanels;
     String customerEmail;
-    Customer c;
+    Customer customer;
 
     public CustomerDashboard(String customerEmail) {
         // Initialize the product list and product panels
         productList = new ProductManager().getAllProducts();
-        productPanels = new ArrayList<ProductPanel>();
         this.customerEmail = customerEmail;
         updateCustomerObject(customerEmail);
 
@@ -72,7 +70,7 @@ public class CustomerDashboard extends JFrame {
         profileIcon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 updateCustomerObject(customerEmail);
-                new CustomerEditFrame(c);
+                new CustomerEditFrame(customer);
             }
 
             public void mouseEntered(MouseEvent e) {
@@ -210,7 +208,7 @@ public class CustomerDashboard extends JFrame {
 
         // Text for bannerPanel
         JLabel bannerText = new JLabel(
-                "<html><h1 style='color:#c9c6c1'>Welcome to Your E-Cart Dashboard, " + c.getName() + "!</h1><p>Discover the latest tech at unbeatable prices.</p><p>We bring you the best in cutting-edge technology. Browse our extensive catalog, view detailed product information, and experience a seamless shopping experience.</p></html>");
+                "<html><h1 style='color:#c9c6c1'>Welcome to Your E-Cart Dashboard, " + customer.getName() + "!</h1><p>Discover the latest tech at unbeatable prices.</p><p>We bring you the best in cutting-edge technology. Browse our extensive catalog, view detailed product information, and experience a seamless shopping experience.</p></html>");
         Font bannerFont = new Font("open sans", Font.BOLD, 18);
         bannerText.setFont(bannerFont);
         bannerText.setForeground(Color.decode("#D3D3D3"));
@@ -320,9 +318,8 @@ public class CustomerDashboard extends JFrame {
         productSpace.setBackground(Color.LIGHT_GRAY);
 
         for (Product product : productList) {
-            ProductPanel productPanel = new ProductPanel(product);
+            ProductPanel productPanel = new ProductPanel(customer, product);
             productSpace.add(productPanel);
-            productPanels.add(productPanel);
         }
 
         // Add bannerPanel and productSpace to centrePanel
@@ -355,6 +352,6 @@ public class CustomerDashboard extends JFrame {
     // Update the Customer object
     private void updateCustomerObject(String customerEmail) {
         UserManager userManager = new UserManager();
-        c = (Customer) userManager.searchUser(customerEmail);
+        customer = (Customer) userManager.searchUser(customerEmail);
     }
 }
