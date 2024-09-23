@@ -1,6 +1,6 @@
 package interfaces.entities;
 
-import controllers.Cart;
+import core.entities.Cart;
 
 public interface ICustomer {
     public void setContactNo(String contactNo);

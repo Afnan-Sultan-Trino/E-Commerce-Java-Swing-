@@ -5,8 +5,6 @@ import controllers.ProductManager;
 
 import java.util.NoSuchElementException;
 
-import controllers.Cart;
-
 public class Customer extends User implements ICustomer {
 
     private String gender;

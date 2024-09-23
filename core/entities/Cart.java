@@ -1,9 +1,8 @@
-package controllers;
+package core.entities;
 
 import java.util.HashMap;
 
 import interfaces.controllers.ICart;
-import core.entities.Product;
 
 public class Cart implements ICart {
     private HashMap<Product, Integer> userCart;
