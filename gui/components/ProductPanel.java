@@ -12,6 +12,7 @@ import core.entities.Product;
 public class ProductPanel extends JPanel implements ActionListener {
     private Customer customer;
     private Product product;
+    private JLabel stockLabel;
     private JButton addToCartButton;
     private JSpinner quantitySpinner; // Quantity selector
 
@@ -52,7 +53,13 @@ public class ProductPanel extends JPanel implements ActionListener {
         detailsPanel.add(priceLabel);
 
         // Product stock label
-        JLabel stockLabel = new JLabel("Stock: " + product.getStock());
+        if (product.getStock() == 0) {
+            stockLabel.setText("OUT OF STOCK");
+            stockLabel.setForeground(Color.RED);
+        } else {
+            stockLabel.setText("Stock: " + product.getStock());
+        }
+        
         stockLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         stockLabel.setForeground(Color.decode("#1b1b1c")); // Lighter dark text
         detailsPanel.add(stockLabel);
@@ -100,10 +107,27 @@ public class ProductPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addToCartButton) {
-            // Get the selected quantity
+            // Get current & selected selected quantity
+            int currentQuantity = customer.getCart().getProductQuantityInCart(product);
             int selectedQuantity = (int) quantitySpinner.getValue();
-            if (customer.getCart().getProductQuantityInCart(product) <= product.getStock()) {
+
+            // Check if the selected quantity is within the stock limit
+            if ((currentQuantity + selectedQuantity) <= product.getStock()) {
                 customer.getCart().addProductToCart(product, selectedQuantity);
+                // Update the spinner model to reflect the remaining stock
+                int remainingStock = product.getStock() - customer.getCart().getProductQuantityInCart(product);
+                if (remainingStock > 0) {
+                    SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, remainingStock, 1);
+                    quantitySpinner.setModel(spinnerModel);
+                } else {
+                    quantitySpinner.setEnabled(false);
+                    addToCartButton.setEnabled(false);
+                    stockLabel.setText("OUT OF STOCK");
+                    stockLabel.setForeground(Color.RED);
+                }
+                
+                JOptionPane.showMessageDialog(null, "Product added to cart: " + product.getName(), "Success", JOptionPane.INFORMATION_MESSAGE);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Maximum quantity you can buy is: " + product.getStock(), "No More in Stock", JOptionPane.ERROR_MESSAGE);
             }
