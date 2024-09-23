@@ -1,14 +1,13 @@
 package gui.auth;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-
 import controllers.UserManager;
 import core.entities.Admin;
 import core.entities.Customer;
 import core.entities.User;
 import gui.dashboards.CustomerDashboard;
 
+import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -37,8 +36,6 @@ public class LoginPage implements ActionListener {
         frame.setSize(980, 800);
         frame.setLayout(null);
 		frame.getContentPane().setBackground(Color.decode("#041a42"));
-
-
 		
         frame.setIconImage(loadIcon("../assets/images/authAssets/loginFrameBackground.jpeg")); 
 		
@@ -210,7 +207,14 @@ public class LoginPage implements ActionListener {
         signIn.setForeground(new Color(215, 210, 203));
         frame.add(signIn);
 		
-		
+        // Provisional Key Listener
+		frame.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    loginUser(emailField.getText(), new String(passwordField.getPassword()));
+                }
+            }
+        });
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -257,6 +261,7 @@ public class LoginPage implements ActionListener {
                     // new AdminDashboard(a);
                 } else {
                     new CustomerDashboard(email);
+                    frame.dispose();
                 }
 			} else {
                 JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error", JOptionPane.ERROR_MESSAGE);
