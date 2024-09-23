@@ -88,6 +88,7 @@ public class LoginPage implements ActionListener {
         emailField.setBorder(BorderFactory.createEmptyBorder());
         Border redBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(179, 63, 64));
         emailField.setBorder(redBorder);
+        emailField.addActionListener(this);
         frame.add(emailField);
 		
 		
@@ -120,6 +121,7 @@ public class LoginPage implements ActionListener {
         Border redBorder2 = BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(179, 63, 64));
         passwordField.setBorder(redBorder2);
         passwordField.setEchoChar('*');
+        passwordField.addActionListener(this);
         frame.add(passwordField);
 		
 		
@@ -206,15 +208,6 @@ public class LoginPage implements ActionListener {
         signIn.setFont(signFont);
         signIn.setForeground(new Color(215, 210, 203));
         frame.add(signIn);
-		
-        // Provisional Key Listener
-		frame.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    loginUser(emailField.getText(), new String(passwordField.getPassword()));
-                }
-            }
-        });
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -229,7 +222,7 @@ public class LoginPage implements ActionListener {
 	}
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton) {
+        if (e.getSource() == loginButton || e.getSource() == emailField || e.getSource() == passwordField) {
             // Logic to Login
             loginUser(emailField.getText(), new String(passwordField.getPassword()));
         } else if (e.getSource() == registerButton) {
