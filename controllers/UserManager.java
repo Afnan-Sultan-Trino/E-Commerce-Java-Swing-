@@ -144,6 +144,8 @@ public class UserManager implements IUserManager {
                 c.setEmail(email);
                 c.setPassword(password);
                 c.setRole(role);
+                c.setGender(gender);
+                c.setContactNo(contactNo);
                 c.setAddress(address);
                 dumpDataToFile();
                 return true;
