@@ -11,6 +11,7 @@ import core.entities.Customer;
 import controllers.ProductManager;
 import controllers.UserManager;
 import gui.components.ProductPanel;
+import gui.temp.CartFrame;
 import gui.auth.LoginPage;
 import gui.components.CustomerEditFrame;
 
@@ -78,7 +79,8 @@ public class CustomerDashboard extends JFrame {
         cartIcon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 // TODO: Open cart frame
-                JOptionPane.showMessageDialog(null, "Cart Frame under Construction", "Error", JOptionPane.INFORMATION_MESSAGE);
+                // JOptionPane.showMessageDialog(null, "Cart Frame under Construction", "Error", JOptionPane.INFORMATION_MESSAGE);
+                new CartFrame(customer);
             }
 
             public void mouseEntered(MouseEvent e) {
