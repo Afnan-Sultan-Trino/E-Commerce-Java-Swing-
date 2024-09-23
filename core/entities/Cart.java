@@ -50,6 +50,10 @@ public class Cart implements ICart {
         return userCart.getOrDefault(p, 0);
     }
 
+    public HashMap<Product, Integer> getCartHashMap() {
+        return new HashMap<Product, Integer>(userCart);
+    }
+
     public double getTotal() {
         double total = 0;
         for (Product p : userCart.keySet()) {
