@@ -2,3 +2,4 @@ Emad^~^emadharun.eh@gmail.com^~^12345678^~^Customer^~^Male^~^01788902058^~^Dhaka
 Bob^~^bob@gmail.com^~^alice&bob^~^Customer^~^Male^~^+880123987456^~^Helsinki, Finland
 Alice^~^alice@gmail.com^~^bob&alice^~^Customer^~^Female^~^01784561239^~^Florida, USA
 Rakibul hasan^~^bdsahcbc@gmail.com^~^12345678^~^Customer^~^Male^~^01975136485^~^yamete kudassai
+Samir^~^samir@afrin.com^~^12345678^~^Customer^~^Female^~^0123456789^~^Mirpur 12
