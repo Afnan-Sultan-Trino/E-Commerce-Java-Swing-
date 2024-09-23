@@ -1,2 +1,7 @@
-1. Improve Email Validation (DONE)
-2. Sample Complete Cart Login Implementation
+1. Update Product stock after Checkout (In CartFrame)
+2. Implement features for "Checkout", "Delete Item", "Clear Cart" in CartFrame
+3. Justify text in CustomerDashboard (Faculty Recommended)
+4. Mockup of Payment Form
+
+5. Admin Dashboard
+6. Admin Features
