@@ -52,6 +52,7 @@ public class ProductPanel extends JPanel implements ActionListener {
         priceLabel.setForeground(Color.decode("#FC7F16")); // Orange text
         detailsPanel.add(priceLabel);
 
+        stockLabel = new JLabel();
         // Product stock label
         if (product.getStock() == 0) {
             stockLabel.setText("OUT OF STOCK");
