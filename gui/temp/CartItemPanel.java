@@ -8,18 +8,17 @@ import java.awt.*;
 
 import core.entities.Customer;
 import core.entities.Product;
-import core.entities.Cart;
 
 public class CartItemPanel extends JPanel {
-    private Customer customer;
-    private Product product;
+    // private Customer customer;
+    // private Product product;
     private JButton removeButton;
     private JSpinner quantitySpinner;
     private JLabel totalPriceLabel;
 
     public CartItemPanel(Customer customer, Product product, int initialQuantity) {
-        this.customer = customer;
-        this.product = product;
+        // this.customer = customer;
+        // this.product = product;
 
         // Set layout for the panel
         setLayout(new BorderLayout(15, 15));
@@ -63,7 +62,7 @@ public class CartItemPanel extends JPanel {
         quantitySpinner = new JSpinner(new SpinnerNumberModel(initialQuantity, 1, product.getStock(), 1));
         quantitySpinner.setPreferredSize(new Dimension(60, 25)); // Set smaller spinner size
         quantitySpinner.setMaximumSize(new Dimension(60, 25)); // Limit max size
-        
+
         quantitySpinner.addChangeListener(new ChangeListener() {
            public void stateChanged(ChangeEvent e) {
                 customer.getCart().updateQuantity(product, (int) quantitySpinner.getValue());
