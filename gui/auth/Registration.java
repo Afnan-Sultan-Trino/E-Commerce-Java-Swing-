@@ -2,13 +2,13 @@ package gui.auth;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
 import javax.swing.border.Border;
+import java.util.regex.Pattern;
 
 import controllers.UserManager;
 import gui.auth.Registration;
-
-import java.awt.event.*;
-import java.io.*;
 
 public class Registration implements ActionListener {
     private JFrame frame;
@@ -367,7 +367,7 @@ public class Registration implements ActionListener {
             return;
         }
 
-        if (!email.contains("@") || !email.contains(".")) {
+        if (!validEmail(email)) {
             JOptionPane.showMessageDialog(frame, "Invalid email address.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -417,5 +417,11 @@ public class Registration implements ActionListener {
         addressField.setText("");
         contactField.setText("");
         genderBox.setSelectedIndex(0);
+    }
+
+    private boolean validEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern p = Pattern.compile(emailRegex);
+        return p.matcher(email).matches();
     }
 }

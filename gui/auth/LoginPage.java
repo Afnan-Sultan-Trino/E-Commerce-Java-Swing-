@@ -11,6 +11,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.regex.Pattern;
 
 
 public class LoginPage implements ActionListener {
@@ -236,7 +237,7 @@ public class LoginPage implements ActionListener {
 		if (email.isEmpty() || pass.isEmpty()) {
 			JOptionPane.showMessageDialog(frame, "Username or password cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
 		} else {
-            if(!email.contains("@") || !email.contains(".")) {
+            if(!validEmail(email)) {
                 JOptionPane.showMessageDialog(frame, "Invalid email address.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else if (pass.length() < 8) {
@@ -261,4 +262,10 @@ public class LoginPage implements ActionListener {
             }
 		}
 	}
+
+    private boolean validEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern p = Pattern.compile(emailRegex);
+        return p.matcher(email).matches();
+    }
 }

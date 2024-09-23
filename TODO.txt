@@ -1,11 +1,2 @@
-Priority Feature:
-1. Connect temp register page to app
-
-2. Customer Dashboard
-3. Product Class Design
-
-4. JProductPanel -> Inherits JPanel and 
-
-Non Critical:
-1. Email Validation
-2. Password Strength Validation
+1. Improve Email Validation (DONE)
+2. Sample Complete Cart Login Implementation
