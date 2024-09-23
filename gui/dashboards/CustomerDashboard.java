@@ -10,9 +10,10 @@ import java.util.ArrayList;
 
 import core.entities.Product;
 import core.entities.Customer;
+import controllers.ProductManager;
+import controllers.UserManager;
 import gui.components.ProductPanel;
 import gui.components.CustomerEditFrame;
-import controllers.ProductManager;
 
 public class CustomerDashboard extends JFrame {
     // private JPanel sidebar;
@@ -20,12 +21,15 @@ public class CustomerDashboard extends JFrame {
     // private boolean isDarkTheme = true; // Flag to track the current theme
     private ArrayList<Product> productList;
     private ArrayList<ProductPanel> productPanels;
+    String customerEmail;
+    Customer c;
 
-    public CustomerDashboard(Customer c) {
-
+    public CustomerDashboard(String customerEmail) {
         // Initialize the product list and product panels
         productList = new ProductManager().getAllProducts();
         productPanels = new ArrayList<ProductPanel>();
+        this.customerEmail = customerEmail;
+        updateCustomerObject(customerEmail);
 
         // Set basic JFrame properties
         setTitle("Customer Dashboard");
@@ -65,6 +69,7 @@ public class CustomerDashboard extends JFrame {
         JLabel profileIcon = new JLabel(new ImageIcon("../assets/images/authAssets/user.png"));
         profileIcon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                updateCustomerObject(customerEmail);
                 new CustomerEditFrame(c);
             }
 
@@ -311,5 +316,11 @@ public class CustomerDashboard extends JFrame {
         button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Padding
         button.setAlignmentX(Component.CENTER_ALIGNMENT); // Center align in BoxLayout
         return button;
+    }
+
+    // Update the Customer object
+    private void updateCustomerObject(String customerEmail) {
+        UserManager userManager = new UserManager();
+        c = (Customer) userManager.searchUser(customerEmail);
     }
 }

@@ -253,13 +253,10 @@ public class LoginPage implements ActionListener {
                 // Pass the user object (duplicate) to the constructor of the dashboard
                 User u = userManager.searchUser(email);
                 if (u instanceof Admin) {
-                    Admin a = (Admin) u;
                     frame.dispose();
                     // new AdminDashboard(a);
                 } else {
-                    Customer c = (Customer) u;
-                    frame.dispose();
-                    new CustomerDashboard(c);
+                    new CustomerDashboard(email);
                 }
 			} else {
                 JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error", JOptionPane.ERROR_MESSAGE);
