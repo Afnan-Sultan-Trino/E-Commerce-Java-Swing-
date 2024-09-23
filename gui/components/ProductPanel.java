@@ -3,15 +3,20 @@ package gui.components;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.Border;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
+import core.entities.Customer;
 import core.entities.Product;
 
-public class ProductPanel extends JPanel {
+public class ProductPanel extends JPanel implements ActionListener {
+    private Customer customer;
     private Product product;
     private JButton addToCartButton;
     private JSpinner quantitySpinner; // Quantity selector
 
-    public ProductPanel(Product product) {
+    public ProductPanel(Customer customer, Product product) {
+        this.customer = customer;
         this.product = product;
         
         // Set layout and lighter background color
@@ -79,6 +84,7 @@ public class ProductPanel extends JPanel {
         addToCartButton.setBackground(Color.decode("#ccff04")); // Lighter green background
         addToCartButton.setForeground(Color.BLACK); // Black text color
         addToCartButton.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));  // Add padding inside button
+        addToCartButton.addActionListener(this);
         cartPanel.add(addToCartButton, BorderLayout.EAST); // Add the button on the right side
 
         // Add the cart panel (spinner + button) to the bottom of the ProductPanel
@@ -92,6 +98,15 @@ public class ProductPanel extends JPanel {
         setPreferredSize(new Dimension(380, 250)); // Adjusted height for larger image and more details
     }
 
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == addToCartButton) {
+            // Get the selected quantity
+            int selectedQuantity = (int) quantitySpinner.getValue();
+            customer.getCart().addProductToCart(product, selectedQuantity);
+        }
+    }
+
+/*
     // Getter method to retrieve the product information
     public Product getProduct() {
         return product;
@@ -106,4 +121,5 @@ public class ProductPanel extends JPanel {
     public int getSelectedQuantity() {
         return (int) quantitySpinner.getValue();
     }
+*/
 }
