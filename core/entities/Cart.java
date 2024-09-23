@@ -16,9 +16,13 @@ public class Cart implements ICart {
         if (q > 0) {
             if (!userCart.containsKey(p)) {
                 userCart.put(p, q);
+                // System.out.println("Product added to cart: " + p.getName());
+                System.out.println(userCart);
             } else {
                 // If user clicks on item multiple times, add the quantity.
                 userCart.put(p, userCart.get(p) + q);
+                // System.out.println("Product added to cart: " + p.getName());
+                System.out.println(userCart);
             }
         } else {
             throw new IllegalArgumentException("Invalid Quantity.");
