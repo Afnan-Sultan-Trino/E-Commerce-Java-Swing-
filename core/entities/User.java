@@ -1,5 +1,7 @@
 package core.entities;
 
+import java.util.regex.Pattern;
+
 import interfaces.entities.IUser;
 
 public abstract class User implements IUser{
@@ -21,7 +23,7 @@ public abstract class User implements IUser{
 
     // TODO: Validate email address in front-end
     public void setEmail(String email) {
-        if (email.contains("@") && email.contains(".")) {
+        if (validEmail(email)) {
             this.email = email;
         } else {
             throw new IllegalArgumentException("Invalid Email Address.");
@@ -60,6 +62,12 @@ public abstract class User implements IUser{
 
     public String getRole() {
         return role;
+    }
+
+    private boolean validEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        Pattern p = Pattern.compile(emailRegex);
+        return p.matcher(email).matches();
     }
 
 }
