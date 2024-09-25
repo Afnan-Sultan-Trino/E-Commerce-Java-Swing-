@@ -2,7 +2,7 @@ package core.entities;
 
 import java.util.HashMap;
 
-import interfaces.controllers.ICart;
+import interfaces.entities.ICart;
 
 public class Cart implements ICart {
     private HashMap<Product, Integer> userCart;
