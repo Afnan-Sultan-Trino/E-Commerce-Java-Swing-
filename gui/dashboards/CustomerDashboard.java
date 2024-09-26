@@ -10,10 +10,10 @@ import core.entities.Product;
 import core.entities.Customer;
 import controllers.ProductManager;
 import controllers.UserManager;
-import gui.components.ProductPanel;
-import gui.temp.CartFrame;
 import gui.auth.LoginPage;
-import gui.components.CustomerEditFrame;
+import gui.components.customer.CartFrame;
+import gui.components.customer.CustomerEditFrame;
+import gui.components.customer.ProductPanel;
 
 public class CustomerDashboard extends JFrame {
     // private JPanel sidebar;

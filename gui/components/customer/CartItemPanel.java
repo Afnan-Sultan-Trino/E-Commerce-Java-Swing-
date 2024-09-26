@@ -1,24 +1,20 @@
-package gui.temp;
+package gui.components.customer;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-
 import java.awt.*;
 
 import core.entities.Customer;
 import core.entities.Product;
 
 public class CartItemPanel extends JPanel {
-    // private Customer customer;
-    // private Product product;
+    
     private JButton removeButton;
     private JSpinner quantitySpinner;
     private JLabel totalPriceLabel;
 
     public CartItemPanel(Customer customer, Product product, int initialQuantity) {
-        // this.customer = customer;
-        // this.product = product;
 
         // Set layout for the panel
         setLayout(new BorderLayout(15, 15));
@@ -64,11 +60,11 @@ public class CartItemPanel extends JPanel {
         quantitySpinner.setMaximumSize(new Dimension(60, 25)); // Limit max size
 
         quantitySpinner.addChangeListener(new ChangeListener() {
-           public void stateChanged(ChangeEvent e) {
-                customer.getCart().updateQuantity(product, (int) quantitySpinner.getValue());
-                totalPriceLabel.setText("Total: $" + String.format("%.2f", product.getPrice() * (int) quantitySpinner.getValue()));
-            } 
-        });
+            public void stateChanged(ChangeEvent e) {
+                 customer.getCart().updateQuantity(product, (int) quantitySpinner.getValue());
+                 totalPriceLabel.setText("Total: $" + String.format("%.2f", product.getPrice() * (int) quantitySpinner.getValue()));
+             } 
+         });
 
         quantityPanel.add(quantityLabel); // Add the quantity label
         quantityPanel.add(quantitySpinner); // Add the spinner
@@ -90,18 +86,21 @@ public class CartItemPanel extends JPanel {
         actionPanel.add(totalPriceLabel);
 
         // Remove Button
-        removeButton = new JButton("Remove");
-        removeButton.setBackground(Color.decode("#ff5c5c"));
+        ImageIcon deleteIcon = new ImageIcon("../assets/images/otherAssets/rubbishBin.png");
+        deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH));
+
+        removeButton = new JButton("Remove", deleteIcon);
+        removeButton.setBackground(Color.decode("#e32f16"));
         removeButton.setForeground(Color.WHITE);
-        removeButton.setMaximumSize(new Dimension(100, 25)); // Limit size for button
+        removeButton.setMaximumSize(new Dimension(130, 32)); // Limit size for button
         removeButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
         actionPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Spacer
         actionPanel.add(removeButton);
-
         add(actionPanel, BorderLayout.EAST);
 
         // Set border and padding
-        setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.decode("#cccccc")));
+        setBorder(BorderFactory.createMatteBorder(1, 1, 7, 1, Color.decode("#cccccc")));
         setPreferredSize(new Dimension(700, 180)); // Adjusted size for cart item to accommodate larger image
     }
+
 }
