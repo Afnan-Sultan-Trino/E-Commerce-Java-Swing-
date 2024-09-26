@@ -92,8 +92,21 @@ public class CartItemPanel extends JPanel {
         removeButton = new JButton("Remove", deleteIcon);
         removeButton.setBackground(Color.decode("#e32f16"));
         removeButton.setForeground(Color.WHITE);
+        removeButton.setFocusPainted(false);
         removeButton.setMaximumSize(new Dimension(130, 32)); // Limit size for button
         removeButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
+
+        removeButton.addActionListener(e -> {
+            customer.getCart().removeProductFromCart(product);
+            Container parent = getParent();
+            // Have to dispatch the EDT cause otherwise causes unwanted behavior
+            SwingUtilities.invokeLater(() -> {
+                parent.remove(this);
+                parent.revalidate();
+                parent.repaint();
+            });
+        });
+        
         actionPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Spacer
         actionPanel.add(removeButton);
         add(actionPanel, BorderLayout.EAST);
