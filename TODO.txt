@@ -1,9 +1,8 @@
 1. Update Product stock after Checkout (In CartFrame)
-2. Implement features for "Checkout", "Delete Item", "Clear Cart" in CartFrame
 3. Justify text in CustomerDashboard (Faculty Recommended)
 4. Mockup of Payment Form
 
 5. Admin Dashboard
 6. Admin Features
 
-7. Customer Dashboard -> Filters + Search Functionality
+7. Customer Dashboard -> Filters
