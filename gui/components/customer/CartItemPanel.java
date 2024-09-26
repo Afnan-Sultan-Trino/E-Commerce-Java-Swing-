@@ -14,7 +14,7 @@ public class CartItemPanel extends JPanel {
     private JSpinner quantitySpinner;
     private JLabel totalPriceLabel;
 
-    public CartItemPanel(Customer customer, Product product, int initialQuantity) {
+    public CartItemPanel(CartFrame cartFrame, Customer customer, Product product, int initialQuantity) {
 
         // Set layout for the panel
         setLayout(new BorderLayout(15, 15));
@@ -61,8 +61,9 @@ public class CartItemPanel extends JPanel {
 
         quantitySpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                 customer.getCart().updateQuantity(product, (int) quantitySpinner.getValue());
-                 totalPriceLabel.setText("Total: $" + String.format("%.2f", product.getPrice() * (int) quantitySpinner.getValue()));
+                customer.getCart().updateQuantity(product, (int) quantitySpinner.getValue());
+                totalPriceLabel.setText("Total: $" + String.format("%.2f", product.getPrice() * (int) quantitySpinner.getValue()));
+                cartFrame.updatePriceLables(customer);
              } 
          });
 
@@ -98,6 +99,7 @@ public class CartItemPanel extends JPanel {
 
         removeButton.addActionListener(e -> {
             customer.getCart().removeProductFromCart(product);
+            cartFrame.updatePriceLables(customer);
             Container parent = getParent();
             // Have to dispatch the EDT cause otherwise causes unwanted behavior
             SwingUtilities.invokeLater(() -> {
@@ -115,5 +117,4 @@ public class CartItemPanel extends JPanel {
         setBorder(BorderFactory.createMatteBorder(1, 1, 7, 1, Color.decode("#cccccc")));
         setPreferredSize(new Dimension(700, 180)); // Adjusted size for cart item to accommodate larger image
     }
-
 }
