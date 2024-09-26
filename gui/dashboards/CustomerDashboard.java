@@ -79,22 +79,14 @@ public class CustomerDashboard extends JFrame {
                 }
             }
         });
-        
-        // Logic for searching product
-        searchIcon.addMouseListener(new MouseAdapter() {
-            // Search product and update the productSpace
-            public void mouseClicked(MouseEvent e) {
-                String query = searchBar.getText();
-                productSpace.removeAll();
-                productSpace.revalidate();
-                productSpace.repaint();
 
-                for (Product p : productList) {
-                    if (p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase())) {
-                        ProductPanel productPanel = new ProductPanel(customer, p);
-                        productSpace.add(productPanel);
-                    }
-                }
+        // Logic for searching when Enter key is pressed
+        searchBar.addActionListener(e -> performSearch(searchBar.getText()));
+        
+        // Logic for searching when icon is clicked
+        searchIcon.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                performSearch(searchBar.getText());
             }
 
             public void mouseEntered(MouseEvent e) {
@@ -394,5 +386,18 @@ public class CustomerDashboard extends JFrame {
     private void updateCustomerObject(String customerEmail) {
         UserManager userManager = new UserManager();
         customer = (Customer) userManager.searchUser(customerEmail);
+    }
+
+    private void performSearch(String query) {
+        productSpace.removeAll();
+        productSpace.revalidate();
+        productSpace.repaint();
+
+        for (Product p : productList) {
+            if (p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase())) {
+                ProductPanel productPanel = new ProductPanel(customer, p);
+                productSpace.add(productPanel);
+            }
+        }
     }
 }
