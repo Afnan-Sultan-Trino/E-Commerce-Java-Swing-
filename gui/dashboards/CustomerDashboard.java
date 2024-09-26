@@ -2,6 +2,8 @@ package gui.dashboards;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -20,13 +22,13 @@ public class CustomerDashboard extends JFrame {
     // private JPanel content;
     // private boolean isDarkTheme = true; // Flag to track the current theme
     private ArrayList<Product> productList;
-    String customerEmail;
-    Customer customer;
+    private Customer customer;
+    private JPanel productSpace; // productSpace is declared here to be accessible in the search logic
 
     public CustomerDashboard(String customerEmail) {
         // Initialize the product list and product panels
         productList = new ProductManager().getAllProducts();
-        this.customerEmail = customerEmail;
+        // this.customerEmail = customerEmail;
         updateCustomerObject(customerEmail);
 
         // Set basic JFrame properties
@@ -54,10 +56,52 @@ public class CustomerDashboard extends JFrame {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
         searchPanel.setBackground(Color.decode("#a2ba07"));
         JLabel searchIcon = new JLabel(new ImageIcon("../assets/images/authAssets/magnifyingGlass.png"));
-        searchIcon.setBackground(Color.decode("#7a8928"));
-        JTextField searchBar = new JTextField("Search for products or categories", 30);
+        searchIcon.setBackground(Color.decode("#7a8928"));  
+        // Setting focus on search icon cause the default focus is on the search bar.
+        SwingUtilities.invokeLater(() -> searchIcon.requestFocusInWindow());
+
+        JTextField searchBar = new JTextField();
         searchBar.setForeground(Color.GRAY);
+        searchBar.setText("Search for products or categories...");
         searchBar.setPreferredSize(new Dimension(400, 30)); // Adjust to center
+
+        // Logic for search bar placeholder text
+        searchBar.addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent e) {
+                searchBar.setText("");
+                searchBar.setForeground(Color.BLACK);
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (searchBar.getText().isEmpty()) {
+                    searchBar.setForeground(Color.GRAY);
+                    searchBar.setText("Search for products or categories...");
+                }
+            }
+        });
+        
+        // Logic for searching product
+        searchIcon.addMouseListener(new MouseAdapter() {
+            // Search product and update the productSpace
+            public void mouseClicked(MouseEvent e) {
+                String query = searchBar.getText();
+                productSpace.removeAll();
+                productSpace.revalidate();
+                productSpace.repaint();
+
+                for (Product p : productList) {
+                    if (p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase())) {
+                        ProductPanel productPanel = new ProductPanel(customer, p);
+                        productSpace.add(productPanel);
+                    }
+                }
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                searchIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+        });
+
         searchPanel.add(searchIcon);
         searchPanel.add(searchBar);
 
@@ -78,8 +122,6 @@ public class CustomerDashboard extends JFrame {
         JLabel cartIcon = new JLabel(new ImageIcon("../assets/images/authAssets/groceryStore.png"));
         cartIcon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                // TODO: Open cart frame
-                // JOptionPane.showMessageDialog(null, "Cart Frame under Construction", "Error", JOptionPane.INFORMATION_MESSAGE);
                 new CartFrame(customer);
             }
 
@@ -312,7 +354,7 @@ public class CustomerDashboard extends JFrame {
         bannerPanel.add(bannerImage);
 
         // Product Space (Bottom of centrePanel)
-        JPanel productSpace = new JPanel();
+        productSpace = new JPanel();
         productSpace.setLayout(new BoxLayout(productSpace, BoxLayout.Y_AXIS)); // Vertically stack products
         productSpace.setBackground(Color.LIGHT_GRAY);
 
