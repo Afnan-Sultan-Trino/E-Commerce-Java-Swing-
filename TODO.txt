@@ -1,7 +1,7 @@
 1. Update Product stock after Checkout (In CartFrame)
 3. Justify text in CustomerDashboard (Faculty Recommended)
 
-4. Add icons to Payment Form
+4. Add icons to Payment Form + Validation
 
 5. Admin Dashboard
 6. Admin Features
