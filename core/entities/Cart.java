@@ -50,6 +50,10 @@ public class Cart implements ICart {
         return new HashMap<Product, Integer>(userCart);
     }
 
+    public boolean isEmpty() {
+        return userCart.isEmpty();
+    }
+
     public double getTotal() {
         double total = 0;
         for (Product p : userCart.keySet()) {
