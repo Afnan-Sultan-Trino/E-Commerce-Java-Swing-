@@ -156,45 +156,86 @@ public class CustomerDashboard extends JFrame {
         JButton productButton = createSidebarButton("Products");
         JButton helpButton = createSidebarButton("Help Center");
 
-        JCheckBox checkbox1 = new JCheckBox("BDT 3K-4K");
-        checkbox1.setBackground(Color.decode("#041a42"));
-        checkbox1.setForeground(Color.WHITE);
-        checkbox1.setBounds(0, 230, 120, 50);
-        JCheckBox checkbox2 = new JCheckBox("BDT 5K-7K");
-        checkbox2.setBackground(Color.decode("#041a42"));
-        checkbox2.setForeground(Color.WHITE);
-        checkbox2.setBounds(0, 260, 120, 50);
+        // JCheckBox checkbox1 = new JCheckBox("BDT 3K-4K");
+        // checkbox1.setBackground(Color.decode("#041a42"));
+        // checkbox1.setForeground(Color.WHITE);
+        // checkbox1.setBounds(0, 230, 120, 50);
+        // JCheckBox checkbox2 = new JCheckBox("BDT 5K-7K");
+        // checkbox2.setBackground(Color.decode("#041a42"));
+        // checkbox2.setForeground(Color.WHITE);
+        // checkbox2.setBounds(0, 260, 120, 50);
 
-        JCheckBox checkbox3 = new JCheckBox("BDT 8K-10K");
-        checkbox3.setBackground(Color.decode("#041a42"));
-        checkbox3.setForeground(Color.WHITE);
-        checkbox3.setBounds(0, 290, 120, 50);
-        JCheckBox checkbox4 = new JCheckBox("BDT 10K-20K");
-        checkbox4.setBackground(Color.decode("#041a42"));
-        checkbox4.setForeground(Color.WHITE);
-        checkbox4.setBounds(0, 320, 120, 50);
+        // JCheckBox checkbox3 = new JCheckBox("BDT 8K-10K");
+        // checkbox3.setBackground(Color.decode("#041a42"));
+        // checkbox3.setForeground(Color.WHITE);
+        // checkbox3.setBounds(0, 290, 120, 50);
+        // JCheckBox checkbox4 = new JCheckBox("BDT 10K-20K");
+        // checkbox4.setBackground(Color.decode("#041a42"));
+        // checkbox4.setForeground(Color.WHITE);
+        // checkbox4.setBounds(0, 320, 120, 50);
 
-        JCheckBox checkbox5 = new JCheckBox("BDT 30K-50K");
-        checkbox5.setBackground(Color.decode("#041a42"));
-        checkbox5.setForeground(Color.WHITE);
-        checkbox5.setBounds(0, 350, 120, 50);
-        JCheckBox checkbox6 = new JCheckBox("BDT 70K-90K");
-        checkbox6.setBackground(Color.decode("#041a42"));
-        checkbox6.setForeground(Color.WHITE);
-        checkbox6.setBounds(0, 380, 120, 50);
+        // JCheckBox checkbox5 = new JCheckBox("BDT 30K-50K");
+        // checkbox5.setBackground(Color.decode("#041a42"));
+        // checkbox5.setForeground(Color.WHITE);
+        // checkbox5.setBounds(0, 350, 120, 50);
+        // JCheckBox checkbox6 = new JCheckBox("BDT 70K-90K");
+        // checkbox6.setBackground(Color.decode("#041a42"));
+        // checkbox6.setForeground(Color.WHITE);
+        // checkbox6.setBounds(0, 380, 120, 50);
 
-        JCheckBox checkbox7 = new JCheckBox("BDT 90K+");
-        checkbox7.setBackground(Color.decode("#041a42"));
-        checkbox7.setForeground(Color.WHITE);
-        checkbox7.setBounds(0, 410, 120, 50);
+        // JCheckBox checkbox7 = new JCheckBox("BDT 90K+");
+        // checkbox7.setBackground(Color.decode("#041a42"));
+        // checkbox7.setForeground(Color.WHITE);
+        // checkbox7.setBounds(0, 410, 120, 50);
 
-        add(checkbox1);
-        add(checkbox2);
-        add(checkbox3);
-        add(checkbox4);
-        add(checkbox5);
-        add(checkbox6);
-        add(checkbox7);
+        // add(checkbox1);
+        // add(checkbox2);
+        // add(checkbox3);
+        // add(checkbox4);
+        // add(checkbox5);
+        // add(checkbox6);
+        // add(checkbox7);
+
+        JComboBox<String> categoryComboBox = new JComboBox<>(new ProductManager().getAllCategories());
+        categoryComboBox.setBackground(Color.decode("#041a42"));
+        categoryComboBox.setForeground(Color.WHITE);
+        categoryComboBox.setBounds(0, 290, 120, 30);
+        categoryComboBox.addActionListener(e -> performCategorySearch(categoryComboBox.getSelectedItem().toString()));
+        add(categoryComboBox);
+
+        String[] priceRanges = {"Price Range", "$0-$100", "$100-$500", "$500-$1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"};
+        JComboBox<String> priceComboBox = new JComboBox<>(priceRanges);
+        priceComboBox.setBackground(Color.decode("#041a42"));
+        priceComboBox.setForeground(Color.WHITE);
+        priceComboBox.setBounds(0, 330, 120, 30);
+
+        priceComboBox.addActionListener(e -> {
+            double lowerBound = 0;
+            double upperBound = Double.MAX_VALUE;
+
+            if (priceComboBox.getSelectedItem().toString().equals("$0-$100")) {
+                lowerBound = 0;
+                upperBound = 100;
+            } else if (priceComboBox.getSelectedItem().toString().equals("$100-$500")) {
+                lowerBound = 100;
+                upperBound = 500;
+            } else if (priceComboBox.getSelectedItem().toString().equals("$500-$1,000")) {
+                lowerBound = 500;
+                upperBound = 1000;
+            } else if (priceComboBox.getSelectedItem().toString().equals("$1,000-$5,000")) {
+                lowerBound = 1000;
+                upperBound = 5000;
+            } else if (priceComboBox.getSelectedItem().toString().equals("$5,000-$10,000")) {
+                lowerBound = 5000;
+                upperBound = 10000;
+            } else if (priceComboBox.getSelectedItem().toString().equals("$10,000+")) {
+                lowerBound = 10000;
+                upperBound = Double.MAX_VALUE;
+            }
+            priceRangeSearch(lowerBound, upperBound);
+        });
+
+        add(priceComboBox);
 
         JButton rangeButton = createSidebarButton("Price Range");
 
@@ -395,6 +436,40 @@ public class CustomerDashboard extends JFrame {
 
         for (Product p : productList) {
             if (p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase())) {
+                ProductPanel productPanel = new ProductPanel(customer, p);
+                productSpace.add(productPanel);
+            }
+        }
+    }
+
+    private void performCategorySearch(String category) {
+        productSpace.removeAll();
+        productSpace.revalidate();
+        productSpace.repaint();
+
+        if (category.equals("Category")) {
+            for (Product p : productList) {
+                ProductPanel productPanel = new ProductPanel(customer, p);
+                productSpace.add(productPanel);
+            }
+            return;
+        }
+
+        for (Product p : productList) {
+            if (p.getCategory().equalsIgnoreCase(category)) {
+                ProductPanel productPanel = new ProductPanel(customer, p);
+                productSpace.add(productPanel);
+            }
+        }
+    }
+
+    private void priceRangeSearch(double lowerBound, double upperBound) {
+        productSpace.removeAll();
+        productSpace.revalidate();
+        productSpace.repaint();
+
+        for (Product p : productList) {
+            if (p.getPrice() >= lowerBound && p.getPrice() <= upperBound) {
                 ProductPanel productPanel = new ProductPanel(customer, p);
                 productSpace.add(productPanel);
             }

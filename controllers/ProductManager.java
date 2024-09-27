@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -102,6 +103,15 @@ public class ProductManager implements IProductManager {
             duplicateProductList.add(prod);
         }
         return duplicateProductList;
+    }
+
+    public String[] getAllCategories() {
+        LinkedHashSet<String> categories = new LinkedHashSet<String>();
+        categories.add("Category");
+        for (Product p : productList) {
+            categories.add(p.getCategory());
+        }
+        return categories.toArray(new String[0]);
     }
 
     // Copying entire array list to text file

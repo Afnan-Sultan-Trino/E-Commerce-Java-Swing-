@@ -4,5 +4,3 @@
 
 5. Admin Dashboard
 6. Admin Features
-
-7. Customer Dashboard -> Filters
