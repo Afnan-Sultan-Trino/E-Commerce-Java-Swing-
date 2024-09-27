@@ -67,7 +67,11 @@ public class CartFrame extends JFrame {
         checkoutButton.setForeground(Color.WHITE);
         checkoutButton.setFocusPainted(false);
         checkoutButton.addActionListener(e -> {
-            // TODO: Open payment gateway -> Deduct stock from productManager -> Clear cart
+            if (customer.getCart().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Your cart is empty!", "Empty Cart", JOptionPane.ERROR_MESSAGE);
+            } else {
+                new PaymentFrame(customer);
+            }
         });
 
         JButton clearCartButton = new JButton("Clear Cart");
