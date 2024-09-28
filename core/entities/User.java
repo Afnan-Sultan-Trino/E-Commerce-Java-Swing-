@@ -41,7 +41,7 @@ public abstract class User implements IUser{
 
     // TODO: Validate role in front-end
     public void setRole(String role) {
-        if (role.equalsIgnoreCase("Admin") || role.equalsIgnoreCase("Customer")) {
+        if (role.equalsIgnoreCase("Admin") || role.equalsIgnoreCase("Customer") || role.equalsIgnoreCase("SuperAdmin")) {
             this.role = role;
         } else {
             throw new IllegalArgumentException("Invalid Role.");
