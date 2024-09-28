@@ -1,15 +1,25 @@
 package gui.components.admin;
 
 import javax.swing.*;
+
+import controllers.ProductManager;
+import core.entities.Product;
+
 import java.awt.*;
 
 public class ManageProductsPanel {
     private JPanel mainPanel;
+    private ProductManager productManager;
 
     public ManageProductsPanel(JPanel mainPanel) {
         this.mainPanel = mainPanel;
+        productManager = new ProductManager();
     }
 
+
+
+
+    // Add product panel
     public void showAddProductPanel() {
         mainPanel.removeAll();
         mainPanel.setLayout(new GridBagLayout());
@@ -143,6 +153,51 @@ public class ManageProductsPanel {
         addButton.setForeground(Color.WHITE);
         addButton.setFont(new Font("Verdana", Font.BOLD, 14));
         addButton.setFocusPainted(false);
+        addButton.addActionListener(e -> {
+            int productID;
+            String productName = nameField.getText();
+            int productStock = (int) stockSpinner.getValue();
+            double productPrice;
+            String productCategory = categoryField.getText();
+            String productDescription = descriptionField.getText();
+            String productImagePath = imagePathField.getText();
+
+            try {
+                productID = Integer.parseInt(idField.getText());
+                productPrice = Double.parseDouble(priceField.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if product ID already exists
+            if (productManager.productExists(productID)) {
+                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " already exists.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if all fields are populated
+            if (productName.isEmpty() || productCategory.isEmpty() || productDescription.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if price/stock are negative
+            if (productPrice <= 0 || productStock < 0) {
+                JOptionPane.showMessageDialog(null, "Price and stock cannot be negative.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Proceed to add product
+            if (productImagePath.isEmpty()) {
+                productManager.addProduct(productID, productName, productPrice, productStock, productCategory, productDescription);
+            } else {
+                productManager.addProduct(productID, productName, productPrice, productStock, productCategory, productDescription, productImagePath);
+            }
+
+            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been added.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        });
+
         mainPanel.add(addButton, gbc);
 
         gbc.gridx = 1;
@@ -151,12 +206,25 @@ public class ManageProductsPanel {
         clearButton.setForeground(Color.WHITE);
         clearButton.setFont(new Font("Verdana", Font.BOLD, 14));
         clearButton.setFocusPainted(false);
+        clearButton.addActionListener(e -> {
+            idField.setText("");
+            nameField.setText("");
+            priceField.setText("");
+            stockSpinner.setValue(0);
+            categoryField.setText("");
+            descriptionField.setText("");
+            imagePathField.setText("");
+        });
         mainPanel.add(clearButton, gbc);
 
         mainPanel.revalidate();
         mainPanel.repaint();
     }
 
+
+
+
+    // Update product panel
     public void showUpdateProductPanel() {
         mainPanel.removeAll();
         mainPanel.setLayout(new GridBagLayout());
@@ -296,6 +364,42 @@ public class ManageProductsPanel {
         searchButton.setForeground(Color.WHITE);
         searchButton.setFont(new Font("Verdana", Font.BOLD, 14));
         searchButton.setFocusPainted(false);
+        searchButton.addActionListener(e -> {
+
+            // Check if ID is empty
+            if (idField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter a product ID.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Parse ID
+            int productID;
+            try {
+                productID = Integer.parseInt(idField.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if ID is valid
+            if (!productManager.productExists(productID)) {
+                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Fetch product details
+            Product product = productManager.searchProduct(productID);
+
+            // Populate fields
+            nameField.setText(product.getName());
+            priceField.setText(String.valueOf(product.getPrice()));
+            stockSpinner.setValue(product.getStock());
+            categoryField.setText(product.getCategory());
+            descriptionField.setText(product.getDescription());
+            imagePathField.setText(product.getImagePath());
+
+        });
+
         mainPanel.add(searchButton, gbc);
 
         gbc.gridx = 1;
@@ -304,12 +408,54 @@ public class ManageProductsPanel {
         updateButton.setForeground(Color.WHITE);
         updateButton.setFont(new Font("Verdana", Font.BOLD, 14));
         updateButton.setFocusPainted(false);
+        updateButton.addActionListener(e -> {
+            int productID;
+            String productName = nameField.getText();
+            int productStock = (int) stockSpinner.getValue();
+            double productPrice;
+            String productCategory = categoryField.getText();
+            String productDescription = descriptionField.getText();
+            String productImagePath = imagePathField.getText();
+
+            try {
+                productID = Integer.parseInt(idField.getText());
+                productPrice = Double.parseDouble(priceField.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if all fields are populated
+            if (productName.isEmpty() || productCategory.isEmpty() || productDescription.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if price/stock are negative
+            if (productPrice <= 0 || productStock < 0) {
+                JOptionPane.showMessageDialog(null, "Price and stock cannot be negative.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Proceed to edit product
+            if (productImagePath.isEmpty()) {
+                productManager.editProduct(productID, productName, productPrice, productStock, productCategory, productDescription);
+            } else {
+                productManager.editProduct(productID, productName, productPrice, productStock, productCategory, productDescription, productImagePath);
+            }
+
+            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        });
         mainPanel.add(updateButton, gbc);
 
         mainPanel.revalidate();
         mainPanel.repaint();
     }
 
+
+
+
+    // Delete product panel
     public void showDeleteProductPanel() {
         mainPanel.removeAll();
         mainPanel.setLayout(new GridBagLayout());
@@ -434,6 +580,40 @@ public class ManageProductsPanel {
         searchButton.setForeground(Color.WHITE);
         searchButton.setFont(new Font("Verdana", Font.BOLD, 14));
         searchButton.setFocusPainted(false);
+        searchButton.addActionListener(e -> {
+
+            // Check if ID is empty
+            if (idField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter a product ID.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Parse ID
+            int productID;
+            try {
+                productID = Integer.parseInt(idField.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if ID is valid
+            if (!productManager.productExists(productID)) {
+                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Fetch product details
+            Product product = productManager.searchProduct(productID);
+
+            // Populate fields
+            nameField.setText(product.getName());
+            priceField.setText(String.valueOf(product.getPrice()));
+            stockSpinner.setValue(product.getStock());
+            categoryField.setText(product.getCategory());
+            descriptionField.setText(product.getDescription());
+        });
+
         mainPanel.add(searchButton, gbc);
 
         gbc.gridx = 1;
@@ -442,12 +622,35 @@ public class ManageProductsPanel {
         deleteButton.setForeground(Color.WHITE);
         deleteButton.setFont(new Font("Verdana", Font.BOLD, 14));
         deleteButton.setFocusPainted(false);
+        deleteButton.addActionListener(e -> {
+            int productID;
+            try {
+                productID = Integer.parseInt(idField.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Check if ID is valid
+            if (!productManager.productExists(productID)) {
+                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Proceed to delete product
+            productManager.deleteProduct(productID);
+            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        });
         mainPanel.add(deleteButton, gbc);
 
         mainPanel.revalidate();
         mainPanel.repaint();
     }
 
+
+
+
+    // List products panel
     public void showListProductsPanel() {
         mainPanel.removeAll();
         mainPanel.setLayout(new BorderLayout());
@@ -460,14 +663,9 @@ public class ManageProductsPanel {
         mainPanel.add(listProductsLabel, BorderLayout.NORTH);
 
         // Column names
-        String[] columnNames = { "ID", "Name", "Price", "Stock", "Category", "Description", "Image Path" };
+        String[] columnNames = { "ID", "Name", "Price ($)", "Stock", "Category", "Description", "Image Path" };
 
-        // Sample data
-        Object[][] data = {
-                { "1", "Product A", "$10.00", "100", "Category 1", "Description A", "/path/to/imageA.jpg" },
-                { "2", "Product B", "$20.00", "200", "Category 2", "Description B", "/path/to/imageB.jpg" },
-                // Add more sample data as needed
-        };
+        String[][] data = productManager.getDataForTable();
 
         // Create table with data
         JTable productTable = new JTable(data, columnNames);
