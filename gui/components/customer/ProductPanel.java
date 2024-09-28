@@ -80,7 +80,13 @@ public class ProductPanel extends JPanel implements ActionListener {
         cartPanel.setLayout(new BorderLayout(5, 5));
 
         // Create a spinner for quantity selection
-        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 1, product.getStock(), 1);
+        SpinnerNumberModel spinnerModel;
+        if (product.getStock() > 0) {
+            spinnerModel = new SpinnerNumberModel(1, 1, product.getStock(), 1);
+        } else {
+            spinnerModel = new SpinnerNumberModel(0, 0, 0, 0);
+        }
+
         quantitySpinner = new JSpinner(spinnerModel);
         quantitySpinner.setPreferredSize(new Dimension(50, 30));
         cartPanel.add(quantitySpinner, BorderLayout.WEST); // Add spinner on the left side
@@ -111,6 +117,12 @@ public class ProductPanel extends JPanel implements ActionListener {
             // Get current & selected selected quantity
             int currentQuantity = customer.getCart().getProductQuantityInCart(product);
             int selectedQuantity = (int) quantitySpinner.getValue();
+
+            // If the selected quantity is 0, show an error message
+            if (selectedQuantity == 0) {
+                JOptionPane.showMessageDialog(null, "Please select a quantity greater than 0.", "Invalid Quantity", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             // Check if the selected quantity is within the stock limit
             if ((currentQuantity + selectedQuantity) <= product.getStock()) {
