@@ -182,7 +182,7 @@ public class UserManager implements IUserManager {
     }
 
     // Return 2D array for displaying in a table
-    public String[][] getUserDataForTable() {
+    public String[][] getDataForTable() {
         String[][] data = new String[userList.size()][6];
 
         int i = 0;

@@ -876,7 +876,7 @@ public class ManageUsersPanel {
         String[] columnNames = { "Name", "Email", "Role", "Gender", "Contact", "Address" };
 
         // Sample data
-        String[][] data = userManager.getUserDataForTable();
+        String[][] data = userManager.getDataForTable();
 
         // Create table with data
         JTable userTable = new JTable(data, columnNames);
