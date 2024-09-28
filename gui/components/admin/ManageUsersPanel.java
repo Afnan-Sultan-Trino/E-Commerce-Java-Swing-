@@ -125,7 +125,7 @@ public class ManageUsersPanel {
         // Prevent admin from creating another admin
         roleComboBox.addActionListener(e -> {
             if (roleComboBox.getSelectedItem().equals("Admin")) {
-                if (user instanceof Admin) {
+                if (this.user instanceof Admin) {
                     JOptionPane.showMessageDialog(mainPanel, "Admin cannot create another admin.", "Error",
                             JOptionPane.ERROR_MESSAGE);
                     roleComboBox.setSelectedIndex(1);
@@ -217,12 +217,31 @@ public class ManageUsersPanel {
             // Validations
 
             // Check if any field is empty
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty() ||
-                    confirmPassword.isEmpty()
-                    || address.isEmpty() || contactNo.isEmpty()) {
-                JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
+            if (role.equals("Customer")) {
+
+                // Check for all fields
+                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || address.isEmpty() || contactNo.isEmpty()) {
+                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Check if contact number is valid
+                if ((contactNo.length() < 10) || (!contactNo.startsWith("0") &&
+                    !contactNo.startsWith("+880"))) {
+                    // Using "AND" cause if "OR" is used, if starts with "+880", check for "0"
+                    // becomes true so shows error.
+                    // Similar case when starts with "0".
+                    JOptionPane.showMessageDialog(mainPanel, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+            } else if (role.equals("Admin")) {
+                
+                // Only check for name, password, and confirm password
+                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             }
 
             // Check if email is valid
@@ -243,16 +262,6 @@ public class ManageUsersPanel {
             if (!password.equals(confirmPassword)) {
                 JOptionPane.showMessageDialog(mainPanel, "Passwords do not match.", "Error",
                         JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Check if contact number is valid
-            if ((contactNo.length() < 10) || (!contactNo.startsWith("0") &&
-                    !contactNo.startsWith("+880"))) {
-                // Using "AND" cause if "OR" is used, if starts with "+880", check for "0"
-                // becomes true so shows error.
-                // Similar case when starts with "0".
-                JOptionPane.showMessageDialog(mainPanel, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -401,6 +410,7 @@ public class ManageUsersPanel {
         String[] roles = {"Admin", "Customer"};
         JComboBox<String> roleComboBox = new JComboBox<>(roles);
         roleComboBox.setPreferredSize(new Dimension(225, 30));
+        roleComboBox.setEnabled(false); // Disable changing roles
         mainPanel.add(roleComboBox, gbc);
 
         // Gender label and combo box
