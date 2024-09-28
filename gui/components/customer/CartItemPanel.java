@@ -9,7 +9,7 @@ import core.entities.Customer;
 import core.entities.Product;
 
 public class CartItemPanel extends JPanel {
-    
+
     private JButton removeButton;
     private JSpinner quantitySpinner;
     private JLabel totalPriceLabel;
@@ -21,7 +21,8 @@ public class CartItemPanel extends JPanel {
         setBackground(Color.decode("#f9f9f9")); // Light gray background for the item
 
         // Product Image (Increased size)
-        JLabel imageLabel = new JLabel(new ImageIcon(new ImageIcon(product.getImagePath()).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
+        JLabel imageLabel = new JLabel(new ImageIcon(
+                new ImageIcon(product.getImagePath()).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
         imageLabel.setPreferredSize(new Dimension(150, 150)); // Increased image size
         add(imageLabel, BorderLayout.WEST);
 
@@ -62,10 +63,11 @@ public class CartItemPanel extends JPanel {
         quantitySpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 customer.getCart().updateQuantity(product, (int) quantitySpinner.getValue());
-                totalPriceLabel.setText("Total: $" + String.format("%.2f", product.getPrice() * (int) quantitySpinner.getValue()));
+                totalPriceLabel.setText(
+                        "Total: $" + String.format("%.2f", product.getPrice() * (int) quantitySpinner.getValue()));
                 cartFrame.updatePriceLables(customer);
-             } 
-         });
+            }
+        });
 
         quantityPanel.add(quantityLabel); // Add the quantity label
         quantityPanel.add(quantitySpinner); // Add the spinner
@@ -108,7 +110,7 @@ public class CartItemPanel extends JPanel {
                 parent.repaint();
             });
         });
-        
+
         actionPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Spacer
         actionPanel.add(removeButton);
         add(actionPanel, BorderLayout.EAST);

@@ -65,7 +65,7 @@ public class UserManager implements IUserManager {
             if (u.getEmail().equals(email)) {
                 return true;
             }
-        } 
+        }
         // If no user exists, it'll exit the for loop and return "false".
         return false;
     }
@@ -82,7 +82,8 @@ public class UserManager implements IUserManager {
         return false;
     }
 
-    // Add user. Method overloading cause of two types of User (this one is for Admin)
+    // Add user. Method overloading cause of two types of User (this one is for
+    // Admin)
     // TODO: Validate data in front-end
     public void addUser(String name, String email, String password, String role) {
         Admin a = new Admin(name, email, password, role);
@@ -90,9 +91,11 @@ public class UserManager implements IUserManager {
         dumpDataToFile();
     }
 
-    // Add user. Method overloading cause of two types of User (this one is for Customer)
+    // Add user. Method overloading cause of two types of User (this one is for
+    // Customer)
     // TODO: Validate data in front-end
-    public void addUser(String name, String email, String password, String role, String gender, String contactNo, String address) {
+    public void addUser(String name, String email, String password, String role, String gender, String contactNo,
+            String address) {
         Customer c = new Customer(name, email, password, role, gender, contactNo, address);
         userList.add(c);
         dumpDataToFile();
@@ -113,14 +116,17 @@ public class UserManager implements IUserManager {
     }
 
     // Search user (return user object)
-    // MUST create a new object cause otherwise, if the object reference is returned, that object can be modified, compromising the user data.
-    // TODO: Catch NullPointerException in front-end and notify user that the user does not exist.
+    // MUST create a new object cause otherwise, if the object reference is
+    // returned, that object can be modified, compromising the user data.
+    // TODO: Catch NullPointerException in front-end and notify user that the user
+    // does not exist.
     public User searchUser(String email) {
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
                 if (u instanceof Customer) {
                     Customer c = (Customer) u;
-                    User customer = new Customer(c.getName(), c.getEmail(), c.getPassword(), c.getRole(), c.getGender(), c.getContactNo(), c.getAddress());
+                    User customer = new Customer(c.getName(), c.getEmail(), c.getPassword(), c.getRole(), c.getGender(),
+                            c.getContactNo(), c.getAddress());
                     return customer;
                 } else if (u instanceof Admin) {
                     Admin a = (Admin) u;
@@ -136,7 +142,8 @@ public class UserManager implements IUserManager {
         return null;
     }
 
-    // TODO: Catch NullPointerException in front-end and notify user that the user does not exist.
+    // TODO: Catch NullPointerException in front-end and notify user that the user
+    // does not exist.
     public String getUserRole(String email) {
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
@@ -147,7 +154,8 @@ public class UserManager implements IUserManager {
     }
 
     // Update user (Customer)
-    public boolean updateUser(String name, String email, String password, String role, String gender, String contactNo, String address) {
+    public boolean updateUser(String name, String email, String password, String role, String gender, String contactNo,
+            String address) {
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
                 Customer c = (Customer) u;
@@ -208,13 +216,16 @@ public class UserManager implements IUserManager {
     }
 
     // Re-write the entire array list
-    // Currently, everytime there's a change in userList, the contents are dumped to the txt file, prefer to do this only before app shutdown for reduced IO operation
+    // Currently, everytime there's a change in userList, the contents are dumped to
+    // the txt file, prefer to do this only before app shutdown for reduced IO
+    // operation
     // However, isn't a big deal for such a small project at the moment.
     // TODO: Reduce IO Operations (Low Priority)
     private void dumpDataToFile() {
 
         try {
-            // Do not pass "true" to FileWriter as I want to overwrite the entire file. Passing "true" would just append to the file.
+            // Do not pass "true" to FileWriter as I want to overwrite the entire file.
+            // Passing "true" would just append to the file.
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/userData.txt"));
             for (User u : userList) {
                 if (u instanceof SuperAdmin) {
@@ -232,7 +243,8 @@ public class UserManager implements IUserManager {
                 } else if (u instanceof Customer) {
                     // Type cast back to original object to run object specific methods
                     Customer c = (Customer) u;
-                    String t = c.getName() + "^~^" + c.getEmail() + "^~^" + c.getPassword() + "^~^" + c.getRole() + "^~^" + c.getGender() + "^~^" + c.getContactNo() + "^~^" + c.getAddress();
+                    String t = c.getName() + "^~^" + c.getEmail() + "^~^" + c.getPassword() + "^~^" + c.getRole()
+                            + "^~^" + c.getGender() + "^~^" + c.getContactNo() + "^~^" + c.getAddress();
                     writer.write(t);
                     writer.newLine();
                 }

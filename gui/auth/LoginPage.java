@@ -13,7 +13,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.regex.Pattern;
 
-
 public class LoginPage implements ActionListener {
     private JFrame frame;
     private JTextField emailField;
@@ -32,47 +31,46 @@ public class LoginPage implements ActionListener {
         frame = new JFrame("E-Commerce");
         frame.setSize(980, 800);
         frame.setLayout(null);
-		frame.getContentPane().setBackground(Color.decode("#041a42"));
-		
-        frame.setIconImage(loadIcon("../assets/images/authAssets/loginFrameBackground.jpeg")); 
-		
-		
-		ImageIcon originalIcon = new ImageIcon("../assets/images/authAssets/loginFrameBackground.jpeg"); // Update the path to your image file
-		Image originalImage = originalIcon.getImage(); 
-		Image scaledImage = originalImage.getScaledInstance(625, 800, Image.SCALE_SMOOTH); // Set your desired width and height
-		ImageIcon scaledIcon = new ImageIcon(scaledImage); // Create and add JLabel for the image
-		JLabel imageLabel = new JLabel(scaledIcon);
-		imageLabel.setBounds(0, 0, 500, 775); // Set the desired bounds for the image
-		frame.add(imageLabel);
-		
-		
-		JLabel lo=new JLabel("SIGN IN");
-		lo.setBounds(550,250,200,30);
-		Font loFont=new Font("Verdana",Font.BOLD,23);
-		lo.setFont(loFont);
-		lo.setForeground(new Color(215,210,203));
-		frame.add(lo);
-		
-		
+        frame.getContentPane().setBackground(Color.decode("#041a42"));
+
+        frame.setIconImage(loadIcon("../assets/images/authAssets/loginFrameBackground.jpeg"));
+
+        ImageIcon originalIcon = new ImageIcon("../assets/images/authAssets/loginFrameBackground.jpeg"); // Update the
+                                                                                                         // path to your
+                                                                                                         // image file
+        Image originalImage = originalIcon.getImage();
+        Image scaledImage = originalImage.getScaledInstance(625, 800, Image.SCALE_SMOOTH); // Set your desired width and
+                                                                                           // height
+        ImageIcon scaledIcon = new ImageIcon(scaledImage); // Create and add JLabel for the image
+        JLabel imageLabel = new JLabel(scaledIcon);
+        imageLabel.setBounds(0, 0, 500, 775); // Set the desired bounds for the image
+        frame.add(imageLabel);
+
+        JLabel lo = new JLabel("SIGN IN");
+        lo.setBounds(550, 250, 200, 30);
+        Font loFont = new Font("Verdana", Font.BOLD, 23);
+        lo.setFont(loFont);
+        lo.setForeground(new Color(215, 210, 203));
+        frame.add(lo);
+
         JLabel emailLabel = new JLabel("Email");
         emailLabel.setBounds(550, 300, 100, 30);
-		Font emailFont=new Font("Verdana",Font.PLAIN,18);
-		emailLabel.setFont(emailFont);
-        emailLabel.setForeground(new Color(215,210,203));
+        Font emailFont = new Font("Verdana", Font.PLAIN, 18);
+        emailLabel.setFont(emailFont);
+        emailLabel.setForeground(new Color(215, 210, 203));
         frame.add(emailLabel);
 
+        ImageIcon emIcon = new ImageIcon("../assets/images/authAssets/emailIcon.png"); // Update the path to your image
+                                                                                       // file
+        Image emImage = emIcon.getImage();
+        Image emscaledImage = emImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Set your desired width and
+                                                                                     // height
+        ImageIcon emscaledIcon = new ImageIcon(emscaledImage); // Create and add JLabel for the image
+        JLabel emimageLabel = new JLabel(emscaledIcon);
+        emimageLabel.setBounds(890, 329, 30, 30);
+        frame.add(emimageLabel);
 
-        ImageIcon emIcon = new ImageIcon("../assets/images/authAssets/emailIcon.png"); // Update the path to your image file
-		Image emImage = emIcon.getImage(); 
-        Image emscaledImage = emImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Set your desired width and height
-		ImageIcon emscaledIcon = new ImageIcon(emscaledImage); // Create and add JLabel for the image
-		JLabel emimageLabel = new JLabel(emscaledIcon);
-		emimageLabel.setBounds(890, 329, 30, 30);
-		frame.add(emimageLabel);
-
-
-       
-		emailField = new JTextField();
+        emailField = new JTextField();
         emailField.setBounds(550, 328, 370, 30);
         Font emailfieldFont = new Font("Times New Roman", Font.BOLD, 17);
         emailField.setFont(emailfieldFont);
@@ -83,28 +81,24 @@ public class LoginPage implements ActionListener {
         emailField.setBorder(redBorder);
         emailField.addActionListener(this);
         frame.add(emailField);
-		
-		
+
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setBounds(550, 360, 100, 30);
-		Font passwordFont=new Font("Verdana",Font.PLAIN,18);
-		passwordLabel.setFont(passwordFont);
-		passwordLabel.setForeground(new Color(215,210,203));
+        Font passwordFont = new Font("Verdana", Font.PLAIN, 18);
+        passwordLabel.setFont(passwordFont);
+        passwordLabel.setForeground(new Color(215, 210, 203));
         frame.add(passwordLabel);
 
-        ImageIcon pIcon = new ImageIcon("../assets/images/authAssets/passwordHiddenIcon.png"); // Update the path to your image file
-		Image pImage = pIcon.getImage(); 
+        ImageIcon pIcon = new ImageIcon("../assets/images/authAssets/passwordHiddenIcon.png"); // Update the path to
+                                                                                               // your image file
+        Image pImage = pIcon.getImage();
         Image pscaledImage = pImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH); // Set your desired width and height
-		ImageIcon pscaledIcon = new ImageIcon(pscaledImage); // Create and add JLabel for the image
-		JLabel pimageLabel = new JLabel(pscaledIcon);
-		pimageLabel.setBounds(890, 389, 30, 30);
-		frame.add(pimageLabel);
+        ImageIcon pscaledIcon = new ImageIcon(pscaledImage); // Create and add JLabel for the image
+        JLabel pimageLabel = new JLabel(pscaledIcon);
+        pimageLabel.setBounds(890, 389, 30, 30);
+        frame.add(pimageLabel);
 
-
-
-
-		
-		passwordField = new JPasswordField();
+        passwordField = new JPasswordField();
         passwordField.setBounds(550, 388, 370, 30);
         Font passfieldFont = new Font("Verdana", Font.BOLD, 17);
         passwordField.setFont(passfieldFont);
@@ -116,10 +110,10 @@ public class LoginPage implements ActionListener {
         passwordField.setEchoChar('*');
         passwordField.addActionListener(this);
         frame.add(passwordField);
-		
-		// JButton forgotPassword = new JButton("Forgot Password?");
+
+        // JButton forgotPassword = new JButton("Forgot Password?");
         // forgotPassword.setBounds(800, 420, 120, 20);
-		// forgotPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // forgotPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         // forgotPassword.setFocusPainted(false);
         // Font forgotFont = new Font("Monospace", Font.BOLD, 12);
         // forgotPassword.setBorder(BorderFactory.createEmptyBorder());
@@ -130,36 +124,33 @@ public class LoginPage implements ActionListener {
         // forgotPassword.setBackground(new Color(0, 0, 0, 0));
         // frame.add(forgotPassword);
 
-        
         loginButton = new JButton("Sign In");
         loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         loginButton.setFocusPainted(false);
-		Font btnFont=new Font("Verdana",Font.BOLD,16);
-		loginButton.setFont(btnFont);
+        Font btnFont = new Font("Verdana", Font.BOLD, 16);
+        loginButton.setFont(btnFont);
         loginButton.setBounds(550, 450, 375, 33);
-		loginButton.setBackground(Color.decode("#FC7F16"));
-		loginButton.setForeground(Color.WHITE);
+        loginButton.setBackground(Color.decode("#FC7F16"));
+        loginButton.setForeground(Color.WHITE);
         loginButton.addActionListener(this);
         frame.add(loginButton);
-		
-		
 
         registerButton = new JButton("Register");
-	    registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         registerButton.setFocusPainted(false);
-		Font regFont=new Font("Verdana",Font.BOLD,12);
-		registerButton.setFont(regFont);
+        Font regFont = new Font("Verdana", Font.BOLD, 12);
+        registerButton.setFont(regFont);
         registerButton.setBounds(755, 506, 60, 20);
-		registerButton.setBackground(Color.decode("#d61900"));
-		registerButton.setForeground(Color.WHITE);
+        registerButton.setBackground(Color.decode("#d61900"));
+        registerButton.setForeground(Color.WHITE);
 
         registerButton.setOpaque(false);
         registerButton.setBorder(BorderFactory.createEmptyBorder());
 
         registerButton.addActionListener(this);
         frame.add(registerButton);
-		
-		JLabel signIn = new JLabel("Don't have an account?");
+
+        JLabel signIn = new JLabel("Don't have an account?");
         signIn.setBounds(600, 490, 200, 50);
         Font signFont = new Font("Verdana", Font.PLAIN, 13);
         signIn.setFont(signFont);
@@ -171,12 +162,12 @@ public class LoginPage implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
     }
-	
-	private Image loadIcon(String iconPath){
-		ImageIcon icon = new ImageIcon(iconPath);
-		Image scaledImage=icon.getImage().getScaledInstance(846,815,Image.SCALE_SMOOTH);
-		return scaledImage;
-	}
+
+    private Image loadIcon(String iconPath) {
+        ImageIcon icon = new ImageIcon(iconPath);
+        Image scaledImage = icon.getImage().getScaledInstance(846, 815, Image.SCALE_SMOOTH);
+        return scaledImage;
+    }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton || e.getSource() == emailField || e.getSource() == passwordField) {
@@ -190,19 +181,22 @@ public class LoginPage implements ActionListener {
     }
 
     private void loginUser(String email, String pass) {
-		if (email.isEmpty() || pass.isEmpty()) {
-			JOptionPane.showMessageDialog(frame, "Username or password cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
-		} else {
-            if(!validEmail(email)) {
+        if (email.isEmpty() || pass.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Username or password cannot be empty.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (!validEmail(email)) {
                 JOptionPane.showMessageDialog(frame, "Invalid email address.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } else if (pass.length() < 8) {
-                JOptionPane.showMessageDialog(frame, "Password must be at least 8 characters long.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Password must be at least 8 characters long.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
-			UserManager userManager = new UserManager();
-			if (userManager.validCredentials(email.toLowerCase(), pass)) {
-				JOptionPane.showMessageDialog(frame, "Successfully logged in.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            UserManager userManager = new UserManager();
+            if (userManager.validCredentials(email.toLowerCase(), pass)) {
+                JOptionPane.showMessageDialog(frame, "Successfully logged in.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
                 // Close this frame and open admin/customer dashboard
                 // Pass the user object (duplicate) to the constructor of the dashboard
                 User u = userManager.searchUser(email);
@@ -213,11 +207,12 @@ public class LoginPage implements ActionListener {
                     new CustomerDashboard(email);
                     frame.dispose();
                 }
-			} else {
-                JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Incorrect username or password.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-		}
-	}
+        }
+    }
 
     private boolean validEmail(String email) {
         String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";

@@ -11,7 +11,6 @@ public class Product implements IProduct {
     private String desc;
     private String imagePath = "../assets/images/productAssets/deafultProductIcon.jpg"; // Default image
 
-
     // Call this constructor if image path is not provided (will use default image)
     public Product(int id, String name, double price, int stock, String category, String desc) {
         setID(id); // TODO: Ensure validation on front-end to avoid -ve id
@@ -23,7 +22,7 @@ public class Product implements IProduct {
     }
 
     // Call this constructor if image path is provided
-    public Product(int id, String name, double price, int stock, String category, String desc, String imagePath){
+    public Product(int id, String name, double price, int stock, String category, String desc, String imagePath) {
         setID(id); // TODO: Ensure validation on front-end to avoid -ve id
         setName(name);
         setPrice(price); // TODO: Ensure validation on front-end to avoid -ve price
@@ -81,7 +80,6 @@ public class Product implements IProduct {
         this.imagePath = "../assets/images/productAssets/deafultProductIcon.jpg";
     }
 
-    
     public int getID() {
         return id;
     }
@@ -109,5 +107,5 @@ public class Product implements IProduct {
     public String getImagePath() {
         return imagePath;
     }
-    
+
 }

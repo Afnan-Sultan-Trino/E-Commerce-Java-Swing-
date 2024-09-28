@@ -384,7 +384,8 @@ public class Registration implements ActionListener {
         }
 
         if ((contact.length() < 10) || (!contact.startsWith("0") && !contact.startsWith("+880"))) {
-            // Using "AND" cause if "OR" is used, if starts with "+880", check for "0" becomes true so shows error.
+            // Using "AND" cause if "OR" is used, if starts with "+880", check for "0"
+            // becomes true so shows error.
             // Similar case when starts with "0".
             JOptionPane.showMessageDialog(frame, "Invalid contact number", "Error", JOptionPane.ERROR_MESSAGE);
             return;

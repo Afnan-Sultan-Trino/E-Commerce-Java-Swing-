@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import interfaces.entities.IUser;
 
-public abstract class User implements IUser{
+public abstract class User implements IUser {
     private String name;
     private String email;
     private String password;
@@ -22,7 +22,7 @@ public abstract class User implements IUser{
     }
 
     // TODO: Validate email address in front-end
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         if (validEmail(email)) {
             this.email = email;
         } else {
@@ -41,7 +41,8 @@ public abstract class User implements IUser{
 
     // TODO: Validate role in front-end
     public void setRole(String role) {
-        if (role.equalsIgnoreCase("Admin") || role.equalsIgnoreCase("Customer") || role.equalsIgnoreCase("SuperAdmin")) {
+        if (role.equalsIgnoreCase("Admin") || role.equalsIgnoreCase("Customer")
+                || role.equalsIgnoreCase("SuperAdmin")) {
             this.role = role;
         } else {
             throw new IllegalArgumentException("Invalid Role.");

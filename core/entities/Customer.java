@@ -9,7 +9,8 @@ public class Customer extends User implements ICustomer {
     private String address;
     private Cart userCart;
 
-    public Customer(String name, String email, String password, String role, String gender, String contactNo, String address) {
+    public Customer(String name, String email, String password, String role, String gender, String contactNo,
+            String address) {
         super(name, email, password, role);
         this.gender = gender;
         setContactNo(contactNo);
@@ -50,57 +51,6 @@ public class Customer extends User implements ICustomer {
     public String getAddress() {
         return address;
     }
-
-    // public void addToCart(int id, int q) {
-    //     if (id > 0 && q > 0) {
-    //         ProductManager pm = new ProductManager();
-    //         Product p = pm.searchProduct(id);
-    //         if (p != null) {
-    //             userCart.addProductToCart(p, q);
-    //         } else {
-    //             throw new NoSuchElementException("Couldn't find product with ID: " + id);
-    //         }
-    //     } else {
-    //         throw new IllegalArgumentException("Invalid Product ID or Quantity.");
-    //     }
-    // }
-
-    // public void removeFromCart(int id) {
-    //     if (id > 0) {
-    //         ProductManager pm = new ProductManager();
-    //         Product p = pm.searchProduct(id);
-    //         if (p != null) {
-    //             userCart.removeProductFromCart(p);
-    //         } else {
-    //             throw new NoSuchElementException("Couldn't find product with ID: " + id);
-    //         }
-    //     } else {
-    //         throw new IllegalArgumentException("Invalid Product ID.");
-    //     }
-    // }
-
-    // // TODO: Ensure validation on front-end to notify user avoid -ve quantity
-    // public void updateCartProductQuantity(int id, int q) {
-    //     if (id > 0 && q > 0) {
-    //         ProductManager pm = new ProductManager();
-    //         Product p = pm.searchProduct(id);
-    //         if (p != null) {
-    //             userCart.updateQuantity(p, q);
-    //         } else {
-    //             throw new NoSuchElementException("Couldn't find product with ID: " + id);
-    //         }
-    //     } else {
-    //         throw new IllegalArgumentException("Invalid Product ID or Quantity.");
-    //     }
-    // }
-
-    // public void clearCart() {
-    //     userCart.clearCart();
-    // }
-
-    // public double getCartTotal() {
-    //     return userCart.getTotal();
-    // }
 
     public Cart getCart() {
         return userCart;

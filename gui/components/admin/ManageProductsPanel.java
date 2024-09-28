@@ -16,9 +16,6 @@ public class ManageProductsPanel {
         productManager = new ProductManager();
     }
 
-
-
-
     // Add product panel
     public void showAddProductPanel() {
         mainPanel.removeAll();
@@ -166,13 +163,15 @@ public class ManageProductsPanel {
                 productID = Integer.parseInt(idField.getText());
                 productPrice = Double.parseDouble(priceField.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Check if product ID already exists
             if (productManager.productExists(productID)) {
-                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " already exists.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " already exists.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -184,18 +183,22 @@ public class ManageProductsPanel {
 
             // Check if price/stock are negative
             if (productPrice <= 0 || productStock < 0) {
-                JOptionPane.showMessageDialog(null, "Price and stock cannot be negative.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Price and stock cannot be negative.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Proceed to add product
             if (productImagePath.isEmpty()) {
-                productManager.addProduct(productID, productName, productPrice, productStock, productCategory, productDescription);
+                productManager.addProduct(productID, productName, productPrice, productStock, productCategory,
+                        productDescription);
             } else {
-                productManager.addProduct(productID, productName, productPrice, productStock, productCategory, productDescription, productImagePath);
+                productManager.addProduct(productID, productName, productPrice, productStock, productCategory,
+                        productDescription, productImagePath);
             }
 
-            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been added.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been added.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
 
         mainPanel.add(addButton, gbc);
@@ -220,9 +223,6 @@ public class ManageProductsPanel {
         mainPanel.revalidate();
         mainPanel.repaint();
     }
-
-
-
 
     // Update product panel
     public void showUpdateProductPanel() {
@@ -377,13 +377,15 @@ public class ManageProductsPanel {
             try {
                 productID = Integer.parseInt(idField.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Check if ID is valid
             if (!productManager.productExists(productID)) {
-                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -421,7 +423,8 @@ public class ManageProductsPanel {
                 productID = Integer.parseInt(idField.getText());
                 productPrice = Double.parseDouble(priceField.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -433,27 +436,28 @@ public class ManageProductsPanel {
 
             // Check if price/stock are negative
             if (productPrice <= 0 || productStock < 0) {
-                JOptionPane.showMessageDialog(null, "Price and stock cannot be negative.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Price and stock cannot be negative.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Proceed to edit product
             if (productImagePath.isEmpty()) {
-                productManager.editProduct(productID, productName, productPrice, productStock, productCategory, productDescription);
+                productManager.editProduct(productID, productName, productPrice, productStock, productCategory,
+                        productDescription);
             } else {
-                productManager.editProduct(productID, productName, productPrice, productStock, productCategory, productDescription, productImagePath);
+                productManager.editProduct(productID, productName, productPrice, productStock, productCategory,
+                        productDescription, productImagePath);
             }
 
-            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been updated.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
         mainPanel.add(updateButton, gbc);
 
         mainPanel.revalidate();
         mainPanel.repaint();
     }
-
-
-
 
     // Delete product panel
     public void showDeleteProductPanel() {
@@ -593,13 +597,15 @@ public class ManageProductsPanel {
             try {
                 productID = Integer.parseInt(idField.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Check if ID is valid
             if (!productManager.productExists(productID)) {
-                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -627,28 +633,28 @@ public class ManageProductsPanel {
             try {
                 productID = Integer.parseInt(idField.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Invalid input. Please check the fields and try again.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Check if ID is valid
             if (!productManager.productExists(productID)) {
-                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Product with ID " + productID + " does not exist.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Proceed to delete product
             productManager.deleteProduct(productID);
-            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Product with ID " + productID + " has been deleted.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
         mainPanel.add(deleteButton, gbc);
 
         mainPanel.revalidate();
         mainPanel.repaint();
     }
-
-
-
 
     // List products panel
     public void showListProductsPanel() {

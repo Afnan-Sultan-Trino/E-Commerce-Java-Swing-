@@ -53,7 +53,7 @@ public class CustomerDashboard extends JFrame {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
         searchPanel.setBackground(Color.decode("#a2ba07"));
         JLabel searchIcon = new JLabel(new ImageIcon("../assets/images/authAssets/magnifyingGlass.png"));
-        searchIcon.setBackground(Color.decode("#7a8928"));  
+        searchIcon.setBackground(Color.decode("#7a8928"));
         // Setting focus on search icon cause the default focus is on the search bar.
         SwingUtilities.invokeLater(() -> searchIcon.requestFocusInWindow());
 
@@ -79,7 +79,7 @@ public class CustomerDashboard extends JFrame {
 
         // Logic for searching when Enter key is pressed
         searchBar.addActionListener(e -> performSearch(searchBar.getText()));
-        
+
         // Logic for searching when icon is clicked
         searchIcon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -115,7 +115,7 @@ public class CustomerDashboard extends JFrame {
             }
 
             public void mouseEntered(MouseEvent e) {
-                cartIcon.setCursor(new Cursor (Cursor.HAND_CURSOR));
+                cartIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
         });
 
@@ -125,7 +125,7 @@ public class CustomerDashboard extends JFrame {
                 dispose();
                 new LoginPage();
             }
-            
+
             public void mouseEntered(MouseEvent e) {
                 logoutIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
@@ -148,7 +148,6 @@ public class CustomerDashboard extends JFrame {
         westPanel.setBackground(Color.decode("#041a42"));
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
-
         JComboBox<String> categoryComboBox = new JComboBox<>(new ProductManager().getAllCategories());
         categoryComboBox.setBackground(Color.decode("#041a42"));
         categoryComboBox.setForeground(Color.WHITE);
@@ -156,7 +155,8 @@ public class CustomerDashboard extends JFrame {
         categoryComboBox.addActionListener(e -> performCategorySearch(categoryComboBox.getSelectedItem().toString()));
         // add(categoryComboBox);
 
-        String[] priceRanges = {"Price Range", "$0-$100", "$100-$500", "$500-$1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"};
+        String[] priceRanges = { "Price Range", "$0-$100", "$100-$500", "$500-$1,000", "$1,000-$5,000",
+                "$5,000-$10,000", "$10,000+" };
         JComboBox<String> priceComboBox = new JComboBox<>(priceRanges);
         priceComboBox.setBackground(Color.decode("#041a42"));
         priceComboBox.setForeground(Color.WHITE);
@@ -237,7 +237,8 @@ public class CustomerDashboard extends JFrame {
 
         // Text for bannerPanel
         JLabel bannerText = new JLabel(
-                "<html><h1 style='color:#c9c6c1'>Welcome to Your E-Cart Dashboard, " + customer.getName() + "!</h1><p>Discover the latest tech at unbeatable prices.</p><p>We bring you the best in cutting-edge technology. Browse our extensive catalog, view detailed product information, and experience a seamless shopping experience.</p></html>");
+                "<html><h1 style='color:#c9c6c1'>Welcome to Your E-Cart Dashboard, " + customer.getName()
+                        + "!</h1><p>Discover the latest tech at unbeatable prices.</p><p>We bring you the best in cutting-edge technology. Browse our extensive catalog, view detailed product information, and experience a seamless shopping experience.</p></html>");
         Font bannerFont = new Font("open sans", Font.BOLD, 18);
         bannerText.setFont(bannerFont);
         bannerText.setForeground(Color.decode("#D3D3D3"));
@@ -274,8 +275,12 @@ public class CustomerDashboard extends JFrame {
         JLabel dealsText = new JLabel(
                 "<html><h2 style='color:#c9c6c1'>Unlock unbeatable savings with our daily exclusive deals! Discover limited-time offers, flash sales, and discounts on top-rated products across all categories.</h2></html>",
                 SwingConstants.CENTER);
-        dealsText.setBounds(westPanel.getWidth() + 10, dealsText.getY(), dealsText.getWidth(), dealsText.getHeight()); // Add 10 pixels of padding
-                                                                                                                     
+        dealsText.setBounds(westPanel.getWidth() + 10, dealsText.getY(), dealsText.getWidth(), dealsText.getHeight()); // Add
+                                                                                                                       // 10
+                                                                                                                       // pixels
+                                                                                                                       // of
+                                                                                                                       // padding
+
         Font dealsFont = new Font("open sans", Font.PLAIN, 18);
         dealsText.setFont(dealsFont);
         dealsText.setAlignmentX(Component.CENTER_ALIGNMENT); // Align to center
@@ -390,7 +395,8 @@ public class CustomerDashboard extends JFrame {
         productSpace.repaint();
 
         for (Product p : productList) {
-            if (p.getName().toLowerCase().contains(query.toLowerCase()) || p.getDescription().toLowerCase().contains(query.toLowerCase())) {
+            if (p.getName().toLowerCase().contains(query.toLowerCase())
+                    || p.getDescription().toLowerCase().contains(query.toLowerCase())) {
                 ProductPanel productPanel = new ProductPanel(customer, p);
                 productSpace.add(productPanel);
             }

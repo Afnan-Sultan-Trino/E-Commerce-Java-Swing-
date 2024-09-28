@@ -21,9 +21,6 @@ public class ManageUsersPanel {
         userManager = new UserManager();
     }
 
-
-
-
     // Add Users Panel
     public void showAddUserPanel() {
         mainPanel.removeAll();
@@ -219,26 +216,30 @@ public class ManageUsersPanel {
             if (role.equals("Customer")) {
 
                 // Check for all fields
-                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || address.isEmpty() || contactNo.isEmpty()) {
-                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()
+                        || address.isEmpty() || contactNo.isEmpty()) {
+                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 // Check if contact number is valid
                 if ((contactNo.length() < 10) || (!contactNo.startsWith("0") &&
-                    !contactNo.startsWith("+880"))) {
+                        !contactNo.startsWith("+880"))) {
                     // Using "AND" cause if "OR" is used, if starts with "+880", check for "0"
                     // becomes true so shows error.
                     // Similar case when starts with "0".
-                    JOptionPane.showMessageDialog(mainPanel, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(mainPanel, "Invalid contact number.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
             } else if (role.equals("Admin")) {
-                
+
                 // Only check for name, password, and confirm password
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             }
@@ -273,10 +274,12 @@ public class ManageUsersPanel {
             // Proceed to add user based on role after validations
             if (role.equals("Admin")) {
                 userManager.addUser(name, email, password, role);
-                JOptionPane.showMessageDialog(mainPanel, "Added user successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(mainPanel, "Added user successfully.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
             } else {
                 userManager.addUser(name, email, password, role, gender, contactNo, address);
-                JOptionPane.showMessageDialog(mainPanel, "Added user successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(mainPanel, "Added user successfully.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Clear fields after adding user
@@ -315,9 +318,6 @@ public class ManageUsersPanel {
         mainPanel.revalidate();
         mainPanel.repaint();
     }
-
-
-
 
     // Update Users Panel
     public void showUpdateUserPanel() {
@@ -406,7 +406,7 @@ public class ManageUsersPanel {
         mainPanel.add(roleLabel, gbc);
 
         gbc.gridx = 1;
-        String[] roles = {"Admin", "Customer"};
+        String[] roles = { "Admin", "Customer" };
         JComboBox<String> roleComboBox = new JComboBox<>(roles);
         roleComboBox.setPreferredSize(new Dimension(225, 30));
         roleComboBox.setEnabled(false); // Disable changing roles
@@ -421,7 +421,7 @@ public class ManageUsersPanel {
         mainPanel.add(genderLabel, gbc);
 
         gbc.gridx = 1;
-        String[] genders = {"Male", "Female", "Other"};
+        String[] genders = { "Male", "Female", "Other" };
         JComboBox<String> genderComboBox = new JComboBox<>(genders);
         genderComboBox.setPreferredSize(new Dimension(225, 30));
         mainPanel.add(genderComboBox, gbc);
@@ -545,13 +545,16 @@ public class ManageUsersPanel {
             if (user instanceof Admin || user instanceof SuperAdmin) {
                 // Only check for name, password, and confirm password
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             } else if (user instanceof Customer) {
                 // Check for all fields
-                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || contactNo.isEmpty() || address.isEmpty()) {
-                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()
+                        || contactNo.isEmpty() || address.isEmpty()) {
+                    JOptionPane.showMessageDialog(mainPanel, "Please fill all the fields.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -560,7 +563,8 @@ public class ManageUsersPanel {
                     // Using "AND" cause if "OR" is used, if starts with "+880", check for "0"
                     // becomes true so shows error.
                     // Similar case when starts with "0".
-                    JOptionPane.showMessageDialog(mainPanel, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(mainPanel, "Invalid contact number.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             }
@@ -602,7 +606,8 @@ public class ManageUsersPanel {
                 return;
             }
 
-            JOptionPane.showMessageDialog(mainPanel, "Updated user successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(mainPanel, "Updated user successfully.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
 
             // Clear fields after updating user
             nameField.setText("");
@@ -621,9 +626,6 @@ public class ManageUsersPanel {
         mainPanel.revalidate();
         mainPanel.repaint();
     }
-
-
-
 
     // Delete Users Panel
     public void showDeleteUserPanel() {
@@ -688,7 +690,7 @@ public class ManageUsersPanel {
         mainPanel.add(roleLabel, gbc);
 
         gbc.gridx = 1;
-        String[] roles = {"Admin", "Customer"};
+        String[] roles = { "Admin", "Customer" };
         JComboBox<String> roleComboBox = new JComboBox<>(roles);
         roleComboBox.setPreferredSize(new Dimension(225, 30));
         roleComboBox.setEnabled(false);
@@ -847,7 +849,8 @@ public class ManageUsersPanel {
                 userManager.deleteUser(email);
             }
 
-            JOptionPane.showMessageDialog(mainPanel, "Deleted user successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(mainPanel, "Deleted user successfully.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
 
         mainPanel.add(deleteButton, gbc);
@@ -855,9 +858,6 @@ public class ManageUsersPanel {
         mainPanel.revalidate();
         mainPanel.repaint();
     }
-
-
-
 
     // List Users Panel
     public void showListUsersPanel() {

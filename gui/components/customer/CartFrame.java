@@ -38,7 +38,8 @@ public class CartFrame extends JFrame {
         cartItemsPanel.setBackground(Color.decode("#f9f9f9"));
 
         // ScrollPane to wrap cart items
-        JScrollPane scrollPane = new JScrollPane(cartItemsPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scrollPane = new JScrollPane(cartItemsPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         add(scrollPane, BorderLayout.CENTER);
 
         // Right Panel (Subtotal, Tax, and Total)

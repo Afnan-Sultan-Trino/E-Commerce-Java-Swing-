@@ -112,13 +112,13 @@ public class CustomerEditFrame extends JFrame {
             }
         });
 
-        JButton cancelButton = createStyledButton("Cancel", buttonBgColor, buttonTextColor, fieldFont, buttonHoverBgColor);
+        JButton cancelButton = createStyledButton("Cancel", buttonBgColor, buttonTextColor, fieldFont,
+                buttonHoverBgColor);
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
-
 
         // Add components to panel
         panel.add(nameLabel);
@@ -220,9 +220,11 @@ public class CustomerEditFrame extends JFrame {
         return button;
     }
 
-    private void editUser(String name, String password, String repeatPassword, String gender, String contactNo, String address) {
+    private void editUser(String name, String password, String repeatPassword, String gender, String contactNo,
+            String address) {
         // Empty field validation
-        if (name.isEmpty() || password.isEmpty() || repeatPassword.isEmpty() || contactNo.isEmpty() || address.isEmpty()) {
+        if (name.isEmpty() || password.isEmpty() || repeatPassword.isEmpty() || contactNo.isEmpty()
+                || address.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -236,13 +238,15 @@ public class CustomerEditFrame extends JFrame {
 
         // Password length validation
         if (password.length() < 8) {
-            JOptionPane.showMessageDialog(this, "Password must be at least 8 characters long.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Password must be at least 8 characters long.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Contact number validation
         if ((contactNo.length() < 10) || (!contactNo.startsWith("0") && !contactNo.startsWith("+880"))) {
-            // Using "AND" cause if "OR" is used, if starts with "+880", check for "0" becomes true so shows error.
+            // Using "AND" cause if "OR" is used, if starts with "+880", check for "0"
+            // becomes true so shows error.
             // Similar case when starts with "0".
             JOptionPane.showMessageDialog(this, "Invalid contact number.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -250,8 +254,10 @@ public class CustomerEditFrame extends JFrame {
 
         // Proceed to update customer
         UserManager userManager = new UserManager();
-        if (userManager.updateUser(name, customer.getEmail(), password, customer.getRole(), gender, contactNo, address)) {
-            JOptionPane.showMessageDialog(this, "Details updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        if (userManager.updateUser(name, customer.getEmail(), password, customer.getRole(), gender, contactNo,
+                address)) {
+            JOptionPane.showMessageDialog(this, "Details updated successfully.", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Failed to update details.", "Error", JOptionPane.ERROR_MESSAGE);
