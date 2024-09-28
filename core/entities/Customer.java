@@ -1,9 +1,6 @@
 package core.entities;
 
 import interfaces.entities.ICustomer;
-import controllers.ProductManager;
-
-import java.util.NoSuchElementException;
 
 public class Customer extends User implements ICustomer {
 

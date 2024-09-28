@@ -4,15 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 import core.entities.Customer;
-import gui.components.customer.CartFrame;
 
 public class PaymentFrame extends JFrame {
 
     private JTextField newAddressField;
-    private CartFrame cartFrame;
 
     public PaymentFrame(Customer customer, CartFrame cartFrame) {
-        this.cartFrame = cartFrame;
 
         // Set the frame properties
         setTitle("Payment");

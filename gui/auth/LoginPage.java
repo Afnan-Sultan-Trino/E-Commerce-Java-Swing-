@@ -20,10 +20,6 @@ public class LoginPage implements ActionListener {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton registerButton;
-    private JLabel eyeLabel;
-    private JButton signup;
-	private Cursor cursor;
-	private boolean passwordVisible=false;
 
     public LoginPage() {
 
@@ -56,10 +52,6 @@ public class LoginPage implements ActionListener {
 		lo.setFont(loFont);
 		lo.setForeground(new Color(215,210,203));
 		frame.add(lo);
-		
-		
-        ImageIcon emailIcon=new ImageIcon("../assets/images/authAssets/emailIcon.png");
-		JLabel emailIconLabel=new JLabel(emailIcon);
 		
 		
         JLabel emailLabel = new JLabel("Email");
@@ -125,54 +117,18 @@ public class LoginPage implements ActionListener {
         passwordField.addActionListener(this);
         frame.add(passwordField);
 		
-		
-		
-		
-		// ImageIcon eyeIcon = new ImageIcon("C:/Users/sarke/Downloads/eye-close_1.png"); // Update the path to your image file
-		// Image eyeImage = eyeIcon.getImage(); 
-		// Image scaledEyeImage = eyeImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Set your desired width and height
-		// ImageIcon scaledEyeIcon = new ImageIcon(scaledEyeImage); // Create and add JLabel for the image
-		// JLabel imageEyeLabel = new JLabel(scaledEyeIcon);
-		// imageEyeLabel.setBounds(40, 20, 500, 75); // Set the desired bounds for the image
-		// frame.add(imageEyeLabel);
-		
-		
-		
-		
-		
-		// JPasswordField passwordField = new JPasswordField();
-        // passwordField.setEchoChar('*'); // Default echo character
-
-        // imageEyeLabel.addMouseListener(new MouseAdapter() {
-        // @Override
-        // public void mousePressed(MouseEvent e) {
-        // passwordField.setEchoChar((char) 0); // Show password
-         // }
-
-        // @Override
-        // public void mouseReleased(MouseEvent e) {
-        // passwordField.setEchoChar('*'); // Hide password
-        // }
-        // });
-
-		
-		
-		
-		JButton forgotPassword = new JButton("Forgot Password?");
-        forgotPassword.setBounds(800, 420, 120, 20);
-		forgotPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        forgotPassword.setFocusPainted(false);
-        Font forgotFont = new Font("Monospace", Font.BOLD, 12);
-        forgotPassword.setBorder(BorderFactory.createEmptyBorder());
-        forgotPassword.setFont(forgotFont);
-        forgotPassword.setOpaque(false);
-        forgotPassword.setForeground(new Color(179, 63, 64));
-        forgotPassword.setOpaque(false);
-        forgotPassword.setBackground(new Color(0, 0, 0, 0));
-        frame.add(forgotPassword);
-        // forgotPassword.setCursor(cursor);
-		
-		
+		// JButton forgotPassword = new JButton("Forgot Password?");
+        // forgotPassword.setBounds(800, 420, 120, 20);
+		// forgotPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        // forgotPassword.setFocusPainted(false);
+        // Font forgotFont = new Font("Monospace", Font.BOLD, 12);
+        // forgotPassword.setBorder(BorderFactory.createEmptyBorder());
+        // forgotPassword.setFont(forgotFont);
+        // forgotPassword.setOpaque(false);
+        // forgotPassword.setForeground(new Color(179, 63, 64));
+        // forgotPassword.setOpaque(false);
+        // forgotPassword.setBackground(new Color(0, 0, 0, 0));
+        // frame.add(forgotPassword);
 
         
         loginButton = new JButton("Sign In");
