@@ -18,9 +18,6 @@ import gui.components.customer.CustomerEditFrame;
 import gui.components.customer.ProductPanel;
 
 public class CustomerDashboard extends JFrame {
-    // private JPanel sidebar;
-    // private JPanel content;
-    // private boolean isDarkTheme = true; // Flag to track the current theme
     private ArrayList<Product> productList;
     private Customer customer;
     private JPanel productSpace; // productSpace is declared here to be accessible in the search logic
@@ -151,57 +148,13 @@ public class CustomerDashboard extends JFrame {
         westPanel.setBackground(Color.decode("#041a42"));
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
 
-        // Create sidebar buttons styled as in the image
-        JButton dashboardButton = createSidebarButton("Dashboard");
-        JButton productButton = createSidebarButton("Products");
-        JButton helpButton = createSidebarButton("Help Center");
-
-        // JCheckBox checkbox1 = new JCheckBox("BDT 3K-4K");
-        // checkbox1.setBackground(Color.decode("#041a42"));
-        // checkbox1.setForeground(Color.WHITE);
-        // checkbox1.setBounds(0, 230, 120, 50);
-        // JCheckBox checkbox2 = new JCheckBox("BDT 5K-7K");
-        // checkbox2.setBackground(Color.decode("#041a42"));
-        // checkbox2.setForeground(Color.WHITE);
-        // checkbox2.setBounds(0, 260, 120, 50);
-
-        // JCheckBox checkbox3 = new JCheckBox("BDT 8K-10K");
-        // checkbox3.setBackground(Color.decode("#041a42"));
-        // checkbox3.setForeground(Color.WHITE);
-        // checkbox3.setBounds(0, 290, 120, 50);
-        // JCheckBox checkbox4 = new JCheckBox("BDT 10K-20K");
-        // checkbox4.setBackground(Color.decode("#041a42"));
-        // checkbox4.setForeground(Color.WHITE);
-        // checkbox4.setBounds(0, 320, 120, 50);
-
-        // JCheckBox checkbox5 = new JCheckBox("BDT 30K-50K");
-        // checkbox5.setBackground(Color.decode("#041a42"));
-        // checkbox5.setForeground(Color.WHITE);
-        // checkbox5.setBounds(0, 350, 120, 50);
-        // JCheckBox checkbox6 = new JCheckBox("BDT 70K-90K");
-        // checkbox6.setBackground(Color.decode("#041a42"));
-        // checkbox6.setForeground(Color.WHITE);
-        // checkbox6.setBounds(0, 380, 120, 50);
-
-        // JCheckBox checkbox7 = new JCheckBox("BDT 90K+");
-        // checkbox7.setBackground(Color.decode("#041a42"));
-        // checkbox7.setForeground(Color.WHITE);
-        // checkbox7.setBounds(0, 410, 120, 50);
-
-        // add(checkbox1);
-        // add(checkbox2);
-        // add(checkbox3);
-        // add(checkbox4);
-        // add(checkbox5);
-        // add(checkbox6);
-        // add(checkbox7);
 
         JComboBox<String> categoryComboBox = new JComboBox<>(new ProductManager().getAllCategories());
         categoryComboBox.setBackground(Color.decode("#041a42"));
         categoryComboBox.setForeground(Color.WHITE);
         categoryComboBox.setBounds(0, 290, 120, 30);
         categoryComboBox.addActionListener(e -> performCategorySearch(categoryComboBox.getSelectedItem().toString()));
-        add(categoryComboBox);
+        // add(categoryComboBox);
 
         String[] priceRanges = {"Price Range", "$0-$100", "$100-$500", "$500-$1,000", "$1,000-$5,000", "$5,000-$10,000", "$10,000+"};
         JComboBox<String> priceComboBox = new JComboBox<>(priceRanges);
@@ -235,11 +188,11 @@ public class CustomerDashboard extends JFrame {
             priceRangeSearch(lowerBound, upperBound);
         });
 
-        add(priceComboBox);
+        // add(priceComboBox);
 
-        JButton rangeButton = createSidebarButton("Price Range");
-
-        JButton switchThemeButton = createSidebarButton("Switch Theme");
+        // Create sidebar buttons styled as in the image
+        JButton dashboardButton = createSidebarButton("Dashboard");
+        JButton filtersButton = createSidebarButton("Filters");
 
         JLabel backIcon = new JLabel(new ImageIcon("../assets/images/authAssets/backButton.png"));
         backIcon.setBounds(28, 540, 60, 35);
@@ -258,15 +211,17 @@ public class CustomerDashboard extends JFrame {
         // Add buttons to the westPanel
         westPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Top padding
         westPanel.add(dashboardButton);
-        westPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Space between buttons
-        westPanel.add(productButton);
+
         westPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        westPanel.add(helpButton);
-        westPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        westPanel.add(rangeButton);
-        westPanel.add(Box.createVerticalGlue()); // Push the switch theme button to the bottom
-        westPanel.add(switchThemeButton);
-        westPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Bottom padding
+        westPanel.add(filtersButton);
+
+        westPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        westPanel.add(priceComboBox);
+
+        westPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        westPanel.add(categoryComboBox);
+
+        westPanel.add(Box.createRigidArea(new Dimension(0, 800))); // Bottom padding
 
         // Add westPanel to the frame
         add(westPanel, BorderLayout.WEST);
