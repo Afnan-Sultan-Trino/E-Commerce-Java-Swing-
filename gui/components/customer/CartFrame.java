@@ -1,6 +1,9 @@
 package gui.components.customer;
 
 import javax.swing.*;
+
+import controllers.ProductManager;
+
 import java.awt.*;
 import java.util.HashMap;
 
@@ -8,9 +11,12 @@ import core.entities.Customer;
 import core.entities.Product;
 
 public class CartFrame extends JFrame {
+    private Customer customer;
     private JLabel subTotalLabel, taxLabel, totalLabel;
 
     public CartFrame(Customer customer) {
+
+        this.customer = customer;
 
         setTitle("Cart");
         setSize(1000, 600);
@@ -70,7 +76,7 @@ public class CartFrame extends JFrame {
             if (customer.getCart().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Your cart is empty!", "Empty Cart", JOptionPane.ERROR_MESSAGE);
             } else {
-                new PaymentFrame(customer);
+                new PaymentFrame(customer, this);
             }
         });
 
@@ -115,5 +121,18 @@ public class CartFrame extends JFrame {
         subTotalLabel.setText("Subtotal: $" + String.format("%.2f", subTotal));
         taxLabel.setText("Tax (13%): $" + String.format("%.2f", tax));
         totalLabel.setText("Total: $" + String.format("%.2f", total));
+    }
+
+    private void deductProductStock(Product product, int quantity) {
+        ProductManager productManager = new ProductManager();
+        productManager.deductStock(product.getID(), quantity);
+    }
+
+    void paymentSuccessful() {
+        for (Product p : customer.getCart().getCartHashMap().keySet()) {
+            deductProductStock(p, customer.getCart().getProductQuantityInCart(p));
+        }
+
+        customer.getCart().clearCart();
     }
 }

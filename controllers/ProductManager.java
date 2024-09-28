@@ -166,6 +166,17 @@ public class ProductManager implements IProductManager {
         return data;
     }
 
+    // Update product stock after checkout
+    public void deductStock(int id, int quantity) {
+        for (Product p : productList) {
+            if (p.getID() == id) {
+                p.setStock(p.getStock() - quantity);
+                dumpDataToFile();
+                break;
+            }
+        }
+    }
+
     // Copying entire array list to text file
     private void dumpDataToFile() {
         try {

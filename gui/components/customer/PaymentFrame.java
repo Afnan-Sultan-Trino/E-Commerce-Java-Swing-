@@ -4,14 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 
 import core.entities.Customer;
+import gui.components.customer.CartFrame;
 
 public class PaymentFrame extends JFrame {
 
-    public PaymentFrame(Customer customer) {
+    private JTextField newAddressField;
+    private CartFrame cartFrame;
+
+    public PaymentFrame(Customer customer, CartFrame cartFrame) {
+        this.cartFrame = cartFrame;
+
         // Set the frame properties
         setTitle("Payment");
         setSize(900, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);  // Use absolute layout (null layout)
 
         // Create a header
@@ -30,7 +36,7 @@ public class PaymentFrame extends JFrame {
         cardNumberLabel.setBounds(50, 130, 150, 30);
         cardNumberLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
 
-        JLabel payIcon = new JLabel(new ImageIcon("/mnt/chromeos/MyFiles/Downloads/credit-card.png"));
+        JLabel payIcon = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/creditCard.png"));
         payIcon.setBounds(490, 18, 80, 40);
 
 
@@ -39,16 +45,17 @@ public class PaymentFrame extends JFrame {
         cardNumberField.setFont(new Font("Verdana", Font.PLAIN, 17));  
         cardNumberField.setBounds(210, 130, 545, 30);  // Adjusted width and height
 
-        JLabel cardIcon = new JLabel(new ImageIcon("C:\\Users\\Emad\\Data\\Java\\E-CommerceManagementSystem\\E-CommerceManagementSystem\\assets\\images\\paymentAssets\\MasterCard.png"));
+        
+        JLabel cardIcon = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/VISA.png"));
         cardIcon.setBounds(200, 170, 90, 40);
 
-        JLabel cardIcon2 = new JLabel(new ImageIcon("/mnt/chromeos/MyFiles/Downloads/shopping (1).png"));
+        JLabel cardIcon2 = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/MasterCard.png"));
         cardIcon2.setBounds(270, 170, 90, 40);
         
-        JLabel cardIcon3 = new JLabel(new ImageIcon("/mnt/chromeos/MyFiles/Downloads/american-express (1).png"));
+        JLabel cardIcon3 = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/AMEX.png"));
         cardIcon3.setBounds(340, 170, 100, 40);
         
-        JLabel cardIcon4 = new JLabel(new ImageIcon("/mnt/chromeos/MyFiles/Downloads/card (1).png"));
+        JLabel cardIcon4 = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/PayPal.png"));
         cardIcon4.setBounds(420, 170, 90, 40);
         
         // Expiry date and security code side-by-side
@@ -61,7 +68,7 @@ public class PaymentFrame extends JFrame {
         expiryDateField.setBounds(210, 220, 160, 40);  // Set position and size
 
 
-        JLabel securityIcon = new JLabel(new ImageIcon("/mnt/chromeos/MyFiles/Downloads/key-card.png"));
+        JLabel securityIcon = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/CCV.png"));
         securityIcon.setBounds(690,225,80,30);
 
 
@@ -89,28 +96,79 @@ public class PaymentFrame extends JFrame {
         JCheckBox sameAsDelivery = new JCheckBox("Same as my delivery address");
         sameAsDelivery.setBounds(50, 370, 350, 30);
         sameAsDelivery.setFont(new Font("Verdana", Font.PLAIN, 18));
+        sameAsDelivery.addActionListener(e -> {
+            if (sameAsDelivery.isSelected()) {
+                newAddressField.setText(customer.getAddress());
+                newAddressField.setEditable(false);
+            } else if (!sameAsDelivery.isSelected()) {
+                newAddressField.setText("");
+                newAddressField.setEditable(true);
+            }
+        });
 
         // Billing Address Information
-        JLabel billingInfoLabel = new JLabel("Billing Address Information");
+        JLabel billingInfoLabel = new JLabel();
         billingInfoLabel.setBounds(50, 430, 350, 30);
         billingInfoLabel.setForeground(Color.decode("#ff6600"));
         billingInfoLabel.setFont(new Font("Verdana", Font.BOLD, 21));
-        JTextField newAddressField = new JTextField("Enter new address");
+        newAddressField = new JTextField("Enter new address");
         newAddressField.setFont(new Font("Verdana", Font.PLAIN, 17));
-        newAddressField.setBounds(50, 490, 715, 40);  // Set position and size
+        newAddressField.setBounds(50, 490, 702, 40);  // Set position and size
         
+
+        JLabel totalLabel = new JLabel("Total Cost:");
+        totalLabel.setFont(new Font("Verdana", Font.BOLD, 21));
+        totalLabel.setForeground(Color.decode("#000000"));
+        totalLabel.setBounds(50, 550, 400, 30);
+
+        JLabel amountLabel = new JLabel("$" + String.format("%.2f", customer.getCart().getTotal() * 1.13));
+        amountLabel.setFont(new Font("Verdana", Font.BOLD, 21));
+        amountLabel.setForeground(Color.decode("#ff221e"));
+        amountLabel.setBounds(600, 550, 200, 30);
+
 
         // Two buttons: Pay Now and Clear
         JButton payNowButton = new JButton("Pay Now");
-        payNowButton.setBounds(250, 570, 445, 40);  // Set position and size
+        payNowButton.setBounds(250, 640, 445, 40);  // Set position and size
         payNowButton.setBackground(Color.decode("#000000"));
         payNowButton.setForeground(Color.WHITE);
         payNowButton.setFont(new Font("Verdana", Font.BOLD, 17));
+        payNowButton.addActionListener(e -> {
+            // Validate the input fields
+            if (cardNumberField.getText().length() != 16) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid 16-digit card number", "Invalid Card Number", JOptionPane.ERROR_MESSAGE);
+            } else if (expiryDateField.getText().length() != 5) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid expiry date in MM/YY format", "Invalid Expiry Date", JOptionPane.ERROR_MESSAGE);
+            } else if (securityCodeField.getText().length() != 3) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid 3-digit security code", "Invalid Security Code", JOptionPane.ERROR_MESSAGE);
+            } else if (nameOnCardField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter the name on the card", "Invalid Name", JOptionPane.ERROR_MESSAGE);
+            } else if (newAddressField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please enter the billing address", "Invalid Address", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Payment successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                cartFrame.paymentSuccessful();
+                cartFrame.dispose();
+            }
+        });
+
         JButton clearButton = new JButton("Clear");
-        clearButton.setBounds(250, 620, 445, 40);  // Set position and size
+        clearButton.setBounds(250, 690, 445, 40);  // Set position and size
         clearButton.setBackground(Color.decode("#e32f16"));
         clearButton.setForeground(Color.WHITE);
         clearButton.setFont(new Font("Verdana", Font.BOLD, 17));
+        clearButton.addActionListener(e -> {
+            cardNumberField.setText("");
+            expiryDateField.setText("");
+            securityCodeField.setText("");
+            nameOnCardField.setText("");
+            if (sameAsDelivery.isSelected()) {
+                newAddressField.setText(customer.getAddress());
+            } else {
+                newAddressField.setText("");
+            }
+        });
 
         // Add components to the frame
         add(header);
@@ -133,6 +191,8 @@ public class PaymentFrame extends JFrame {
         add(sameAsDelivery);
         add(billingInfoLabel);
         add(newAddressField);
+        add(totalLabel);
+        add(amountLabel);
         add(payNowButton);
         add(clearButton);
 
