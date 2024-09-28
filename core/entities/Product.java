@@ -71,8 +71,14 @@ public class Product implements IProduct {
         this.desc = desc;
     }
 
+    // If image path is provided
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    // If image path isn't provided
+    public void setImagePath() {
+        this.imagePath = "../assets/images/productAssets/deafultProductIcon.jpg";
     }
 
     
