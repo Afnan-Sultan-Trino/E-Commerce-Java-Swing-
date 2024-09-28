@@ -3,5 +3,6 @@
 
 4. Add icons to Payment Form + Validation
 
-5. Admin Dashboard
 6. Admin Features
+
+7. Prevent deleting SuperAdmins from back-end
