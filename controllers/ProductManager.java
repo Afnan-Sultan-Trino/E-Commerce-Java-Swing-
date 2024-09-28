@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.Iterator;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -72,14 +73,48 @@ public class ProductManager implements IProductManager {
         dumpDataToFile();
     }
 
+    // Edit product with default image
+    public void editProduct(int id, String name, double price, int stock, String category, String desc) {
+        for (Product p : productList) {
+            if (p.getID() == id) {
+                p.setName(name);
+                p.setPrice(price);
+                p.setStock(stock);
+                p.setCategory(category);
+                p.setDescription(desc);
+                p.setImagePath();
+                dumpDataToFile();
+                break;
+            }
+        }
+    }
+
+    // Edit product with custom image
+    public void editProduct(int id, String name, double price, int stock, String category, String desc, String imagePath) {
+        for (Product p : productList) {
+            if (p.getID() == id) {
+                p.setName(name);
+                p.setPrice(price);
+                p.setStock(stock);
+                p.setCategory(category);
+                p.setDescription(desc);
+                p.setImagePath(imagePath);
+                dumpDataToFile();
+                break;
+            }
+        }
+    }
+
     // Delete product
     // TODO: Validate ID in front-end
     public void deleteProduct(int id) {
-        for (Product p : productList) {
+        Iterator<Product> iterator = productList.iterator();
+        while (iterator.hasNext()) {
+            Product p = iterator.next();
             if (p.getID() == id) {
-                productList.remove(p);
+                iterator.remove();
                 dumpDataToFile();
-                break;
+                return;
             }
         }
     }
@@ -112,6 +147,23 @@ public class ProductManager implements IProductManager {
             categories.add(p.getCategory());
         }
         return categories.toArray(new String[0]);
+    }
+
+    // Get 2D array for table
+    public String[][] getDataForTable() {
+        String[][] data = new String[productList.size()][7];
+        int i = 0;
+        for (Product p : productList) {
+            data[i][0] = Integer.toString(p.getID());
+            data[i][1] = p.getName();
+            data[i][2] = Double.toString(p.getPrice());
+            data[i][3] = Integer.toString(p.getStock());
+            data[i][4] = p.getCategory();
+            data[i][5] = p.getDescription();
+            data[i][6] = p.getImagePath();
+            i++;
+        }
+        return data;
     }
 
     // Copying entire array list to text file
