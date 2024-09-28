@@ -1,16 +1,16 @@
 package gui.auth;
 
 import controllers.UserManager;
+import core.entities.SuperAdmin;
 import core.entities.Admin;
-import core.entities.Customer;
 import core.entities.User;
+import gui.dashboards.AdminDashboard;
 import gui.dashboards.CustomerDashboard;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 import java.util.regex.Pattern;
 
 
@@ -250,9 +250,9 @@ public class LoginPage implements ActionListener {
                 // Close this frame and open admin/customer dashboard
                 // Pass the user object (duplicate) to the constructor of the dashboard
                 User u = userManager.searchUser(email);
-                if (u instanceof Admin) {
+                if (u instanceof Admin || u instanceof SuperAdmin) {
                     frame.dispose();
-                    // new AdminDashboard(a);
+                    new AdminDashboard(email);
                 } else {
                     new CustomerDashboard(email);
                     frame.dispose();
