@@ -23,8 +23,8 @@ This project was developed by a group of four as part of the "Object Oriented Pr
 
 Clone the repository (if using Git):
 ```sh
-git clone https://github.com/yourusername/e-commerce-management-system.git
-cd e-commerce-management-system
+git clone https://github.com/Emad006/E-CommerceManagementSystem.git
+cd E-CommerceManagementSystem
 ```
 Or download the [ZIP File](https://github.com/Emad006/E-CommerceManagementSystem/archive/refs/heads/main.zip) and extract it.
 
