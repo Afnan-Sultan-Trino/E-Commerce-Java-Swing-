@@ -65,7 +65,7 @@ public class CartItemPanel extends JPanel {
                 customer.getCart().updateQuantity(product, (int) quantitySpinner.getValue());
                 totalPriceLabel.setText(
                         "Total: $" + String.format("%.2f", product.getPrice() * (int) quantitySpinner.getValue()));
-                cartFrame.updatePriceLables(customer);
+                cartFrame.updatePriceLabels(customer);
             }
         });
 
@@ -101,7 +101,7 @@ public class CartItemPanel extends JPanel {
 
         removeButton.addActionListener(e -> {
             customer.getCart().removeProductFromCart(product);
-            cartFrame.updatePriceLables(customer);
+            cartFrame.updatePriceLabels(customer);
             Container parent = getParent();
             // Have to dispatch the EDT cause otherwise causes unwanted behavior
             SwingUtilities.invokeLater(() -> {

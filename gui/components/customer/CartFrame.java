@@ -59,7 +59,7 @@ public class CartFrame extends JFrame {
         totalLabel.setFont(new Font("Arial", Font.BOLD, 19));
         totalLabel.setForeground(Color.decode("#ff6600"));
 
-        updatePriceLables(customer);
+        updatePriceLabels(customer);
 
         rightPanel.add(subTotalLabel);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer
@@ -69,7 +69,7 @@ public class CartFrame extends JFrame {
         rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Spacer
 
         // Checkout Buttons
-        JButton checkoutButton = new JButton("Proceed to Checkout");
+        JButton checkoutButton = new JButton("Checkout");
         checkoutButton.setBackground(Color.decode("#ff881e"));
         checkoutButton.setForeground(Color.WHITE);
         checkoutButton.setFocusPainted(false);
@@ -87,7 +87,7 @@ public class CartFrame extends JFrame {
         clearCartButton.setFocusPainted(false);
         clearCartButton.addActionListener(e -> {
             customer.getCart().clearCart();
-            updatePriceLables(customer);
+            updatePriceLabels(customer);
             cartItemsPanel.removeAll();
             cartItemsPanel.revalidate();
             cartItemsPanel.repaint();
@@ -106,7 +106,7 @@ public class CartFrame extends JFrame {
         rightPanel.add(shopMoreButton);
         add(rightPanel, BorderLayout.EAST);
 
-        HashMap<Product, Integer> userCart = new HashMap<Product, Integer>(customer.getCart().getCartHashMap());
+        HashMap<Product, Integer> userCart = customer.getCart().getCartHashMap();
         for (Product p : userCart.keySet()) {
             cartItemsPanel.add(new CartItemPanel(this, customer, p, userCart.get(p)));
         }
@@ -114,7 +114,7 @@ public class CartFrame extends JFrame {
         setVisible(true);
     }
 
-    void updatePriceLables(Customer customer) {
+    void updatePriceLabels(Customer customer) {
         double subTotal = customer.getCart().getTotal();
         double tax = subTotal * 0.13; // 13% tax
         double total = subTotal + tax;
