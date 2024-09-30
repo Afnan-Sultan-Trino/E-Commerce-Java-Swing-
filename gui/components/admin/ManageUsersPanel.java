@@ -594,20 +594,21 @@ public class ManageUsersPanel {
             if (user instanceof Admin) {
                 if (this.user instanceof SuperAdmin) {
                     userManager.updateUser(name, email, password, role);
+                    JOptionPane.showMessageDialog(mainPanel, "Updated user successfully.", "Success",
+                            JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(mainPanel, "Cannot update admin or super-admin.", "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } else if (user instanceof Customer) {
                 userManager.updateUser(name, email, password, role, gender, contactNo, address);
+                JOptionPane.showMessageDialog(mainPanel, "Updated user successfully.", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
             } else if (user instanceof SuperAdmin) {
                 JOptionPane.showMessageDialog(mainPanel, "Cannot update super-admin.", "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-            JOptionPane.showMessageDialog(mainPanel, "Updated user successfully.", "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
 
             // Clear fields after updating user
             nameField.setText("");
