@@ -2,6 +2,7 @@ package gui.components.customer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 import core.entities.Customer;
 
@@ -33,7 +34,8 @@ public class PaymentFrame extends JFrame {
         cardNumberLabel.setBounds(50, 130, 150, 30);
         cardNumberLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
 
-        JLabel payIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/creditCard.png"));
+        // JLabel payIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/creditCard.png"));
+        JLabel payIcon = new JLabel(loadIcon("../assets/images/paymentAssets/creditCard.png"));
         payIcon.setBounds(490, 18, 80, 40);
 
         JTextField cardNumberField = new JTextField(20);
@@ -41,16 +43,20 @@ public class PaymentFrame extends JFrame {
         cardNumberField.setFont(new Font("Verdana", Font.PLAIN, 17));
         cardNumberField.setBounds(210, 130, 545, 30); // Adjusted width and height
 
-        JLabel cardIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/VISA.png"));
+        // JLabel cardIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/VISA.png"));
+        JLabel cardIcon = new JLabel(loadIcon("../assets/images/paymentAssets/VISA.png"));
         cardIcon.setBounds(200, 170, 90, 40);
 
-        JLabel cardIcon2 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/MasterCard.png"));
+        // JLabel cardIcon2 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/MasterCard.png"));
+        JLabel cardIcon2 = new JLabel(loadIcon("../assets/images/paymentAssets/MasterCard.png"));
         cardIcon2.setBounds(270, 170, 90, 40);
 
-        JLabel cardIcon3 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/AMEX.png"));
+        // JLabel cardIcon3 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/AMEX.png"));
+        JLabel cardIcon3 = new JLabel(loadIcon("../assets/images/paymentAssets/AMEX.png"));
         cardIcon3.setBounds(340, 170, 100, 40);
 
-        JLabel cardIcon4 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/PayPal.png"));
+        // JLabel cardIcon4 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/PayPal.png"));
+        JLabel cardIcon4 = new JLabel(loadIcon("../assets/images/paymentAssets/PayPal.png"));
         cardIcon4.setBounds(420, 170, 90, 40);
 
         // Expiry date and security code side-by-side
@@ -62,7 +68,8 @@ public class PaymentFrame extends JFrame {
         expiryDateField.setFont(new Font("Verdana", Font.PLAIN, 17));
         expiryDateField.setBounds(210, 220, 160, 40); // Set position and size
 
-        JLabel securityIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/CCV.png"));
+        // JLabel securityIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/CCV.png"));
+        JLabel securityIcon = new JLabel(loadIcon("../assets/images/paymentAssets/CCV.png"));
         securityIcon.setBounds(690, 225, 80, 30);
 
         JLabel securityCodeLabel = new JLabel("Security Code:");
@@ -105,7 +112,7 @@ public class PaymentFrame extends JFrame {
         billingInfoLabel.setBounds(50, 430, 350, 30);
         billingInfoLabel.setForeground(Color.decode("#ff6600"));
         billingInfoLabel.setFont(new Font("Verdana", Font.BOLD, 21));
-        newAddressField = new JTextField("Enter new address");
+        newAddressField = new JTextField("");
         newAddressField.setFont(new Font("Verdana", Font.PLAIN, 17));
         newAddressField.setBounds(50, 490, 702, 40); // Set position and size
 
@@ -130,18 +137,23 @@ public class PaymentFrame extends JFrame {
             if (cardNumberField.getText().length() != 16) {
                 JOptionPane.showMessageDialog(null, "Please enter a valid 16-digit card number", "Invalid Card Number",
                         JOptionPane.ERROR_MESSAGE);
+                return;
             } else if (expiryDateField.getText().length() != 5) {
                 JOptionPane.showMessageDialog(null, "Please enter a valid expiry date in MM/YY format",
                         "Invalid Expiry Date", JOptionPane.ERROR_MESSAGE);
+                return;
             } else if (securityCodeField.getText().length() != 3) {
                 JOptionPane.showMessageDialog(null, "Please enter a valid 3-digit security code",
                         "Invalid Security Code", JOptionPane.ERROR_MESSAGE);
+                return;
             } else if (nameOnCardField.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please enter the name on the card", "Invalid Name",
                         JOptionPane.ERROR_MESSAGE);
+                return;
             } else if (newAddressField.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Please enter the billing address", "Invalid Address",
                         JOptionPane.ERROR_MESSAGE);
+                return;
             } else {
                 JOptionPane.showMessageDialog(null, "Payment successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
@@ -194,5 +206,15 @@ public class PaymentFrame extends JFrame {
         add(clearButton);
 
         setVisible(true);
+    }
+
+    // Get the absolute path from relative path
+    private ImageIcon loadIcon(String path) {
+        File icon = new File(path);
+        if (icon.exists()) {
+            return new ImageIcon(icon.getAbsolutePath());
+        } else {
+            throw new RuntimeException("Icon not found: " + path);
+        }
     }
 }
