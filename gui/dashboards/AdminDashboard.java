@@ -48,13 +48,13 @@ public class AdminDashboard implements ActionListener {
         frame.add(leftPanel);
         frame.add(mainPanel);
 
-        welcomeLabel = new JLabel("Welcome to the Dashboard");
+        welcomeLabel = new JLabel("Welcome to the Admin Dashboard");
         welcomeLabel.setForeground(new Color(219, 226, 233));
         welcomeLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 30));
         welcomeLabel.setBounds(200, 300, 500, 50);
         mainPanel.add(welcomeLabel);
 
-        shopNameLabel = new JLabel("E-Cart", JLabel.CENTER);
+        shopNameLabel = new JLabel(user.getName(), JLabel.CENTER);
         shopNameLabel.setForeground(new Color(255, 140, 0));
         shopNameLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 45));
         shopNameLabel.setBounds(250, 350, 300, 60);
