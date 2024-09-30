@@ -98,6 +98,7 @@ public class CustomerDashboard extends JFrame {
         JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 5));
         rightPanel.setBackground(Color.decode("#a2ba07"));
         JLabel profileIcon = new JLabel(new ImageIcon("../assets/images/authAssets/user.png"));
+        profileIcon.setToolTipText("View & Edit your Profile");
         profileIcon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 updateCustomerObject(customerEmail);
@@ -109,6 +110,7 @@ public class CustomerDashboard extends JFrame {
             }
         });
         JLabel cartIcon = new JLabel(new ImageIcon("../assets/images/authAssets/groceryStore.png"));
+        cartIcon.setToolTipText("View your Cart");
         cartIcon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new CartFrame(customer);
@@ -120,6 +122,7 @@ public class CustomerDashboard extends JFrame {
         });
 
         JLabel logoutIcon = new JLabel(new ImageIcon("../assets/images/authAssets/logOut.png"));
+        logoutIcon.setToolTipText("Logout");
         logoutIcon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 dispose();
