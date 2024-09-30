@@ -1,4 +1,4 @@
-Super Admin^~^super@admin.com^~^12345678^~^SuperAdmin
-Emad Harun^~^emadharun.eh@gmail.com^~^12345678^~^Admin
+Super Admin^~^super@admin.com^~^superadmin123^~^SuperAdmin
+Emad^~^emadharun.eh@gmail.com^~^12345678^~^Admin
 Bob^~^bob@gmail.com^~^alice&bob^~^Customer^~^Male^~^+880123987456^~^Helsinki, Finland
 Alice^~^alice@gmail.com^~^bob&alice^~^Customer^~^Female^~^01784561239^~^Florida, USA
