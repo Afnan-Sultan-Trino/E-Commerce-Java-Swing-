@@ -14,18 +14,6 @@ This project was developed by a group of four as part of the "Object Oriented Pr
 - Admin Dashboard
 - Payment Dashboard
 
-## Screenshots
-
-![Login Page](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/LoginPage.PNG)
-![Registration Page](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/RegistrationPage.PNG)
-![Customer Dashboard](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/CustomerDashboard.PNG)
-![Cart](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/Cart.PNG)
-![Payment](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/PaymentFrame.PNG)
-![Admin Dashboard](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/AdminDashboard.PNG)
-![Admin Add User](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/AdminAddUser.PNG)
-![Admin List Products](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/AdminListProducts.PNG)
-![Admin Update Product](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/AdminUpdateProduct.PNG)
-
 ## Prerequisites
 
 - Java Development Kit (JDK) 8 or higher
@@ -73,6 +61,18 @@ Or download the [ZIP File](https://github.com/Emad006/E-CommerceManagementSystem
     - Email: `super@admin.com`
     - Password: `superadmin123`
 
+## Screenshots
+
+![Login Page](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/LoginPage.PNG)
+![Registration Page](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/RegistrationPage.PNG)
+![Customer Dashboard](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/CustomerDashboard.PNG)
+![Cart](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/Cart.PNG)
+![Payment](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/PaymentFrame.PNG)
+![Admin Dashboard](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/AdminDashboard.PNG)
+![Admin Add User](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/AdminAddUser.PNG)
+![Admin List Products](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/AdminListProducts.PNG)
+![Admin Update Product](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/assets/front-end-screenshots/AdminUpdateProduct.PNG)
+
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE File](https://github.com/Emad006/E-CommerceManagementSystem/blob/main/LICENSE) for details.
