@@ -33,7 +33,7 @@ public class PaymentFrame extends JFrame {
         cardNumberLabel.setBounds(50, 130, 150, 30);
         cardNumberLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
 
-        JLabel payIcon = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/creditCard.png"));
+        JLabel payIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/creditCard.png"));
         payIcon.setBounds(490, 18, 80, 40);
 
         JTextField cardNumberField = new JTextField(20);
@@ -41,16 +41,16 @@ public class PaymentFrame extends JFrame {
         cardNumberField.setFont(new Font("Verdana", Font.PLAIN, 17));
         cardNumberField.setBounds(210, 130, 545, 30); // Adjusted width and height
 
-        JLabel cardIcon = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/VISA.png"));
+        JLabel cardIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/VISA.png"));
         cardIcon.setBounds(200, 170, 90, 40);
 
-        JLabel cardIcon2 = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/MasterCard.png"));
+        JLabel cardIcon2 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/MasterCard.png"));
         cardIcon2.setBounds(270, 170, 90, 40);
 
-        JLabel cardIcon3 = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/AMEX.png"));
+        JLabel cardIcon3 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/AMEX.png"));
         cardIcon3.setBounds(340, 170, 100, 40);
 
-        JLabel cardIcon4 = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/PayPal.png"));
+        JLabel cardIcon4 = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/PayPal.png"));
         cardIcon4.setBounds(420, 170, 90, 40);
 
         // Expiry date and security code side-by-side
@@ -62,7 +62,7 @@ public class PaymentFrame extends JFrame {
         expiryDateField.setFont(new Font("Verdana", Font.PLAIN, 17));
         expiryDateField.setBounds(210, 220, 160, 40); // Set position and size
 
-        JLabel securityIcon = new JLabel(new ImageIcon("../../../assets/images/paymentAssets/CCV.png"));
+        JLabel securityIcon = new JLabel(new ImageIcon("/Users/xyrophyte/Data/Code/Java/E-CommerceManagementSystem/assets/images/paymentAssets/CCV.png"));
         securityIcon.setBounds(690, 225, 80, 30);
 
         JLabel securityCodeLabel = new JLabel("Security Code:");
@@ -89,6 +89,7 @@ public class PaymentFrame extends JFrame {
         JCheckBox sameAsDelivery = new JCheckBox("Same as my delivery address");
         sameAsDelivery.setBounds(50, 370, 350, 30);
         sameAsDelivery.setFont(new Font("Verdana", Font.PLAIN, 18));
+        sameAsDelivery.setFocusPainted(false);
         sameAsDelivery.addActionListener(e -> {
             if (sameAsDelivery.isSelected()) {
                 newAddressField.setText(customer.getAddress());
